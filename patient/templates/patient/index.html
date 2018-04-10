@@ -1,0 +1,34 @@
+{% extends 'patient/base.html' %}
+{% block content %}
+<div class="row">
+  <div class="col-md-6">
+    <p><h1>introducción al sitio</h1></p>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean aliquam, est vel maximus varius, odio arcu efficitur lacus, quis lobortis tellus leo vel orci. Maecenas in commodo justo, id varius nibh. Fusce pulvinar lacus sapien, vitae auctor sem dictum sed. Nam eget dignissim sem. Praesent facilisis mauris ut lacinia porta. Phasellus viverra, velit eget lobortis volutpat, eros eros sodales dolor, ut varius ligula sem ornare dolor. Ut lobortis condimentum pharetra. Praesent eget bibendum ligula, sit amet mattis lacus. Cras congue lorem nibh, quis commodo dolor commodo in. In consectetur orci vitae lorem rutrum imperdiet. Morbi rhoncus ex sit amet massa vestibulum vestibulum.
+      <br>
+      Maecenas ut lacinia augue. Nunc facilisis molestie aliquet. Nunc at viverra ipsum. Vestibulum eleifend lacus vitae velit sagittis, placerat blandit neque ultrices. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ac aliquet erat, et efficitur eros. Vivamus venenatis odio eu posuere condimentum.
+    </p>
+  </div>
+  <div class="col-md-6">
+    <p><h1>Lineas de atención inmediata</h1></p>
+    <a href="tel:+573155146653">
+      <h2>
+        <i class="fas fa-phone fa-2x"  style="color:#000"></i>
+        Linea movil: 315-5146653
+      </h2>
+    </a>
+    <a href="whatsapp://send?phone=573155146653">
+      <h2>
+        <i class="fab fa-whatsapp fa-2x"  style="color:#000"></i>
+        Chat de WhatsApp
+      </h2>
+    </a>
+    <a href="/patient/search">
+      <h2>
+        <img src="/static/images/search_profile.png" alt="Guia de psicologos" height="80px">
+        Guia de psicologos
+      </h2>
+    </a>
+  </div>
+</div>
+{% endblock %}

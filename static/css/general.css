@@ -1,0 +1,114 @@
+/*
+ * Globals
+ */
+
+ /*Verde    #25450A*/
+ /*Amarillo #F19D06*/
+ /*Naranja  #E16118*/
+
+/* Links */
+a,
+a:focus,
+a:hover {
+  color: #E16118;
+}
+
+/* Custom default button */
+.btn-secondary,
+.btn-secondary:hover,
+.btn-secondary:focus {
+  color: #D6F5BB;
+  text-shadow: none; /* Prevent inheritance from `body` */
+  font-weight: bold;
+  background-color: #E16118;
+  padding: 6px 12px;
+  /*border: 0.2rem solid #E16118;*/
+  border: transparent
+}
+
+.alphas {
+    display: inline-block;
+}
+
+/*
+ * Base structure
+ */
+
+html,
+body {
+  margin-top: 45px;
+  height: 100%;
+  background-color: rgba(0,0,0,0);
+}
+body {
+  background: url('/static/images/bg.jpg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  color: #25450A;
+  /*text-align: center;*/
+  text-shadow: 0 .05rem .1rem rgba(0,0,0,.5);
+  font-family: 'benguita'; /*a name to be used later*/
+  src: url('/fonts/benguiat.ttf'); /*URL to font*/
+  /*NavBar*/
+  /*padding-top: 48px;*/
+}
+
+/*
+ * Header
+ */
+.navbar .nav-link {
+  padding: .25rem 0;
+  font-weight: bold;
+  color: rgba(37,69,10,.7);
+  border-bottom: .25rem solid transparent;
+}
+
+.navbar {
+  padding-bottom: 0;
+  transition: background-color 0.4s ease-out;
+  background-color: transpatent;
+}
+
+.scroll {
+  background-color: #FFF;
+}
+
+.navbar .nav-link:hover,
+.navbar .nav-link:focus,
+.navbar .active {
+  color: #25450A;
+  border-bottom-color: #E16118;
+}
+
+.navbar .nav-link + .nav-link {
+  margin-left: 1rem;
+}
+
+.navbar-nav.navbar-right .btn {
+  position: relative;
+  z-index: 2;
+  padding: 4px 20px;
+  margin: 10px auto;
+}
+
+.navbar .navbar-collapse { position: relative; }
+.navbar .navbar-collapse .navbar-right > li:last-child { padding-left: 22px; }
+
+.navbar .nav-collapse { position: absolute; z-index: 1; top: 0; left: 0; right: 0; bottom: 0; margin: 0; padding-right: 120px; padding-left: 80px; width: 100%; }
+.navbar.navbar-default .nav-collapse { background-color: #f8f8f8; }
+.navbar.navbar-inverse .nav-collapse { background-color: #222; }
+.navbar .nav-collapse .navbar-form { border-width: 0; box-shadow: none; }
+.nav-collapse>li { float: right; }
+
+.btn.btn-circle { border-radius: 50px; }
+.btn.btn-outline { background-color: transparent; }
+
+@media screen and (max-width: 767px) {
+    .navbar .navbar-collapse .navbar-right > li:last-child { padding-left: 15px; padding-right: 15px; }
+
+    .navbar .nav-collapse { margin: 7.5px auto; padding: 0; }
+    .navbar .nav-collapse .navbar-form { margin: 0; }
+    .nav-collapse>li { float: none; }
+}

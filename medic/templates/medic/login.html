@@ -1,0 +1,32 @@
+{% extends 'medic/base.html' %}
+
+{% block content %}
+<div class="row">
+  <div class="col-md-4 offset-md-4">
+    <div class="text-left">
+      <h2>Iniciar secion</h2>
+      <form method="post">
+        {% csrf_token %}
+        {% for field in form %}
+        <p>
+          {{ field.label_tag }}<br>
+          {{ field }}
+          {% if field.help_text %}
+          <br>
+          <small style="color: grey">{{ field.help_text }}</small>
+          {% endif %}
+          {% for error in field.errors %}
+          <p style="color: red">{{ error }}</p>
+          {% endfor %}
+        </p>
+        {% endfor %}
+        <button type="submit" class="btn btn-primary">Entrar</button>
+      </form>
+      <br>
+      <div>
+        Aun no tienes cuenta? <a href="/medic/signup">Creala aqui</a>.
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

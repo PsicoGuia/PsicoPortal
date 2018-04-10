@@ -1,0 +1,78 @@
+{% extends 'medic/base.html' %}
+{% block css %}
+{{ block.super }}
+{% load staticfiles%}
+<link rel="stylesheet" href="{% static "medic/css/profile.css" %}">
+{{ form.media }}
+{% endblock %}
+{% block content %}
+<div class="row">
+  <!-- div class="col-md-4 offset-md-4">
+  {% csrf_token %}
+  {{ profile.user.username }}
+</div-->
+  <div class="twPc-div">
+    <a class="twPc-bg twPc-block"></a>
+
+    <div>
+      <div class="twPc-button">
+        <a href="https://twitter.com/mertskaplan" class="twitter-follow-button" data-show-count="false" data-size="large" data-show-screen-name="false"
+          data-dnt="true">Follow @mertskaplan</a>
+      </div>
+
+      <a title="{{ profile.user.username }}" href="{{ profile.picture }}" class="twPc-avatarLink">
+        <img alt="{{ profile.user.username }}" src="{{ profile.picture }}" class="twPc-avatarImg">
+      </a>
+
+      <div class="twPc-divUser">
+        <div class="twPc-divName">
+          {{ profile.user.first_name }} {{ profile.user.last_name }}
+        </div>
+        <span>
+          {{ profile.professionalCardNumber }}
+        </span>
+      </div>
+      <div class="twPc-divStats">
+        <ul class="twPc-Arrange">
+          <li class="twPc-ArrangeSizeFit">
+            <span class="twPc-StatLabel twPc-block">Calificacion de usuarios</span>
+            <span class="twPc-StatValue">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="far fa-star"></i>
+              5.4
+            </span>
+          </li>
+          <li class="twPc-ArrangeSizeFit">
+            <span class="twPc-StatLabel twPc-block">Citas atendidas</span>
+            <span class="twPc-StatValue">885</span>
+          </li>
+          <li class="twPc-ArrangeSizeFit">
+            <span class="twPc-StatLabel twPc-block">Anhos de experiencia</span>
+            <span class="twPc-StatValue">5</span>
+          </li>
+        </ul>
+      </div>
+      <div class="none">
+        {% if studies %} {% for study in studies %}
+        <span>{{ study.title }}</span>
+        {% endfor %} {% endif %}
+      </div>
+      {{profile.location}}
+      <div>
+        cosa
+        <form action="" method="post">
+          {% csrf_token %}
+          {{ form }}
+          <input type="submit"></input>
+        </form>
+      </div>
+    </div>
+  </div>
+  <!-- code end -->
+</div>
+</div>
+</div>
+{% endblock %}

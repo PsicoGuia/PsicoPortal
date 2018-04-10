@@ -1,0 +1,91 @@
+{% extends 'patient/base.html' %}
+
+{% block css %}
+{{ block.super }}
+{% load staticfiles%}
+<link rel="stylesheet" href="{% static "patient/css/medic_list.css" %}" >
+{% endblock %}
+
+{% load widget_tweaks %}
+
+{% block content %}
+<div class="row">
+  <div class="col-md-4 pull-left">
+    <form method="get">
+      <h4>Filtros</h4>
+      <div class="form-group">
+        {{ filter.form.genre.label_tag }}
+        {% render_field filter.form.genre class="form-control" %}
+      </div>
+      <div class="form-group">
+        {{ filter.form.city.label_tag }}
+        {% render_field filter.form.city class="form-control" %}
+      </div>
+      <div class="form-group">
+        {{ filter.form.cost.label_tag }}
+        {% render_field filter.form.cost class="form-control" %}
+      </div>
+      <button type="submit" class="btn btn-primary">
+        <i class="fa fa-search"></i> Search
+      </button>
+    </form>
+  </div>
+  {% for profile in filter.qs %}
+  <div class="col-sm-3">
+    <div class="card">
+      <canvas class="header-bg" width="250" height="70" id="header-blur"></canvas>
+      <div class="avatar">
+        <a href="/medic/profile/{{ profile.user.username }}">
+          <img alt="{{ profile.user.username }}" src="{{ profile.picture }}" />
+        </a>
+        <img class="src-image" src="{{ profile.picture }}" />
+      </div>
+      <div class="content">
+        <p>
+          {{ profile.user.first_name }} {{ profile.user.last_name }}<br>
+          {{ profile.professionalCardNumber }}
+        </p>
+        <p>
+          <a href="/medic/profile/{{ profile.user.username }}">
+            <button type="button" class="btn btn-secondary">Perfil</button>
+          </a>
+        </p>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+  <!--div class="col-md-8">
+    <ul>
+    {% for profile in filter.qs %}
+      <li>{{ profile.user.username }} - {{ profile.cost }}</li>
+    {% endfor %}
+    </ul>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Genero</th>
+          <th>Costo</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for profile in filter.qs %}
+          <tr>
+            <td>{{ profile.user.first_name }} {{ profile.user.last_name }}</td>
+            <td>{{ profile.genre }}</td>
+            <td>{{ profile.cost }}</td>
+          </tr>
+        {% empty %}
+          <tr>
+            <td colspan="3">No data</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div-->
+</div>
+{% endblock %}
+
+{% block controller %}
+<script src="{% static "patient/js/medic_list.js" %}" ></script>
+{% endblock %}

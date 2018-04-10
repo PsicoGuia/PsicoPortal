@@ -1,0 +1,48 @@
+{% extends 'bootstrap.html' %}
+{% block body %}
+<nav class="navbar navbar-expand-md bg-faded fixed-top">
+  <a class="navbar-brand" href="/">
+    <img src="/static/images/logo_full_200.png" alt="PiscoGuia">
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="#">Quienes somos</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Que ofrecemos</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Contantenos</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<div class="container">
+  <div class="row">
+    <img src="/static/images/logo_full_500.png" alt="PiscoGuia">
+  </div>
+  <div class="row">
+    <!--div class="inner cover home"-->
+      <p class="lead">
+
+      </p>
+      <p class="lead">
+        <h1>Bienvenido a PsicoGuia</h1>
+      </p>
+      <p class="lead">Este portal brinda a pacientes y profesionales de la salud mental un espacio donde pueden contactarse de manera facil, agil y efectiva.</p>
+      <p class="lead">
+        <a href="patient" class="btn btn-lg btn-secondary">Paciente</a>
+        <a href="medic" class="btn btn-lg btn-secondary">Profesional</a>
+      </p>
+    <!--/div-->
+  </div>
+  <hr>
+  <footer>
+    <p>PsicoGuia SAS. Todos los derechos reservados</p>
+  </footer>
+</div>
+{% endblock %}
