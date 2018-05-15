@@ -1,5 +1,5 @@
 <ion-menu [content]="content">
-  <ion-content >
+  <ion-content>
     <div class="header-side-menu">
       <div class="logo-side-menu">
         <img alt="The Smokers Store" src="assets/img/logo_300.png" (click)="openPage(pages[0])" menuClose>
@@ -25,21 +25,11 @@
     </div>
 
     <ion-list>
-      <button menuClose ion-item  *ngIf="productService.citySelected" ion-item (click)="openPage({component: 'CitySelectPage'})" style="border-bottom-width: 3px;s">
-        <ion-icon name="ai-office" style="margin-right:4px"></ion-icon> {{productService.citySelected}}
-      </button>
-      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)"><ion-icon name="{{p.icon}}" style="margin-right:4px"></ion-icon>{{p.title}}</button>
-      <button *ngIf="userService.user" menuClose ion-item (click)="openPage({component: 'Orders'})">
-        <ion-icon name="md-cart" style="margin-right:4px"></ion-icon>MIS PEDIDOS
-      </button>
-      <button *ngIf="userService.user" menuClose ion-item (click)="openPage({component: 'Addresses'})">
-        <ion-icon name="ios-pin-outline" style="margin-right:4px"></ion-icon>MIS DIRECCIONES
-      </button>
       <button *ngIf="userService.user" ion-item (click)="showProfile=false;openPage({component: 'ProfilePage'})">
-          <ion-icon name="person" style="margin-right:4px"></ion-icon>MI PERFIL
+        <ion-icon name="person" style="margin-right:4px"></ion-icon>MI PERFIL
       </button>
       <button *ngIf="userService.user" menuClose ion-item (click)="openPage({component: 'UserPointsPage'})">
-          <ion-icon name="cash" style="margin-right:4px"></ion-icon>MI ESTADO DE CUENTA
+        <ion-icon name="cash" style="margin-right:4px"></ion-icon>MI ESTADO DE CUENTA
       </button>
       <button *ngIf="userService.user" ion-item (click)="logout()">
         <ion-icon name="md-exit" style="margin-right:4px"></ion-icon>CERRAR SESIÓN
@@ -50,18 +40,9 @@
 
 </ion-menu>
 
-<div class="top-phones" *ngIf='destop_menu'>
-  <p><span>Tienda Principal El Retiro:</span>  3057158236  <span>Tienda Bosa Piamonte:</span>  3142105451  <span>Tienda Manizales Milan: </span> 3118270089    <span>Tienda Tunja:</span> 3175085586 <span>Tienda Medellín:</span> 3142973727</p>
-</div>
-
 <div class="max-desktop-menu" *ngIf='destop_menu'>
   <ion-list class="desktop-menu">
     <div class="panel-sup">
-      <div class="phone-whatsaap dmiddle"> 
-        <div class="phone-info dmiddle"> 
-          <h1 style="font-size: 1.7rem; margin-top: 12px; margin-right: 20px; cursor: pointer;" (click)='openPage({component: "CitySelectPage"})'><span *ngIf='userService.user'>{{userService.addressTitle}},</span> {{productService.citySelected}}</h1>
-        </div> 
-      </div> 
       <div class="menu-networks dmiddle">
         <div class="dmiddle">
           <ion-icon style="margin-right: 15px;" color='light' name="logo-facebook" (click)="goToExternalUrl('http://facebook.com/pg/thesmokersstore/')"></ion-icon>
@@ -77,9 +58,9 @@
       </div>
       <div class="dmiddle">
         <ion-buttons class end>
-          <button ion-button clear (click)="openPage({component: 'Cart'})">
-            <ion-icon name="md-cart" color="light"></ion-icon>
-            <ion-badge item-right color='secondary' *ngIf="cartService.cartProducts.length > 0">{{cartService.cartProducts.length}}</ion-badge>
+          <button ion-button clear (click)="openPage({component: 'Home'})">
+            <ion-icon name="md-search" color="light">CITA</ion-icon>
+            <ion-badge item-right color='secondary'>5</ion-badge>
           </button>
         </ion-buttons>
       </div>
@@ -87,9 +68,9 @@
 
     <div class="panel-inf" style="margin-top: 0px;">
       <div class="left-info">
-        <div class="menu-pages" >
+        <div class="menu-pages">
           <div class="dmiddle">
-            <button menuClose ion-item (click)="goToSmokers()" >
+            <button menuClose ion-item (click)="goToSmokers()">
               INICIO
             </button>
           </div>
@@ -100,10 +81,10 @@
         </div>
         <div class="menu-pages" *ngFor="let p of pages; let i = index">
           <div class="dmiddle">
-            <button *ngIf='!p.stage' menuClose ion-item (click)="showProfile=false;openPage(p)" >
+            <button *ngIf='!p.stage' menuClose ion-item (click)="showProfile=false;openPage(p)">
               {{p.title}}
             </button>
-            <button class='activeBlue'*ngIf='p.stage'  menuClose ion-item (click)="showProfile=false;openPage(p)" >
+            <button class='activeBlue' *ngIf='p.stage' menuClose ion-item (click)="showProfile=false;openPage(p)">
               {{p.title}}
             </button>
           </div>
@@ -114,55 +95,49 @@
         </div>
 
 
-          <div class="menu-login" *ngIf="!userService.user">
-            <div class="dmiddle">
-              <button *ngIf="!userService.user" ion-item (click)="showProfile=false;login()">
-                INGRESAR
-              </button>
-            </div>
-            <div class="dmiddle" *ngIf='i != ((pages.length)-1)'>
-              <div class="line-white">
-              </div>
-            </div>
-            <div class="dmiddle">
-              <button ion-item (click)="showProfile=false;openPage({component: 'Register'})">
-                REGÍSTRATE
-              </button>
+        <div class="menu-login" *ngIf="!userService.user">
+          <div class="dmiddle">
+            <button *ngIf="!userService.user" ion-item (click)="showProfile=false;login()">
+              INGRESAR
+            </button>
+          </div>
+          <div class="dmiddle" *ngIf='i != ((pages.length)-1)'>
+            <div class="line-white">
             </div>
           </div>
+          <div class="dmiddle">
+            <button ion-item (click)="showProfile=false;openPage({component: 'Home'})">
+              REGÍSTRATE
+            </button>
+          </div>
+        </div>
 
 
 
-          <div class="menu-login" *ngIf="userService.user">
+        <div class="menu-login" *ngIf="userService.user">
+          <div class="dmiddle">
+            <button ion-item color="secondary" (click)="showProfile=!showProfile">
               <div class="dmiddle">
-                <button ion-item color="secondary" (click)="showProfile=!showProfile" >
-                  <div class="dmiddle">
-                    <ion-icon name="contact"></ion-icon>
-                  </div>
-                  <div class="dmiddle" style="padding-left: 5px; padding-right: 5px;">
-                     {{userService.user.first_name}} {{userService.user.last_name}}
-                  </div>
-                  <div class="dmiddle">
-                    <ion-icon name="ios-arrow-up" *ngIf="showProfile"></ion-icon>
-                    <ion-icon name="ios-arrow-down" *ngIf="!showProfile"></ion-icon>
-                  </div>
-                </button>
+                <ion-icon name="contact"></ion-icon>
               </div>
+              <div class="dmiddle" style="padding-left: 5px; padding-right: 5px;">
+                {{userService.user.first_name}} {{userService.user.last_name}}
+              </div>
+              <div class="dmiddle">
+                <ion-icon name="ios-arrow-up" *ngIf="showProfile"></ion-icon>
+                <ion-icon name="ios-arrow-down" *ngIf="!showProfile"></ion-icon>
+              </div>
+            </button>
           </div>
+        </div>
       </div>
     </div>
 
     <div *ngIf="showProfile && userService.user" class="submenu">
-      <button ion-item (click)="showProfile=false;openPage({component: 'Orders'})">
-        MIS PEDIDOS
-      </button>
-      <button ion-item (click)="showProfile=false;openPage({component: 'Addresses'})">
-        MIS DIRECCIONES
-      </button>
-      <button ion-item (click)="showProfile=false;openPage({component: 'ProfilePage'})">
+      <button ion-item (click)="showProfile=false;openPage({component: 'Home'})">
         MI PERFIL
       </button>
-      <button ion-item (click)="showProfile=false;openPage({component: 'UserPointsPage'})">
+      <button ion-item (click)="showProfile=false;openPage({component: 'Home'})">
         MI ESTADO DE CUENTA
       </button>
       <button ion-item (click)="showProfile=false;logout()">
@@ -177,7 +152,7 @@
     <div class="dwhatsapp">
       <h3 class="strong blue">
         <ion-icon name="logo-whatsapp" color="secondary"></ion-icon>
-        305-7158236
+        3007299407
       </h3>
     </div>
     <div class="dmiddle">
@@ -186,22 +161,11 @@
     </div>
     <div class="dadd1">
       <ion-icon name="pin"></ion-icon>
-      <span class="texUp">Diagonal 69B sur # 78L-43</span>
-      <br/><span class="texDw">Punto de antención sur</span>
-    </div>
-
-    <div class="dmiddle">
-      <div class="line-white">
-      </div>
-    </div>
-
-    <div class="dadd2">
-      <ion-icon name="pin"></ion-icon>
-      <span class="texUp">Diagonal 69B sur # 78L-43</span>
-      <br/><span class="texDw">Punto de antención sur</span>
+      <span class="texUp">Cll falsa 123</span>
+      <br/>
+      <span class="texDw">Bogotá Colombia</span>
     </div>
   </div>
-</div>
 
-<!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
-<ion-nav [root]="rootPage" #content swipeBackEnabled="false" (window:resize)="onResize()"></ion-nav>
+  <!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
+  <ion-nav [root]="rootPage" #content swipeBackEnabled="false" (window:resize)="onResize()"></ion-nav>
