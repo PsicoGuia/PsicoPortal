@@ -1,0 +1,92 @@
+<!--
+  Generated template for the UserPointsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar color='primary'>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title><img alt="The Smokers Store" src="assets/img/logo.png" (click)="navCtrl.setRoot('Home');"></ion-title>
+    <ion-buttons class='cart-mobile' end>
+      <button ion-button clear [navPush]="'Cart'" >
+        <ion-icon name="md-cart" color="light"></ion-icon>
+        <ion-badge item-right color='secondary' *ngIf="cartService.cartProducts.length>0">{{cartService.cartProducts.length}}</ion-badge>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <div class="max-page-wid">
+    <div style="display: flex">
+      <ion-item>
+          <ion-label stacked>
+            Persona quien me referió
+          </ion-label>
+          <ion-input [(ngModel)]="refered" [disabled]="hasRefered" placeholder="Ingrese el numero telefonico de su referido...."></ion-input>
+      </ion-item>
+      <button *ngIf="!hasRefered" ion-button color="primary" (click)='setRefered()' style="margin: 0px; height: auto; width: 60px;"><ion-icon name="checkmark"></ion-icon></button>   
+    </div>
+    <ion-item>
+      <ion-label>
+        Total puntos disponibles: {{total_active_points}}
+      </ion-label>
+    </ion-item>
+    <ion-scroll *ngIf="userPoints.length > 0" scrollX="true" scrollY="true" style="width: 100%; height: 100%">
+        <ion-grid *ngIf="userPoints.length > 0" style="margin-top: 20px; width: 1000px;">
+            <ion-row class="first-row" align-items-start>
+              <ion-col>
+                Cliente
+              </ion-col>
+              <ion-col>
+                Disponible
+              </ion-col>
+              <ion-col>
+                Cantidad
+              </ion-col>
+              <ion-col>
+                Creación
+              </ion-col>
+              <ion-col>
+                Expiración
+              </ion-col>
+              <ion-col>
+                Estado
+              </ion-col>
+            </ion-row>
+            <ion-row align-items-start *ngFor="let point of userPoints">
+              <ion-col>
+                {{point.order.person.user.first_name}} {{point.order.person.user.last_name}}
+              </ion-col>
+              <ion-col>
+                {{point.amount | number:'3.2'}}
+              </ion-col>
+              <ion-col>
+                {{point.order.amount*pointsPersentage | number:'3.2'}}
+              </ion-col>
+              <ion-col>
+                {{point.created | date : 'dd/MM/y'}}
+              </ion-col>
+              <ion-col>
+                {{point.expire | date : 'dd/MM/y'}}
+              </ion-col>
+              <ion-col>
+                {{points_states[point.state]}}
+              </ion-col>
+            </ion-row>
+        </ion-grid>
+    </ion-scroll>
+    <div *ngIf="userPoints.length < 1">
+      <ion-card>
+        <img src="../../assets/img/vapeclubadvertorial-1500x1000.jpg"/>
+        <div class="card-title">#VapearSinPagar</div>
+        <div class="card-subtitle">Recuerda por cada referido que realice una compra obtendrás un crédito automático del 10% del valor de la misma 
+          <br> <span style="font-size: 15px; color: white;">Aplica <a (click)="navCtrl.setRoot('TermsConditionsPage')" style="cursor: pointer; color:white;">Términos y Condiciones</a></span></div>
+      </ion-card>
+    </div>
+  </div>
+</ion-content>

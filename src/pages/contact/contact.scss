@@ -1,0 +1,171 @@
+page-contact {
+
+  .part1{
+    float: right;
+    width: 60.5%;
+  }
+
+  .part2{
+    width: 39%;
+    margin-right: 0.5%;
+  }
+
+  .scroll-content>.item {
+    max-width: 1170px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+  }
+
+  .map{
+    height: 600px;
+    max-width: 1170px;
+    margin-left:auto;
+    margin-right:auto;
+  }
+
+  .div0{
+    margin-left:auto;
+    margin-right:auto;
+    width: 500px;
+    height: 280px;
+    p{
+      font-weight: 300;
+    }
+  }
+
+  .text{
+    color: map-get($colors, secondary);
+  }
+
+  .info{
+    margin-top: 2px;
+  }
+
+  .div2{
+    float: right;
+    margin-left:auto;
+    margin-right:auto;
+    text-align: center;
+    height: 10px;
+    margin-right: 30px;
+  }
+
+  .div1{
+    float: left;
+    text-align: center;
+    margin-left:auto;
+    margin-right:auto;
+    margin-right: 30px;
+  }
+
+  .contact-form-text{
+    margin-top: 20px;
+    max-width: 850px;
+    margin-left: auto;
+    margin-right: auto;
+    h1{
+      margin: 0px;
+      font-weight: 400;
+      color: #6D6E71;
+    }
+
+    h6{
+      margin: 0px;
+      font-weight: 300;
+      color: #6D6E71;
+    }
+  }
+  
+
+  .contact-form{
+    background-color: white;
+    max-width: 1170px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 10px;
+    padding-right: 10px;
+
+    ion-textarea{
+      height: 80px;
+      margin-left: auto;
+      margin-right: auto;
+      .text-input-md{
+        height: 80px;
+      }
+    }
+
+    ion-slides {
+      margin-top: 20px;
+
+      ion-slide {
+        height: 448px;
+        width: 415px;
+        max-height: none;
+      }
+    }
+
+  }
+
+  @media only screen and (min-width: 768px){
+
+    .contact-form{
+
+      form{
+        width: 100%;
+      }
+      display: flex;
+       .part1{
+         float: left;
+         width: 50%;
+         height: 100%;
+
+         button{
+           margin-top: 10px;
+         }
+       }
+       .part2{
+         float: right;
+         width: 50%;
+         height: 100%;
+
+         ion-slides{
+           height: 100% !important;
+         }
+
+         ion-slide {
+           padding-left: 10px;
+         }
+       }
+    }
+  }
+
+  @media only screen and (max-width: 690px) {
+
+    .contact-form{
+      img{
+        width: 100%;
+        height: 100%;
+      }
+
+      .slides{
+        height: 100%;
+        width: 100%;
+      }
+    }
+  }
+
+  @media only screen and (max-width: 660px){
+
+    .map{
+      height: 260px;
+    }
+
+    .part1{
+      width: 100%;
+    }
+    .part2{
+      width: 100%;
+    }
+  }
+}

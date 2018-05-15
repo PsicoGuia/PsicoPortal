@@ -1,0 +1,261 @@
+<!--
+  Generated template for the TermsConditionsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar color='primary'>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title><img alt="The Smokers Store" src="assets/img/logo.png" (click)="navCtrl.setRoot('Home');"></ion-title>
+    <ion-buttons class='cart-mobile' end>
+      <button ion-button clear [navPush]="'Cart'" >
+        <ion-icon name="md-cart" color="light"></ion-icon>
+        <ion-badge item-right color='secondary' *ngIf="cartService.cartProducts.length>0">{{cartService.cartProducts.length}}</ion-badge>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <div class="max-width">
+    <h1>TÉRMINOS Y CONDICIONES</h1>
+    <p>Bienvenido al sitio de comercio electrónico www.thesmokersstore.com, en adelante (“El Sitio” o “thesmokersstore.com”),
+      constituido bajo las leyes colombianas, cuya actividad principal es permitir la exhibición y comercialización de productos
+      para su adquisición en línea por los consumidores ubicados en la República de Colombia, en adelante (“los Clientes” o “los Usuarios”).</p>
+    <p>
+      thesmokersstore.com es controlado y operado por THE SMOKERS STORE S.A.S., Sociedad Comercial domiciliada en la República de Colombia. 
+      Aquellos Usuarios que decidan ingresar al Sitio desde otros países, lo harán bajo su propia iniciativa y es su responsabilidad el sujetarse 
+      a las leyes locales que sean aplicables. Cualquier reclamo en relación con el uso del Sitio y el material en él contenido está regulado por 
+      las leyes colombianas.
+    </p>
+    <p>
+      Los Usuarios que ingresen al sitio thesmokersstore.com desde países diferentes a la Republica de Colombia, podrán realizar compras sujetándose a la 
+      normatividad colombiana, sin embargo los productos solo serán entregados dentro del territorio colombiano a la dirección suministrada por el usuario.        
+    </p>
+    <p>Al ingresar al Sitio el Usuario admite haber leído y entendido los Términos y Condiciones de Uso, en adelante (“Términos y Condiciones”), 
+      y por consiguiente asumen la obligación de respetar su contenido, política de privacidad, notificaciones legales y todas las cláusulas de exención 
+      de responsabilidad que figuran en el mismo.
+    </p>
+    <p>
+        Los presentes Términos y Condiciones están sujetos a cambios sin previo aviso, en cualquier momento, y a partir de la fecha de modificación de estos 
+        Términos y Condiciones, todas las operaciones que se celebren entre thesmokersstore.com y el Usuario se regirán por el documento modificado.
+    </p>
+    <ol>
+      <li>Inscripción del Usuario en el Sitio</li>
+      <p>En el proceso de inscripción en el Sitio se recopilará la siguiente información personal:</p>
+      <ul>
+        <li>Información de contacto, incluyendo nombre completo, número de teléfono y correo electrónico.</li>
+        <li>Al momento de realizar el pago, se podrá solicitar el número de tarjeta de crédito e información de facturación y/o de envíos.</li>
+        <li>Número de identificación del destinatario de tratarse de una persona distinta al Usuario.</li>
+        <li>Información relacionada con intereses personales y preferencias de productos.</li>
+        <li>El Usuario podrá encontrar la información referente al el Habeas Data en el punto 16.</li>
+      </ul>
+      <li>Capacidad del Usuario.</li>
+      <p>
+        Los servicios de thesmokersstore.com están disponibles sólo para aquellas personas que tengan capacidad legal para contratar según lo dispuesto por la legislación 
+        colombiana vigente. Si el Usuario carece de dicha capacidad legal no podrá realizar transacciones en el Sitio.
+      </p>
+      <li>Verificación del Usuario - Impedimento de uso.</li>
+      <p>
+        Al ingresar a este sitio el Usuario adquiere el compromiso de suministrar información personal correcta y verdadera para la entrega efectiva de los productos adquiridos. 
+        thesmokersstore.com examinará la solicitud presentada por el Usuario y se reservará la facultad de verificar los datos comunicados por cada uno de los Usuarios. De constatarse 
+        una inconsistencia en la información del Usuario al momento de la inscripción o si omite notificar algún cambio, thesmokersstore.com podrá proceder con la cancelación del pedido 
+        y la terminación inmediata de la cuenta del Usuario en cuestión. En caso de que el Usuario tuviere algún monto pendiente, éste deberá ser pagado en su totalidad antes de proceder
+        con el cierre de la cuenta.
+      </p>
+      <li>Responsabilidad del Usuario.</li>
+      <p>
+          El Usuario se obliga a notificar oportunamente a la entidad correspondiente del sector financiero o cooperativo, 
+          la pérdida o robo de su tarjeta de crédito y demás instrumentos facilitados por las mismas para realizar transacciones, 
+          tales como tarjetas débito, claves personales, etc., con el fin de que tales instrumentos sean inhabilitados.
+      </p>
+      <p>
+          Se le prohíbe al Usuario transmitir o enviar desde este Sitio cualquier material ilegal, amenazador, calumniador, difamatorio, obsceno, 
+          escandaloso, pornográfico y/o cualquier otro material que pudiera dar lugar a cualquier responsabilidad civil o penal en los términos de la Ley.
+           Así mismo, el Usuario acepta no utilizar ningún dispositivo, software entre otros para obstruir el funcionamiento correcto del Sitio y de sus contenidos 
+           y de las actividades realizadas en el mismo.
+      </p>
+      <li>Productos y/o servicios.</li>
+      <p>
+          thesmokersstore.com ofrece a sus Usuarios principalmente Productos de Consumo E  implementos electrónicos, entre otros.
+      </p>
+      <ol>
+        <li>Visualización de productos.</li>
+        <p>thesmokersstore.com exhibe las imágenes de productos con la mayor nitidez y precisión posible. No obstante, 
+          la visualización del color de los productos dependerá del monitor desde el que se acceda al Sitio.
+        </p>
+        <li>Disponibilidad de productos.</li>
+        <p>
+            thesmokersstore.com se encarga de la actualización de la página y la revisión constante de los productos que se exhiben en el Sitio. No obstante, 
+            thesmokersstore.com puede modificar y descontinuar los productos en cualquier momento sin contraer ninguna responsabilidad frente a los Usuarios del Sitio.
+        </p>
+        <li>
+            Limitación de cantidades y restricción de pedidos.
+        </li>
+        <p>
+            El Sitio puede, a su exclusivo criterio, limitar o cancelar las cantidades compradas por Cliente. Así mismo, thesmokersstore.com se reserva el derecho de rechazar 
+            todo pedido que el Cliente realice. Dichas restricciones pueden incluir pedidos realizados a partir de la misma cuenta inscrita en el Sitio, pagos realizados con la
+             misma tarjeta de crédito y/o débito y pedidos con la misma dirección de envío o de facturación.
+        </p>     
+      </ol>
+      <li>
+          Condiciones de Pago.
+      </li>
+      <p>
+        El precio que se deberá pagar por cada artículo adquirido será el precio vigente en el Sitio al momento de hacerse el pedido.
+      </p>
+      <p>
+        Antes de la aceptación por parte de thesmokersstore.com de cualquier oferta de compra, el Cliente deberá elegir los términos y las condiciones de pago según los medios de pago 
+        que se encuentren establecidos en el Sitio. thesmokersstore.com pone a disposición de los Usuarios un sistema de conexión segura para la realización de las transacciones que se 
+        efectúen en el Sitio. No obstante, en ningún caso será responsable por las fallas que se presenten en las comunicaciones de las entidades bancarias o de crédito, así como tampoco 
+        de los perjuicios causados al Cliente con ocasión de una acción u omisión por parte de dichas entidades.
+      </p>
+      <p>
+          Una vez que el Sitio verifique el pago, podrá proceder a la aceptación de la oferta de compra. En todo caso, no obstante haberse verificado el pago, thesmokersstore.com podrá denegar
+          la aceptación de una oferta de compra o aceptarla parcialmente, en cuyo caso sólo estará obligado a restituirle al Cliente, sin ningún tipo de interés o rendimiento, el valor cancelado
+          por la oferta de compra no aceptada o el porcentaje correspondiente a la parte no aprobada de una oferta de compra aceptada parcialmente.          
+      </p>
+      <li>Cupones promocionales.</li>
+      <p>
+        A diferencia de las tarjetas de crédito o débito, los cupones promocionales que se usan en los cupones digitales se debitan cuando se realiza el pedido. 
+        Los cupones digitales se pueden canjear automáticamente por el importe total de una compra y deben ser utilizados en una sola transacción teniendo en cuenta 
+        la fecha de vencimiento especificada. La fecha de expiración del bono no se modifica.
+      </p>
+      <p>
+          Así mismo, se tendrán en cuenta los Cupones Promocionales en caso de cancelación o devolución de la compra por el mismo valor del producto adquirido. Los Cupones Promocionales no se repondrán 
+          en caso de pérdida o robo. Si hubiera una reducción de precio por debajo del valor del cupón thesmokersstore.com no reembolsará el valor excedente.
+      </p>
+      <li>
+          Perfeccionamiento y transferencia de propiedad.
+      </li>
+      <p>
+          El perfeccionamiento del contrato se presenta cuando thesmokersstore.com acepta la oferta de compra presentada por el Cliente. thesmokersstore.com podrá aceptar parcialmente ofertas de compra,
+            en cuyo caso el contrato se perfeccionará sólo para los productos aceptados por el Sitio.
+      </p>
+      <p>
+          En los eventos de pago contra entrega, la propiedad sobre los productos se transmitirá al cliente desde el momento en que los mismos sean cancelados por éste en el lugar de entrega.
+      </p>
+      <p>
+          En caso de que el precio de los productos objeto de una oferta de compra no sea pagado, se entenderá que existe incumplimiento del contrato, lo cual es causal para darlo por terminado por parte
+          de thesmokersstore.com asumiendo el Cliente el valor de la devolución de dichos productos al respectivo depósito, así como el monto de los perjuicios derivados de dicho incumplimiento.            
+      </p>
+      <li>
+        Cargos por envío e impuestos.
+      </li>
+      <p>
+        El Cliente será responsable de los cargos de envío, manejo y seguro de los productos que adquiera en el Sitio, así como del impuesto sobre la venta, impuestos al valor agregado y demás gravámenes que
+        se ocasionen por cada oferta de compra aceptada. Todos los impuestos causados por la compra serán liquidados desde el momento en que el Cliente realice su oferta de compra en el Sitio, y por tanto podrá
+        conocer el valor exacto que debe pagar a favor de thesmokersstore.com el cual incluirá todos los conceptos mencionados.
+      </p>
+      <p>
+          En relación con los productos importados, el Cliente asumirá los impuestos y gravámenes que se ocasionen por la importación de los productos adquiridos en el exterior. No obstante, los impuestos asociados 
+          a los productos pueden estar sujetos a variaciones, en caso de eventuales verificaciones por parte de las autoridades aduaneras colombianas. De llegar a presentarse un costo adicional en la importación del 
+          producto, éste será asumido por el Cliente.
+      </p>
+      <li>
+        Entrega de los productos.
+      </li>
+      <p>
+          thesmokersstore.com se compromete a realizar entregas exclusivamente dentro del territorio colombiano, en las zonas y lugares a los que tenga acceso de acuerdo con su red y por consiguiente podrá negarse a la
+           aceptación de una oferta de compra cuando el domicilio registrado por el Cliente para realizar la entrega, no se encuentre dentro de las zonas geográficas habilitadas por thesmokersstore.com para tal efecto.
+      </p>
+      <p>
+        Los productos adquiridos por el Cliente serán entregados en el domicilio que el cliente haga constar al realizar su oferta de compra, dentro de un plazo que puede estar entre 7 y 10 días hábiles dependiendo del destino, 
+        contados a partir de la fecha en que el Sitio acepte la correspondiente oferta de compra, y siempre y cuando se hayan determinado por anticipado los términos y condiciones de pago y no se presenten causas ajenas a la voluntad 
+        de thesmokersstore.com que pudieran retrasar la entrega, como cualquier evento de caso fortuito o fuerza mayor.
+      </p>
+      <p>
+        Se entiende que cualquier persona que se encuentre en el domicilio donde debe realizarse la entrega, estará debidamente autorizada por el Cliente para recibir su pedido. Por consiguiente, thesmokersstore.com queda exonerado 
+        de cualquier responsabilidad por la entrega que realizare, siempre que la misma se haga en el domicilio registrado en el Sitio.
+      </p>
+      <p>
+        Para los productos deberá existir una persona mayor de edad habilitada para recibirlos, pues de lo contrario no será entregado el pedido. Si nadie recibe el pedido en el domicilio señalado, thesmokersstore.com procederá a la
+        devolución de los productos al respectivo depósito y el Cliente estará en la obligación de contactarse con el Sitio en un término máximo de cinco (5) días hábiles para que procedamos a su reenvío, en cuyo caso los gastos generados
+        por el mismo correrán por cuenta del cliente, y hasta tanto los mismos no sean cancelados, THE SMOKERS STORE S.A.S no estará en obligación de hacer nuevamente el despacho.
+      </p>
+      <p>
+          De no recibirse el pedido en el domicilio señalado después de 3 (tres) visitas por parte de la transportadora, thesmokersstore.com procederá con la devolución de los productos. En este caso el Cliente estará en la obligación de contactar 
+          el Sitio en un término máximo de tres (3) días calendarios para que se proceda con su reenvío, en cuyo caso los gastos de envío y seguros que se generen correrán por cuenta del Cliente, y hasta tanto los mismos no sean pagados,
+          thesmokersstore.com no estará en obligación de hacer nuevamente el despacho.
+      </p>
+      <p>
+          Si el Cliente no procede a solicitar el reenvío en el término indicado, o no realiza el pago del valor adicional por el reenvío, thesmokersstore.com podrá desistir del negocio, y estará obligado sólo a restituir el monto pagado por los productos, 
+          descontando el valor de los gastos incurridos por el transporte.
+      </p>
+      <li>Devoluciones y cambios.</li>
+      <p>
+        De conformidad con lo establecido en el Estatuto del Consumidor colombiano, thesmokersstore.com procederá a aceptar las reparaciones y devoluciones de los productos adquiridos que resultaren defectuosos y/o cuya deficiencia en su calidad no sea apto
+        para el uso al cual está destinado, de acuerdo con los parámetros de las garantías conferidas por el respectivo productor. thesmokersstore.com tendrá 30 días hábiles para realizar los cambios y/o devoluciones, los cuales se contarán a partir del momento
+        en que el Cliente presente su reclamación. En los anteriores eventos, los gastos de envío serán asumidos por thesmokersstore.com
+      </p>
+      <li>Políticas de cambios thesmokersstore.com</li>
+      <ul>
+          <li>Cambios y Devoluciones para productos.</li>
+          <p>
+              Para realizar algún cambio, el cliente debe llamar en Bogotá al 2155162 o al celular 3057158236. El cliente puede cambiar los pedir que los productos sean recogidos por el transportador. El cliente no asume el costo de la devolución del producto.
+          </p>
+          <li>Derecho de retracto.</li>
+          <p>
+            Conforme al Estatuto del Consumidor el Cliente podrá ejercer el derecho de retracto del producto adquirido dentro de los (5) cinco días hábiles posteriores a la recepción del bien, siempre y cuando lo permita su naturaleza y el estado del bien y su 
+            empaque sea el mismo en el que lo recibió. Las reversiones se harán por el valor del producto pagado por el Cliente en la respectiva transacción. En ningún caso thesmokersstore.com hará reversiones parciales del valor de un producto.
+          </p>
+
+          <li>Exoneración y Garantías.</li>
+          <p>
+              thesmokersstore.com advierte a los Usuarios que la información del Sitio puede contener errores o inexactitudes, no estar completa o actualizada. Por ello, thesmokersstore.com se reserva el derecho de corregir cualquier error, omisión o inexactitud, cambiar o actualizar la misma en cualquier momento y sin previo aviso.          </p>
+          <p>
+              En caso de que el uso del material de este sitio arroje como resultado la necesidad de dar servicio, reparar o corregir equipo o información, el Usuario deberá asumir cualquier costo derivado de ello.          </p>
+          <p>
+              La limitación de responsabilidad precedente se aplicará en toda acción legal, aun cuando el representante autorizado de thesmokersstore.com haya sido informado o tuviera previamente conocimiento de dichos daños.          </p>
+        </ul>
+        <li>Derechos de Propiedad Intelectual.</li>
+        <p>
+            Todo el material informático, gráfico, publicitario, fotográfico, de multimedia, audiovisual y/o de diseño, así como todos los contenidos, textos y bases de datos (en adelante “los Contenidos”), puestos a disposición de Los Usuarios en el Sitio son de propiedad exclusiva de THE SMOSKERS STORE S.A.S, o de terceros que han autorizado su uso y/o explotación.
+        </p>
+        <p>
+            Igualmente, el uso de algunos contenidos de propiedad de terceros se encuentra expresamente autorizado por la Ley y están protegidos por las normas sobre derechos de autor, marcas y por todas las normas nacionales e internacionales que le sean aplicables.
+        </p>
+        <p>
+            Queda prohibido todo acto de copia, reproducción, modificación, creación de trabajos derivados, venta o distribución, exhibición de los Contenidos, de ninguna manera o por ningún medio, incluyendo, mas no limitado a, medios electrónicos, mecánicos, de fotocopiado, de grabación o de cualquier otra índole, sin el permiso previo por escrito de thesmokersstore.com o del titular de los derechos de autor.
+        </p>
+        <p>
+            En ningún caso los presentes Términos y Condiciones confieren derechos, licencias y/o autorizaciones para realizar los actos anteriormente descritos. Cualquier uso no autorizado de los contenidos constituirá una violación a los presentes términos y condiciones y a las normas vigentes sobre marcas, derechos de autor y/u otras normas de propiedad intelectual tanto nacionales e internacionales aplicables y dará lugar a las acciones civiles y penales correspondientes.
+        </p>
+        <li>Publicidad y vínculos.</li>
+        <p>
+            Las organizaciones, productos y/o servicios a los cuales se les haga publicidad en el Sitio así como los enlaces (links) no son afiliados o tienen relación alguna con thesmokersstore.com, el cual no cumple ninguna función en la producción de esos productos y/o la prestación de servicios y no constituye ninguna garantía, expresa o implícita de su contenido o de su adecuación para un propósito particular. Así por ejemplo, cuando se sugiera la utilización de algún producto y/o servicio, es de exclusiva autonomía del Usuario decidir su utilización, y por lo tanto thesmokersstore.com no asume ninguna responsabilidad por los perjuicios directos o indirectos, ciertos o eventuales, pasados, presentes o futuros, que se llegaren a derivar de dicha utilización.
+        </p>
+        <p>
+            De esta forma, las transacciones que el Usuario realice con terceros ajenos al Sitio a partir de las publicidades de productos y/o servicios, así como las visitas que realice a sus sitios web a través de los vínculos (links) serán bajo su exclusiva cuenta y riesgo, sin que de manera alguna comprometan la responsabilidad de thesmokersstore.com.
+        </p>
+        <li>
+          Protección de Datos Personales.
+        </li>
+        <p>
+            Siempre que no se haya notificado oportunamente por parte del Usuario la existencia de la violación de su información personal, o cuando el Usuario no haya procedido a notificar a las correspondientes entidades financieras o cooperativas de la pérdida, uso indebido, sustracción o hurto de los instrumentos conferidos por éstas para realizar transacciones, o cuando se realice un uso indebido de sus datos de registro, thesmokersstore.com no asume ninguna responsabilidad por tales acciones.
+        </p>
+        <li>
+            Legislación aplicable y jurisdicción.
+        </li>
+        <p>
+            Los presentes Términos y Condiciones se regirán e interpretarán de acuerdo a las leyes de la República de Colombia. Cualquier controversia que derive de este documento se someterá a las leyes aplicables y a los jueces competentes de acuerdo con la legislación colombiana.
+        </p>
+        <li>
+          Independencia de disposiciones.
+        </li>
+        <p>
+          En caso de que una o más de las disposiciones contenidas en los presentes Términos y Condiciones sean consideradas nulas, ilegales o ineficaces en cualquier aspecto, la validez, legalidad y exigibilidad o eficacia del resto de las disposiciones del presente documento no se verán afectadas o anuladas por dicha circunstancia.
+        </p>
+        <li>
+          Notificaciones.
+        </li>
+        <p>
+          thesmokersstore.com recibirá notificaciones a través de chat, correo electrónico contacto@thesmokersstore.com y al teléfono en Bogotá  2155162 o al celular 3057158236
+        </p>
+    </ol>   
+  </div>
+</ion-content>

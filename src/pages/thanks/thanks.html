@@ -1,0 +1,39 @@
+<!--
+  Generated template for the Thanks page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color='primary'>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title><img alt="The Smokers Store" src="assets/img/logo.png" (click)="navCtrl.setRoot('Home');"></ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <div class="loading-in-line" *ngIf="loadingOrder">
+      <ion-spinner></ion-spinner>
+  </div>
+  <div *ngIf="!loadingOrder" style="max-width: 1170px; margin-left: auto; margin-right: auto;">
+    <ion-item-divider>
+      <h1 class="blue" padding>{{this.Selectstatus.name}}</h1>
+    </ion-item-divider>
+    <ion-item-divider>
+      <p class="no-wrap">{{this.Selectstatus.description}}</p>
+      <button margin-bottom ion-button (click)="goToShop()" color="secondary">
+        IR A LA TIENDA
+      </button>
+      <button margin-bottom ion-button (click)="goToCart()" color="secondary" *ngIf='this.Selectstatus.name == "REJECTED" || this.Selectstatus.name == "ERROR"'>
+        REINTENTAR
+      </button>
+    </ion-item-divider>
+  </div>
+
+
+</ion-content>

@@ -1,0 +1,24 @@
+page-warranty-modal {
+
+  h1{
+    padding: 15px;
+    color: map-get($colors, secondary);
+  }
+  p{
+    text-align : justify;
+    padding: 15px;
+  }
+
+  .close{
+    float: right;
+    right: 0px;
+  }
+
+  ion-icon{
+    font-size: 30px;
+  }
+
+  ion-content{
+    border-bottom: 16px solid transparent;
+  }
+}

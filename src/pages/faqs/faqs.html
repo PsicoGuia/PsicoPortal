@@ -1,0 +1,217 @@
+<!--
+  Generated template for the Faqs page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color='primary'>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title><img alt="The Smokers Store" src="assets/img/logo.png" (click)="navCtrl.setRoot('Home');"></ion-title>
+    <ion-buttons class='cart-mobile' end>
+      <button ion-button clear [navPush]="'Cart'" >
+        <ion-icon name="md-cart" color="light"></ion-icon>
+        <ion-badge item-right color='secondary' *ngIf="cartService.cartProducts.length>0">{{cartService.cartProducts.length}}</ion-badge>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+  <ion-list>
+    <ion-list-header>
+      <h1 class="blue" padding>PREGUNTAS</h1>
+    </ion-list-header>
+
+    <ion-item padding (click)="toggleDetails(1)">
+      <ion-icon color="primary" item-right [name]="showIcon[1]"></ion-icon><h2>01.  ¿Qué es el cigarrillo electrónico y cómo funciona?</h2>
+      <div *ngIf='showDetails[1]'>
+        <p text-justify >El Cigarrillo Electrónico es un dispositivo compuesto por: una batería, un atomizador y un líquido.
+          El atomizador contiene un líquido aromático alternativo al tabaco denominado e-líquido. Sus ingredientes principales
+          son la nicotina (opcional), aroma artificial a tabaco o a otros sabores, Glicerina vegetal (Glicerol) o propilenglicol.
+          Cuando el usuario inhala el cigarrillo electrónico, un microprocesador activa la bateria que mezcla el e-líquido con
+          el aire inspirado, creando una mezcla en forma de vapor a una temperatura entre 50- 60 ° C, comparable a la de un
+          cigarrillo tradicional. La evaporación de la glicerina vegetal crea la impresión de humo verdadero pero siendo
+          completamente inofensiva.
+          <br> En resumen, el cigarrillo electrónico utiliza una tecnología microelectrónica altamente sensible que permite simular
+            el acto de fumar sin sufrir los daños que produce el humo de tabaco..
+        </p>
+        <br>
+        <div class="imgPDF">
+          <h2>Manual del usuario</h2>
+          <img (click)="openWindow('http://docs.wixstatic.com/ugd/4eb587_17ffd30107c4415abf4736671c4e9ad0.pdf')"
+          src="assets/img/img_smokers_pdf.png" />
+        </div>
+        <div class="imgDiagram">
+          <img src="assets/img/diagrama.png" (click)="openModal()" />
+        </div>
+      </div>
+    </ion-item>
+
+    <ion-item padding (click)="toggleDetails(2)">
+      <ion-icon color="primary" item-right [name]="showIcon[2]"></ion-icon><h2>02     ¿Son los cigarrillos electrónicos más sanos que los cigarrillos tradicionales?</h2>
+      <div *ngIf='showDetails[2]'>
+        <p text-justify>Según el ultimo estudio realizado por el departamento de salud publica de Inglaterra se determino que el
+          cigarrillo electrónico es 95% menos perjudicial para la persona que funa cigarrillo convencional y no existen fumadores pasicos.
+          <br>El Cigarrillo Electrónico es esencialmente diferente de los cigarrillos comunes porque:
+        </p>
+        <ul>
+          <li><p>No contiene tabaco, alquitrán, amoníaco ni cianuros (El cigarrillo normal contiene más de 4.000 sustancias tóxicas o dañinas para la salud</p></li>
+          <li><p>No produce combustión, sino vapor de glicerina vegetal o propilenglicol (sustancias aprobadas para el uso humano) y por lo tanto no hay generación
+          de monóxido de carbono.</p></li>
+          <li><p>No produce cenizas ni malos olores.</p></li>
+          <li><p>No altera el color de los dientes.</p></li>
+          <li><p>No es nocivo para terceros (erradica el tabaquismo pasivo), no hay posibilidad de iniciar fuego o incendios. Además, el cigarrillo electrónico sustituye al tabaco
+          tanto en los aspectos físicos como psicológicos del fumador: Evita el síndrome de abstinencia de forma eficaz.</p></li>
+          <li><p>Las enfermedades pulmonares de los fumadores (activos y pasivos) son causadas por el humo de la combustión del cigarrillo de tabaco y los alquitranes
+              y toxinas derivados de   ella y no por la nicotina, la cual se vende de forma libre en farmacias (chicles, caramelos, parches, etc).</p></li>
+          <li><p>El vapor expulsado NO contiene alquitrán ni monóxido de carbono.  La experiencia de usar el cigarrillo electrónico es muy parecida
+          a la de fumar un cigarrillo tradicional pero sin ingerir las toxinas cancerígenas del humo de tabaco, produciendo la sensación de
+          inhalación del humo a través de la generación de vapor.</p></li>
+        </ul>
+      </div>
+    </ion-item>
+
+    <ion-item padding (click)="toggleDetails(3)">
+      <ion-icon color="primary" item-right [name]="showIcon[3]"></ion-icon><h2>03   ¿Tiene sabor el cigarrillo electrónico?</h2>
+      <div *ngIf='showDetails[3]'>
+        <p text-justify>El sabor del cigarrillo electrónico es muy similar al del tabaco tradicional, aunque mucho más suave y limpio, ya que no produce sensaciones tan fuertes ni abrasivas.
+        El sabor viene determinado por el e-líquido, pudiendo elegir entre una gran variedad de sabores.
+        </p>
+      </div>
+    </ion-item>
+
+    <ion-item padding (click)="toggleDetails(4)">
+      <ion-icon color="primary" item-right [name]="showIcon[4]"></ion-icon><h2>04   ¿El cigarrillo electrónico produce algún tipo de olor?</h2>
+      <div *ngIf='showDetails[4]'>
+        <p text-justify>
+            No, el vapor no produce ningún tipo de mal olor al ser exhalado.
+        </p>
+      </div>
+    </ion-item>
+
+    <ion-item padding (click)="toggleDetails(5)">
+      <ion-icon color="primary" item-right [name]="showIcon[5]"></ion-icon><h2>05   ¿Quién puede utilizar el cigarrillo electrónico?</h2>
+      <div *ngIf='showDetails[5]'>
+        <p text-justify>
+          El cigarrillo electrónico es para uso exclusivo de adultos. Tampoco debe ser utilizado por mujeres embarazadas o en periodo de
+          lactancia y por personas sensibles a la nicotina.
+        </p>
+      </div>
+    </ion-item>
+
+    <ion-item padding (click)="toggleDetails(6)">
+      <ion-icon color="primary" item-right [name]="showIcon[6]"></ion-icon><h2>06   ¿Por qué la gente debería utilizar el cigarrillo electrónico?</h2>
+      <div *ngIf='showDetails[6]'>
+        <p text-justify>
+          La mayoría de los fumadores fuman porque disfrutan de las placenteras sensaciones físicas y emocionales que reciben al fumar cigarrillos tradicionales.
+          El cigarrillo electrónico proporciona todos estos placeres, pero sin dañar su salud, ni la de terceros y evitando un sinfín de problemas sociales.
+          Es un hábito saludable de fumar, posibilita fumar en cualquier lugar, no produce humo ni olor molesto, no es inflamable, es cómodo y además es mucho
+          más barato que los cigarrillos tradicionales.
+        </p>
+      </div>
+    </ion-item>
+
+    <ion-item padding (click)="toggleDetails(7)">
+      <ion-icon color="primary" item-right [name]="showIcon[7]"></ion-icon><h2>07   ¿Soy nuevo en esto, que necesito para empezar?</h2>
+      <div *ngIf='showDetails[7]'>
+        <p text-justify>
+          Necesitarás un kit de inicio y una botella de e-líquido. Todos nuestros kits de iniciacion incluyen batería (1 o 2 dependiendo del kit), atomizador
+          (1 o 2 dependiendo del kit) y cargador (para poder cargar la batería). Te recomendamos que compres e-líquidos en tamaños pequeños, para encontrar el
+          sabor que más te guste. También es recomendable tener siempre atomizadores y baterías de repuesto, debido a que estos componentes son consumibles, y
+          tienen una vida útil limitada.
+        </p>
+      </div>
+    </ion-item>
+
+    <ion-item padding (click)="toggleDetails(8)">
+      <ion-icon color="primary" item-right [name]="showIcon[8]"></ion-icon><h2>08   ¿Cual es el promedio de vida de los componentes del cigarrillo electrónico?</h2>
+      <div *ngIf='showDetails[8]'>
+        <p text-justify>
+          Las baterias y Atomizadores deben ser tratados como bienes consumibles y, como tales, se van deteriorando con el uso. La vida útil estimada es la siguiente:
+        </p>
+        <ul>
+          <li><p>Atomizadores: entre 6 a 12 meses</p></li>
+          <li><p>Baterías: entre 3 y 6 meses</p></li>
+        </ul>
+        <p text-justify>
+          Cabe recalcar que son dispositivos muy sensibles a los golpes, por esta razón se recomienda tener mucho cuidado al dejarlos caer al piso.
+        </p>
+      </div>
+    </ion-item>
+
+    <ion-item padding (click)="toggleDetails(9)">
+      <ion-icon color="primary" item-right [name]="showIcon[9]"></ion-icon><h2>09   ¿Que contienen los e-líquidos?</h2>
+      <div *ngIf='showDetails[9]'>
+        <p text-justify>
+          Los componentes básicos son: Glicerina vegetal (Glicerol) o propilenglicol, agua destilada, esencias, ácido cítrico y eventualmente nicotina en distintos grados,
+          para controlar el síndrome de abstinencia del fumador.  Pueden también utilizarse e-líquidos sin nicotina.
+        </p>
+      </div>
+    </ion-item>
+
+    <ion-item padding (click)="toggleDetails(10)">
+      <ion-icon color="primary" item-right [name]="showIcon[10]"></ion-icon><h2>10   ¿Cómo puedo saber cuándo es hora de cambiar la resistencia del atomizador?</h2>
+      <div *ngIf='showDetails[10]'>
+        <p text-justify>
+          Sabrá cuando la resistencia del atomizador debe ser reemplazada, cuando comience a experimentar ciertos cambios con el sabor y el rendimiento de su atomizador.
+          Se dará cuenta de que cuando se tiene una resistencia nueva en su lugar, se obtendrán grandes nubes de vapor y un sabor robusto de su e-líquido.
+          La primera señal de que su resistencia está empezando a dejar de funcionar de forma adecuada es cuando la producción de vapor es menor de lo que era
+          cuando comenzaste a usarla. La segunda indicación de que la resistencia del atomizador necesita ser reemplazada es que el sabor, usted lo disfrutara menos.
+          El sabor será completamente diferente y su resistencia en última instancia dejará de funcionar si no la reemplaza. Le recomendamos que cambie la resistencia
+          por lo menos cada vez que consuma 40 mililitros de e-liquido.
+        </p>
+      </div>
+    </ion-item>
+
+    <ion-item padding (click)="toggleDetails(11)">
+      <ion-icon color="primary" item-right [name]="showIcon[11]"></ion-icon><h2>11   ¿Qué nivel de nicotina es el mejor para mi?</h2>
+      <div *ngIf='showDetails[11]'>
+        <p text-justify>
+            No existe un respuesta correcta para esta pregunta. Recomendamos no ingerir nicotina pero si quiere vapear un e-líquido que contenga nicotina en función de la cantidad de
+            cigarrillos normales que fuma o fumaba, como guía general podemos decir que:
+        </p>
+        <ul>
+          <li><p>Si no fuma cigarrillos, pero quiere vapear… utilice e-líquidos con 0 mg de nicotina.</p></li>
+          <li><p>Si fuma menos de 10 cigarrillos al día… utilice e-líquidos de 6 mg.</p></li>
+          <li><p>Si fuma 1 paquete de cigarrillos al día… utilice e-líquidos de 12 mg.</p></li>
+          <li><p>Si fumas 1-2 paquetes de cigarrillos al día… utilice e-líquidos de 18 mg.</p></li>
+        </ul>
+      </div>
+    </ion-item>
+
+    <ion-item padding (click)="toggleDetails(12)">
+      <ion-icon color="primary" item-right [name]="showIcon[12]"></ion-icon><h2>12   ¿Qué es el Propilenglicol?</h2>
+      <div *ngIf='showDetails[12]'>
+        <p text-justify>
+        El Propilenglicol (PG) es un químico incoloro y sin olor que se usa como aditivo alimentario, en cosméticos y en medicamentos como un disolvente inerte o un portador
+          <br>La ATSDR (Agencia de Sustancias Tóxicas y Enfermedades) afirma en su página web que el propilenglicol está “considerado generalmente como una sustancia segura”, usada como aditivo alimentario y en medicamentos.
+          <br>El PG ha sido utilizado como un aditivo químico de base acuosa en inhaladores para el asma y en nebulizadores desde los años 50, sin que se tenga noticia de que haya producido ningún daño para la salud de aquellas personas que han tenido contacto con este elemento.
+        </p>
+      </div>
+    </ion-item>
+
+    <ion-item padding (click)="toggleDetails(13)">
+      <ion-icon color="primary" item-right [name]="showIcon[13]"></ion-icon><h2>13   ¿Se pueden utilizar los e-cigarrillos para dejar de fumar?</h2>
+      <div *ngIf='showDetails[13]'>
+        <p text-justify>
+          Los cigarrillos electrónicos están diseñados para ser una ALTERNATIVA, no para utilizarse como una Terapia de Reemplazo de la Nicotina.
+          Simplemente ofrecemos una alternativa a los cigarrillos tradicionales libre de tabaco y de alquitrán mucho más barata. ¡Prueba el kit de
+          cigarrillos electrónicos para principiantes y descúbrelo por si mismo! ¡Verá cómo nuestros cigarrillos son mucho mejores que los tradicionales!
+        </p>
+      </div>
+    </ion-item>
+
+    <ion-item padding (click)="toggleDetails(14)">
+      <ion-icon color="primary" item-right [name]="showIcon[14]"></ion-icon><h2>14   ¿Yo fumo cigarrillos mentolados. ¿Puedo comprar e-cigarrillos mentolados?</h2>
+      <div *ngIf='showDetails[14]'>
+        <p text-justify>
+        Por supuesto. De hecho, nuestros e-liquidos con sabor a menta algunos de nuestros productos más vendidos.
+        </p>
+      </div>
+    </ion-item>
+  </ion-list>
+
+</ion-content>

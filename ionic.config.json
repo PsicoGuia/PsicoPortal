@@ -2,5 +2,17 @@
   "name": "PsicoPortal",
   "app_id": "",
   "type": "ionic-angular",
-  "integrations": {}
+  "proxies": [
+    {
+      "path": "/api/",
+      "proxyUrl": "https://cigarrilloselectronicostss.com/api/"
+    },
+    {
+      "path": "/mailchimp/",
+      "proxyUrl": "https://us15.api.mailchimp.com/3.0/lists/XXX/members/"
+    }
+  ],
+  "integrations": {
+    "cordova": {}
+  }
 }

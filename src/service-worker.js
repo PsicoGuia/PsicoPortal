@@ -1,31 +1,23 @@
-/**
- * Check out https://googlechromelabs.github.io/sw-toolbox/ for
- * more info on how to use sw-toolbox to custom configure your service worker.
- */
+importScripts('workbox-sw.prod.v2.1.2.js');
 
+const workboxSW = new self.WorkboxSW();
+workboxSW.precache([]);
 
-'use strict';
-importScripts('./build/sw-toolbox.js');
+workboxSW.router.registerRoute(
+  /\.(?:png|gif|jpg)$/, 
+  workboxSW.strategies.cacheFirst({
+    cacheName: 'images',
+    cacheExpiration: {
+      maxEntries: 50,
+      maxAgeSeconds: 7 * 24 * 60 * 60,
+    },
+    cacheableResponse: {statuses: [0, 200]},
+  })
+); 
 
-self.toolbox.options.cache = {
-  name: 'ionic-cache'
-};
-
-// pre-cache our key assets
-self.toolbox.precache(
-  [
-    './build/main.js',
-    './build/vendor.js',
-    './build/main.css',
-    './build/polyfills.js',
-    'index.html',
-    'manifest.json'
-  ]
+workboxSW.router.registerRoute(
+  '/assets/(.*)', 
+  workboxSW.strategies.cacheFirst({
+    cacheName: 'assets',
+  })
 );
-
-// dynamically cache any other local assets
-self.toolbox.router.any('/*', self.toolbox.fastest);
-
-// for any other requests go to the network, cache,
-// and then only use that cached resource if your user goes offline
-self.toolbox.router.default = self.toolbox.networkFirst;

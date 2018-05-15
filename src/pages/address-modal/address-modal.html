@@ -1,0 +1,66 @@
+<!--
+  Generated template for the AddressModalPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color='primary'>
+    <button clear ion-button color="light" outline (click)='closeModal()'  class="cancel">
+      <ion-icon name="md-close"></ion-icon>
+    </button>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <div class="loading-in-line" *ngIf="loading">
+    <ion-spinner></ion-spinner>
+  </div>
+
+  <div *ngIf='!loading'>
+    <ion-item>
+      <ion-label stacked>País</ion-label>
+      <ion-input type="text" disabled value="Colombia"></ion-input>
+    </ion-item>
+    <div class="autocomplete" *ngIf="!selectCity">
+       <ion-searchbar
+         #mainSearchbar
+         [(ngModel)]="searchText"
+         placeholder="Ciudad"
+         (ionInput)="getItems($event)"
+         (ionClear)="clearSearch()"
+         debounce=500
+         (keydown)='pressKey($event.keyCode)'>
+       </ion-searchbar>
+        <ion-list *ngIf="_flagClear">
+            <ion-item *ngIf="citys.length >= 1" [ngClass]="{active: (_activeSearch == 0)}" (click)="setCity(citys[0])">
+                 {{citys[0]}}
+            </ion-item>
+            <ion-item *ngIf="citys.length >= 2" [ngClass]="{active: (_activeSearch == 1)}"(click)="setCity(citys[1])">
+                 {{citys[1]}}
+            </ion-item>
+            <ion-item *ngIf="citys.length >= 3" [ngClass]="{active: (_activeSearch == 2)}" (click)="setCity(citys[2])">
+                 {{citys[2]}}
+            </ion-item>
+       </ion-list>
+     </div>
+     <ion-item *ngIf="selectCity" (click)="noCity()">
+       <ion-label stacked>Ciudad</ion-label>
+       <ion-input type="text" [(ngModel)]="selectCity.name" disabled value="{{selectCity.name}}"></ion-input>
+     </ion-item>
+     <ion-item>
+       <ion-label stacked>Dirección</ion-label>
+       <ion-input type="text" [(ngModel)]="formdata.address"></ion-input>
+     </ion-item>
+     <ion-item>
+       <ion-label stacked>Descripción</ion-label>
+       <ion-textarea [(ngModel)]="formdata.notes" placeholder="Ingrese la descripción"></ion-textarea>
+     </ion-item>
+
+     <button class="accept" ion-button color="secondary" (click)='editAddress()' [disabled]="loadingEvent">Guardar</button>
+  </div>
+</ion-content>

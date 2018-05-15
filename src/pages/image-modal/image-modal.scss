@@ -1,0 +1,16 @@
+page-image-modal {
+  ion-scroll {
+    white-space: nowrap;
+  }
+
+  .buttonAbsolute{
+    position: absolute;
+    top: 0px;
+    right:0px;
+    width: 40px;
+    height: 40px;
+    z-index: 999;
+    margin-bottom: 5px;
+  }
+
+}
