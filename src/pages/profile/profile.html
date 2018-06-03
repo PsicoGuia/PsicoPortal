@@ -1,65 +1,81 @@
-<!--
-  Generated template for the ProfilePage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
-    <ion-navbar color='primary'>
-      <button ion-button menuToggle>
-        <ion-icon name="menu"></ion-icon>
-      </button>
-      <ion-title><img alt="The Smokers Store" src="assets/img/logo.png" (click)="navCtrl.setRoot('Home');"></ion-title>
-      <ion-buttons class='cart-mobile' end>
-        <button ion-button clear [navPush]="'Cart'" >
-          <ion-icon name="md-cart" color="light"></ion-icon>
-          <ion-badge item-right color='secondary' *ngIf="cartService.cartProducts.length>0">{{cartService.cartProducts.length}}</ion-badge>
-        </button>
-      </ion-buttons>
-    </ion-navbar>
+
+  <ion-navbar>
+    <ion-title>profile</ion-title>
+  </ion-navbar>
+
 </ion-header>
 
 
 <ion-content padding>
-    <ion-card>
-      <img src="../../assets/img/cropped-smoke-700x100.jpg"/>
-      <ion-card-content>
-        <div *ngIf='user' style="padding: 10px;">
-            <div style="float: left; width: 360px;">
-              <h1 style="color: #9e9e9e;">Mi Perfil</h1>
-              <div class="row">
-                <ion-col col-3><b>Nombre:</b></ion-col>
-                <ion-col col-8>{{user.first_name}} {{user.last_name}}</ion-col>               
-              </div>
-              <div class="row">
-                <ion-col col-3><b>Correo:</b></ion-col>
-                <ion-col col-8>{{user.email}}</ion-col>                  
-              </div>
-              <div class="row">
-                <ion-col col-3><b>Telefono:</b></ion-col>
-                <ion-col col-8>{{user.person.phone}}</ion-col> 
-              </div>
-            </div>
-            <ion-item *ngIf='user' style="float: right; width: 260px;">
-                <ion-label>Correos Informativos</ion-label>
-            <ion-checkbox [(ngModel)]="flag_mail" (ionChange)="oncheckChange(flag_mail)"></ion-checkbox>
-            </ion-item>
-            <div *ngIf='user.person.refered' style="margin-left:auto; margin-right:auto; width: 360px;">
-              <h1 style="color: #9e9e9e;">Mi Referidor</h1>            
-              <div class="row">
-                <ion-col col-3><b>Nombre:</b></ion-col>
-                <ion-col col-8>{{user.person.refered.user.first_name}} {{user.person.refered.user.last_name}}</ion-col>                      
-              </div>
-              <div class="row">
-                <ion-col col-3><b>Correo:</b></ion-col>
-                <ion-col col-8>{{user.person.refered.user.email}}</ion-col>                      
-              </div>
-              <div class="row">
-                <ion-col col-3><b>Telefono:</b></ion-col>
-                <ion-col col-8>{{user.person.refered.phone}}</ion-col>
-              </div>
-            </div>
+  <ion-grid>
+    <ion-row class="row-picture ">
+      <div class="background-image" style="background-image: url('http://casitaoaxaca.com/koken/storage/cache/images/000/029/oxc-fb-profile-img-h1,medium_large.1501091503.png');">
+      </div>
+      <img class="avatar-profile center" alt="{{ profile.user.username }}" src="{{ profile.picture }}">
+
+    </ion-row>
+  </ion-grid>
+
+  FIN
+  <div class="row">
+    <div class="twPc-div">
+      <a class="twPc-bg twPc-block"></a>
+
+      <div>
+        <div class="twPc-button">
+          <a href="https://twitter.com/mertskaplan" class="twitter-follow-button" data-show-count="false" data-size="large" data-show-screen-name="false"
+            data-dnt="true">Follow @mertskaplan</a>
         </div>
-      </ion-card-content>
-    </ion-card>
+
+        <a title="{{ profile.user.username }}" href="{{ profile.picture }}" class="twPc-avatarLink">
+          <img alt="{{ profile.user.username }}" src="{{ profile.picture }}" class="twPc-avatarImg">
+        </a>
+
+        <div class="twPc-divUser">
+          <div class="twPc-divName">
+            {{ profile.user.first_name }} {{ profile.user.last_name }}
+          </div>
+          <span>
+            {{ profile.professionalCardNumber }}
+          </span>
+        </div>
+        <div class="twPc-divStats">
+          <ul class="twPc-Arrange">
+            <li class="twPc-ArrangeSizeFit">
+              <span class="twPc-StatLabel twPc-block">Calificacion de usuarios</span>
+              <span class="twPc-StatValue">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="far fa-star"></i>
+                5.4
+              </span>
+            </li>
+            <li class="twPc-ArrangeSizeFit">
+              <span class="twPc-StatLabel twPc-block">Citas atendidas</span>
+              <span class="twPc-StatValue">885</span>
+            </li>
+            <li class="twPc-ArrangeSizeFit">
+              <span class="twPc-StatLabel twPc-block">Anhos de experiencia</span>
+              <span class="twPc-StatValue">5</span>
+            </li>
+          </ul>
+        </div>
+        <div class="none">
+          <ion-item *ngFor="let study of studies">
+            <ion-label>
+              <span>{{ study.title }}</span>
+            </ion-label>
+          </ion-item>
+        </div>
+        {{profile.location}}
+        <div>
+        </div>
+      </div>
+    </div>
+    <!-- code end -->
+  </div>
+
 </ion-content>
