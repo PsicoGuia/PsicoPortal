@@ -12,7 +12,7 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
-  rootPage: any = 'Home';
+  rootPage: any = 'RegisterMedicPage';
   pages: Array<{ title: string, component: any, icon: string, stage: boolean }>;
   showProfile = false;
   destop_menu: boolean = true;
