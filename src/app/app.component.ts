@@ -6,8 +6,6 @@ import { ConfigService } from '../providers/config-service';
 import { UserService } from '../providers/user-service';
 import { AlertController } from 'ionic-angular';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
-import { CartService } from '../providers/cart-service';
-import { ProductService } from '../providers/product-service';
 
 @Component({
   templateUrl: 'app.html'
@@ -20,12 +18,17 @@ export class MyApp {
   destop_menu: boolean = true;
 
 
-  constructor(public platform: Platform, public splashScreen: SplashScreen,
-    public statusBar: StatusBar, public configService: ConfigService,
-    public userService: UserService, private alertCtrl: AlertController,
-    public events: Events, private inAppBrowser: InAppBrowser,
-    public cartService: CartService, private modal: ModalController,
-    public productService: ProductService) {
+  constructor(
+    public platform: Platform, 
+    public splashScreen: SplashScreen,
+    public statusBar: StatusBar, 
+    public configService: ConfigService,
+    public userService: UserService, 
+    private alertCtrl: AlertController,
+    public events: Events, 
+    private inAppBrowser: InAppBrowser,
+    private modal: ModalController,
+  ) {
 
     this.initializeApp();
 

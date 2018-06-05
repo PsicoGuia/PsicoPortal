@@ -1,25 +1,5 @@
 page-home {
 
-  .inkremental-sidebar .part1 {
-    margin-top: -28px;
-    p{
-      margin-left: -6px;
-    }
-  }
-
-  .inkremental-sidebar .part2{
-     margin-top: -20px;
-     img{
-      max-width: 150px;
-     }
-  }
-
-  .inkremental-sidebar{
-    width: 152px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
   .footer-fixed {
      /* center the element */
      right: 0;
@@ -32,7 +12,7 @@ page-home {
      z-index: 4;
      width: 280px;
 
-    .shop-button {
+    .go-to-button {
       height: 32px !important;
       padding-left: 10px;
       padding-right: 10px;
@@ -64,33 +44,6 @@ page-home {
         margin: 0;
         text-align: right;
         margin-bottom: -1px;
-      }
-    }
-  }
-
-  .footer-harmful{
-    z-index: 5;
-    background-color: map-get($colors, primary);
-
-    .footer-harmful-size{
-      max-width: 1170px;
-      margin-left: auto;
-      margin-right: auto;
-      padding-top: 5px;
-      padding-bottom: 50px;
-      p{
-        margin-bottom: 0px;
-        padding: 10px;
-        text-transform: none;
-        font-size: 1em;
-        white-space: normal;
-
-        color: map-get($colors, light);
-        text-align: justify;
-
-        span{
-          color: red;
-        }
       }
     }
   }
@@ -133,41 +86,6 @@ page-home {
     .divBanner>h5 {
       font-size:  1.3rem;
     }
-  }
-
-  .parent {
-    position: relative;
-    top: 0;
-    left: 0;
-  }
-
-  .image1 {
-    position: relative;
-    top: 0;
-    left: 0;
-  }
-
-  .image2 {
-    position: absolute;
-    width: 70%;
-    top: 150px;
-    left: 26px;
-  }
-
-  .text1 {
-    position: absolute;
-    top: 150px;
-    left: 0;
-    width: 100%;
-    color: map-get($colors, secondary);
-    letter-spacing: -1px;
-    background: rgb(0, 0, 0);
-    /* fallback color */
-    background: rgba(0, 0, 0, 0.7);
-    padding: 10px;
-    border-style: solid;
-    border-color: map-get($colors, secondary);
-    border-width: 5px;
   }
 
   .contact-info {
@@ -214,118 +132,13 @@ page-home {
     }
   }
 
-  .swiper-pagination-bullet {
-    background-color: map-get($colors, light);
-  }
-
-  .swiper-pagination-bullet-active {
-    background-color: #FFF;
-  }
-
-  .info-section ion-card-content {
-    max-height: 200px;
-  }
-
-  .slide-button-left,
-  .slide-button-right {
-    z-index: 9999;
-    position: absolute;
-    top: 45px;
-    height: 50vw;
-    margin: 0;
-    max-height: 420px;
-  }
-
-  .slide-button-left {
-    left: 0;
-  }
-
-  .slide-button-right {
-    right: 0;
-  }
-
-  .label-header {
-
-
-    position: relative;
-
-    > button {
-      position: absolute;
-      right: 0;
-      top: -14px;
-      height: 37px;
-    }
-  }
-
-  .banner-happyClients {
-    margin-top: 10px;
-    text-align: center;
-    max-width: 850px;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 20px;
-    width: 90%;
-    position: relative;
-    background-color: map-get($colors, primary);
-
-    p {
-      display: inline !important;
-      color: map-get($colors, light) !important;
-      font-size: 2.4rem;
-    }
-
-    h1 {
-      font-size: 500 !important;
-      color: map-get($colors, secondary) !important;
-      display: inline !important;
-    }
-
-    h4 {
-      display: inline !important;
-      color: map-get($colors, light) !important;
-      vertical-align: text-bottom;
-    }
-  }
-
+  
 @media only screen and (min-width: 850px) {
   .cards-in-columns-container {
     max-width: 850px;
   }
 }
 
-  .banner-happyClients:after {
-    content: ' ';
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 0;
-    height: 0;
-    border-left: 20px solid #EEE;
-    border-top: 38px solid transparent;
-    border-bottom: 38px solid transparent;
-
-    @media only screen and (max-width: 470px) {
-      border-top: 50px solid transparent;
-      border-bottom: 50px solid transparent;
-    }
-  }
-
-  .banner-happyClients:before {
-    content: ' ';
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    width: 0;
-    height: 0;
-    border-right: 20px solid #EEE;
-    border-top: 38px solid transparent;
-    border-bottom: 38px solid transparent;
-
-    @media only screen and (max-width: 470px) {
-      border-top: 50px solid transparent;
-      border-bottom: 50px solid transparent;
-    }
-  }
 
   .blue-section-mobile {
     width: 910px;
@@ -397,11 +210,8 @@ page-home {
     height: 40%;
   }
 
-  .product-picker-container {
 
-  }
-
-  .categorys-main {
+  .home-main {
     margin-left: auto;
     margin-right: auto;
   }
@@ -410,118 +220,6 @@ page-home {
       max-width: 850px;
     }
   }
-
-
-  .picker-columns-card.active {
-    border: 3px solid map-get($colors, secondary);
-    -webkit-filter: brightness(90%);
-    filter: brightness(90%);
-  }
-
-  .picker-columns-card {
-
-    ion-card-content{
-      padding: 6px 0px;
-    }
-
-    p {
-      white-space: initial;
-      font-size: 1.3rem;
-      text-align: center;
-      vertical-align: middle;
-      height: 40px;
-      color: map-get($colors, secondary);
-    }
-
-  }
-
-  .picker > .picker-columns-card2:first-child {
-    margin-left: 6px;
-  }
-
-  .picker > .picker-columns-card2:last-child {
-    margin-right: 6px;
-  }
-
-  .picker-columns-card2.active {
-    -webkit-filter: brightness(90%);
-    filter: brightness(90%);
-    background-color: map-get($colors, primary);
-    p {
-      color: map-get($colors, light);
-    }
-  }
-
-  .picker-columns-card2 {
-    padding: 0px;
-    display: inline-table;
-    width: 130px;
-    height: 135px;
-    margin: 4px 5px 20px 4px;
-    background-color: map-get($colors, secondary);
-
-    p {
-      text-align: center;
-      white-space: initial;
-      font-size: 1.4rem;
-      height: 40px;
-      color: map-get($colors, light);
-      width: 100%;
-      height: 100%;
-
-
-    }
-
-
-
-    ion-card-content {
-      width: 100%;
-      height: 100%;
-      //margin: 6px 2px 6px 2px;
-    }
-
-    img {
-      display: block;
-      width: 100%;
-      margin: auto;
-    }
-  }
-
-
-
-
-
-  .picker2 {
-    height: 100%;
-    width: 420px;
-    margin: 0;
-    padding: 0;
-    white-space: nowrap;
-    margin-left: auto;
-    margin-right: auto;
-
-    .a1{
-      position: relative;
-      text-align: center;
-    }
-
-    .aboveCate:last-child{
-      height: 57px;
-      margin-left: 7px;
-      ion-card-content{
-        padding: 2px 10px 6px 6px !important;
-      }
-    }
-
-    .aboveCate:nth-last-child(2){
-      float: right;
-      height: 57px;
-      ion-card-content{
-        padding: 2px 10px 6px 6px !important;
-      }
-    }
-  }
-
 
 
     @media only screen and (max-width: 690px) {
@@ -566,11 +264,6 @@ page-home {
 
    }
 
-   .slider-footer{
-     max-height: 420px;
-     height: calc(50vw + 60px);
-   }
-
 
    .facebook-logo{
      width: 20px;
@@ -584,30 +277,6 @@ page-home {
 
 
    @media only screen and (max-width: 430px) {
-
-     .image2{
-       top: 140px;
-     }
-
-     .picker2 {
-       height: 100%;
-       width: 278px;
-       margin: 0;
-       padding: 0;
-       white-space: nowrap;
-       margin-left: auto;
-       margin-right: auto;
-
-     .aboveCate:last-child{
-       float: right !important;
-       margin-left: 0px;
-     }
-
-     .aboveCate:nth-last-child(2){
-       float: right !important;
-     }
-    }
-
     .footer-info-desk{
       display: none;
     }
@@ -616,16 +285,11 @@ page-home {
   }
 
   @media only screen and (max-width: 400px) {
-    .image2{
-      top: 115px;
-    }
+    
   }
 
   @media only screen and (max-width: 350px) {
-    .image2{
-      top: 105px;
-      left: 20px;
-    }
+    
   }
 
   .footer-info-mobile{
@@ -637,16 +301,6 @@ page-home {
     margin-bottom: 40px;
     margin-top: -50px;
 
-    .im1{
-      border-right-style: solid;
-      border-right-color: map-get($colors, primary);
-      border-right-width: 2px;
-    }
-
-    img {
-      width: 49%;
-
-    }
    }
 
    .footer-info-desk{
@@ -663,12 +317,6 @@ page-home {
 
    @media only screen and (min-width: 768px){
 
-     .aboveCate:last-child{
-       position: absolute;
-       left: 278px;
-       top: 70px;
-     }
-
      .contact-info{
        display: none;
      }
@@ -681,130 +329,5 @@ page-home {
        display: none;
      }
 
-     .blue-section-mobile{
-       display: none;
-     }
-
-     .blue-section-desk{
-       display: flex;
-       max-width: 768px;
-       margin-left: auto;
-       margin-right: auto;
-       margin-top: 10px;
-       margin-bottom: 10px;
-       img{
-         width: 246px;
-         height: 100%;
-         cursor: pointer;
-       }
-     }
-
-     .social-footer{
-       background-color: map-get($colors, secondary);
-       display: block;
-       max-width: 850px;
-       border-radius: 30px;
-       margin-left: auto;
-       margin-right: auto;
-       .principal-panel{
-         max-width: 768px;
-         margin-left: auto;
-         margin-right: auto;
-         color: map-get($colors, light);
-         display: flex;
-
-         .social-panel{
-           display: flex;
-           //margin-right: 50px;
-           float: left;
-           width: 30%;
-
-           ion-icon{
-             cursor: pointer;
-           }
-
-           h1{
-             margin-top: 6px;
-           }
-         }
-
-         .phone-panel{
-           display: flex;
-           float: right;
-           width: 70%;
-           h1{
-             margin-top: 6px;
-           }
-         }
-       }
-     }
-
-     .footer-info-desk{
-       max-width: 768px;
-       width: 100%;
-       display: flex;
-       margin-bottom: 50px;
-       margin-top: 50px;
-       margin-left: auto;
-       margin-right: auto;
-
-       .part1{
-         width: 50%;
-         padding-right: 50px;
-         border-right-style: solid;
-         border-right-color: map-get($colors, primary);
-         border-right-width: 2px;
-
-         img{
-           width: 100%;
-         }
-
-         h3{
-           font-weight: 300;
-           margin-bottom: 20px;
-         }
-       }
-
-       .part2{
-         width: 50%;
-         margin-left: 30px;
-         text-align: center;
-         h3{
-           font-weight: 300;
-         }
-         .part2-1{
-           .part2-1-1{
-             display: block;
-             margin-bottom: 15px;
-             img{
-               height: 90px !important;
-               width: auto;
-             }
-           }
-
-           .part2-1-2{
-             display: flex;
-             width: 95%;
-             margin-left: auto;
-             margin-right: auto;
-             .border-pay{
-               float: left;
-               margin-right: 10px;
-               padding-right: 10px;
-               border-right-style: solid;
-               border-right-color: map-get($colors, primary);
-               border-right-width: 2px;
-             }
-             .border-pay:last-child{
-               border-right: none;
-             }
-             img{
-               height: 50px !important;
-               width: auto;
-             }
-           }
-         }
-       }
-     }
    }
 }

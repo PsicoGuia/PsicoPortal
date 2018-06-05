@@ -1,14 +1,31 @@
+<!-- <ion-header>
+  <ion-navbar color='primary'>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title><img alt="PsicoGuia" src="assets/img/logo_300.png" (click)="navCtrl.setRoot('Home');"></ion-title>
+    <ion-buttons class='cart-mobile' end>
+      <button ion-button clear [navPush]="'Cart'">
+        <ion-icon name="md-cart" color="light"></ion-icon>
+        <ion-badge item-right color='secondary'>{{35}}</ion-badge>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header> -->
 <ion-header>
   <ion-navbar color='primary'>
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title><img alt="The Smokers Store" src="assets/img/logo.png" (click)="navCtrl.setRoot('Home');"></ion-title>
-    <ion-buttons class='cart-mobile' end>
-      <button ion-button clear [navPush]="'Cart'">
-        <ion-icon name="md-cart" color="light"></ion-icon>
-        <ion-badge item-right color='secondary' *ngIf="cartService.cartProducts.length > 0">{{cartService.cartProducts.length}}</ion-badge>
-      </button>
+    <ion-title class="principal-img">
+      <img class="header-logo" alt="PsicoGuia" src="assets/img/logo_300.png" (click)="navCtrl.setRoot('Home');">
+      <strong *ngIf="configService?.isStaging"> - STAGING - {{configService?.hostname}}</strong>
+    </ion-title>
+    <ion-buttons class="mobile-button-cart" end>
+      <ion-icon name="md-cart" color="light"></ion-icon>
+      <ion-badge item-right color='secondary'>
+        35
+      </ion-badge>
     </ion-buttons>
   </ion-navbar>
 </ion-header>
@@ -16,9 +33,14 @@
 <ion-content>
 
   <div class="divBanner">
-      <h5>
-       PROHIBIDA LA VENTA A MENORES DE EDAD
-      </h5>
+    <h5>
+      Promocion 3249498 895984984
+    </h5>
+  </div>
+
+  <div class="page-part greyColor" name="home-main">
+
+    contenido principal
   </div>
 
 
@@ -27,354 +49,37 @@
       <ion-row>
         <ion-col col-12 icon-left>
           <ion-icon name="logo-whatsapp" color="secondary"></ion-icon>
-          <h3 class="strong blue">305-7158236</h3>
-          <img class="facebook-logo" alt="facebook/thesmokersstore" src="assets/icon/facebook.png" (click)="goToExternalUrl('http://facebook.com/pg/thesmokersstore/')">
-          <img class="instagram-logo" alt="@cigarrilloselectronicostss" src="assets/icon/instagram.png" (click)="goToExternalUrl('https://www.instagram.com/cigarrilloselectronicostss/')">
+          <h3 class="strong blue">300-2799407</h3>
+          <img class="facebook-logo" alt="facebook/juancbestia" src="assets/icon/facebook.png" (click)="goToExternalUrl('http://facebook.com/juancbestia/')">
+          <img class="instagram-logo" alt="@jsdussanc" src="assets/icon/instagram.png" (click)="goToExternalUrl('https://www.instagram.com/jsdussanc/')">
         </ion-col>
       </ion-row>
       <ion-row>
         <ion-col col-6>
           <ion-icon name="pin"></ion-icon>
           <span class="texUp">Cra. 15 # 80-36 Of 102</span>
-          <br/><span class="texDw">Oficina principal norte</span>
+          <br/>
+          <span class="texDw">Oficina principal norte</span>
         </ion-col>
         <ion-col col-6>
-            <ion-icon name="pin"></ion-icon>
-            <span class="texUp">Diagonal 69B sur # 78L-43</span>
-            <br/><span class="texDw">Punto de atención sur</span>
+          <ion-icon name="pin"></ion-icon>
+          <span class="texUp">Diagonal 69B sur # 78L-43</span>
+          <br/>
+          <span class="texDw">Punto de atención sur</span>
         </ion-col>
       </ion-row>
     </ion-grid>
-  </div>
-
-  <!-- <ion-slides *ngIf="!slidesList.length">
-    <ion-slide>
-      <div>
-        <img src="assets/img/dummie_1077x418.png" alt="Cigarrillos electronicos bogotá - The Smokers Store" >
-      </div>
-    </ion-slide>
-  </ion-slides>
-
-  <ion-slides *ngIf="slidesList.length > 1" pager=true loop="true" speed="1000" autoplay="5000">
-    <ion-slide *ngFor="let slide of slidesList" >
-      <div >
-        <img [src]="slide.image" [alt]="slide.alt" class="dummy_1077_418">
-      </div>
-    </ion-slide>
-  </ion-slides>
-
-  <ion-slides *ngIf="slidesList.length == 1">
-    <ion-slide *ngFor="let slide of slidesList" >
-      <div>
-        <img [src]="slide.image" [alt]="slide.alt" class="dummy_1077_418">
-      </div>
-    </ion-slide>
-  </ion-slides> -->
-
-    <div class="page-part greyColor" name="categorys-main">
-
-      
-    <h2 padding>CATEGORÍAS</h2>
-    <div class="categorys-main">
-      <div class="product-picker-container">
-        <div class="picker cards-in-columns-container" *ngIf='!loadingProducts2'>
-          <div class="loading-in-line" *ngIf="loadingCategories">
-            <ion-spinner></ion-spinner>
-          </div>
-            <ion-card class="picker-columns-card two-columns-card" *ngFor="let category of categories"
-            (click)="categoryClicked(category)" [ngClass]="{active: category.state}">
-              <img src="{{category.image}}" alt="{{category.alt}}" class="dummy_500_500"/>
-              <ion-card-content>
-                <p  style="height: auto">{{category.name}}</p>
-              </ion-card-content>
-            </ion-card>
-        </div>
-        <div class="picker cards-in-columns-container" *ngIf='loadingProducts2'>
-          <div class="loading-in-line" *ngIf="loadingCategories">
-            <ion-spinner></ion-spinner>
-          </div>
-            <ion-card class="picker-columns-card two-columns-card" *ngFor="let category of categories"
-            [ngClass]="{active: category.state}">
-              <img src="{{category.image}}" alt="{{category.alt}}" class="dummy_500_500"/>
-              <ion-card-content>
-                <p  style="height: auto">{{category.name}}</p>
-              </ion-card-content>
-            </ion-card>
-        </div>
-      </div>
-
-
-
-      <div name="How-cigarretes">
-
-      </div>
-      <!-- <h2 padding style="margin-top:20px; margin-bottom: 20px;" *ngIf="selectedCategory && selectedCategory.subcategories">SUB-CATEGORÍAS</h2> -->
-        <div class="picker2 product-picker-container" *ngIf="selectedCategory">
-          <div class="a1" *ngIf='!loadingProducts2'>
-            <ion-card class="picker-columns-card2" *ngFor="let subcategory of subcategories" (click)="subCategoryClicked(subcategory)" [ngClass]="{active: subcategory.state, aboveCate: !subcategory.image}" color="secondary">
-              <img *ngIf="subcategory.image" src="{{subcategory.image}}" alt='{{subcategory.alt}}'/>
-              <ion-card-content>
-                <p>{{subcategory.name}}</p>
-              </ion-card-content>
-            </ion-card>
-          </div>
-          <div class="a1" *ngIf='loadingProducts2'>
-            <ion-card class="picker-columns-card2" *ngFor="let subcategory of subcategories" [ngClass]="{active: subcategory.state, aboveCate: !subcategory.image}" color="secondary">
-              <img *ngIf="subcategory.image" src="{{subcategory.image}}" alt='{{subcategory.alt}}'/>
-              <ion-card-content>
-                <p>{{subcategory.name}}</p>
-              </ion-card-content>
-            </ion-card>
-          </div>
-        </div>
-
-    </div>
-    <div style="clear:both" name="product-container">
-
-    </div>
-
-    <div *ngIf='selectedCategory'>
-      <h2 padding  class="all-Products">{{stringProducts}}</h2>
-      <div class="cards-in-columns-container mar-bot" *ngIf="products">
-        <ion-card class="two-columns-card" *ngFor="let product of products" (click)="openProduct(product)">
-          <div class="parent">
-            <img *ngIf='!product.variants[0].photos' class="image1" src="assets/img/no-imagen.jpg" class="dummy_500_500"/>
-            <img *ngIf='product.variants[0].photos && product.variants[0].photos[0]' class="image1" src="{{product.variants[0].photos[0].image}}" alt='{{product.variants[0].photos[0].alt}}' class="dummy_500_500"/>
-            <img class="image2" src="assets/img/unavailable.png" *ngIf="product.qty_available <= 0" />
-            <h2 class="text1" *ngIf="product.discount">{{product.discount}}</h2>
-          </div>
-          <ion-card-content>
-            <ion-card-title class="greyColor" text-center>
-              {{product.name}}
-            </ion-card-title>
-            <p class="greyColor" text-center *ngIf="product.discount">
-              <s>$ {{getBestPrice(product) | number:'3.2'}}</s>
-              <b>${{(getBestPrice(product) - (getBestPrice(product)*product.price_discount/100)) | number:'3.2'}}</b>
-            </p>
-            <p class="greyColor" text-center *ngIf="!product.discount">
-              <b>$ {{getBestPrice(product) | number:'3.2'}}</b>
-            </p>
-          </ion-card-content>
-        </ion-card>
-      </div>
-    </div>
-    <ion-infinite-scroll *ngIf='selectedCategory' margin-bottom threshold='500%' (ionInfinite)="loadProducts($event, true)">
-      <ion-infinite-scroll-content></ion-infinite-scroll-content>
-    </ion-infinite-scroll>
-
-    <h2 padding  class="all-Products">Productos Más Vendidos</h2>
-
-    <div class="cards-in-columns-container mar-bot" *ngIf="loadingHighlightProducts">
-      <ion-card class="two-columns-card">
-        <div class="parent">
-          <img src="assets/img/dummie_500x500.png"/>
-        </div>
-        <ion-card-content>
-          <ion-card-title class="greyColor" text-center>
-            ...
-          </ion-card-title>
-        </ion-card-content>
-      </ion-card>
-      <ion-card class="two-columns-card">
-        <div class="parent">
-          <img src="assets/img/dummie_500x500.png"/>
-        </div>
-        <ion-card-content>
-          <ion-card-title class="greyColor" text-center>
-            ...
-          </ion-card-title>
-        </ion-card-content>
-      </ion-card>
-      <ion-card class="two-columns-card">
-        <div class="parent">
-          <img src="assets/img/dummie_500x500.png"/>
-        </div>
-        <ion-card-content>
-          <ion-card-title class="greyColor" text-center>
-            ...
-          </ion-card-title>
-        </ion-card-content>
-      </ion-card>
-      <ion-card class="two-columns-card">
-        <div class="parent">
-          <img src="assets/img/dummie_500x500.png"/>
-        </div>
-        <ion-card-content>
-          <ion-card-title class="greyColor" text-center>
-            ...
-          </ion-card-title>
-        </ion-card-content>
-      </ion-card>
-    </div>
-
-    <div class="cards-in-columns-container mar-bot" *ngIf="!loadingHighlightProducts && highlightProducts">
-      <ion-card class="two-columns-card" *ngFor="let product of highlightProducts" (click)="openProduct(product)">
-        <div class="parent" *ngIf='product.variants'>
-          <img *ngIf='!product.variants[0].photos' class="image1" src="assets/img/no-imagen.jpg" class="dummy_500_500"/>
-          <img *ngIf='product.variants[0].photos && product.variants[0].photos[0]' class="image1" src="{{product.variants[0].photos[0].image}}" alt='{{product.variants[0].photos[0].alt}}' class="dummy_500_500"/>
-          <img class="image2" src="assets/img/unavailable.png" *ngIf="product.qty_available <= 0" />
-          <h2 class="text1" *ngIf="product.discount">{{product.discount}}</h2>
-        </div>
-        <ion-card-content>
-          <ion-card-title class="greyColor" text-center>
-            {{product.name}}
-          </ion-card-title>
-          <p class="greyColor" text-center *ngIf="product.discount">
-            <s>$ {{getBestPrice(product) | number:'3.2'}}</s>
-            <b>${{(getBestPrice(product) - (getBestPrice(product)*product.price_discount/100)) | number:'3.2'}}</b>
-          </p>
-          <p class="greyColor" text-center *ngIf="!product.discount">
-            <b>$ {{getBestPrice(product) | number:'3.2'}}</b>
-          </p>
-        </ion-card-content>
-      </ion-card>
-    </div>
-  </div>
-
-  <div class="blue-section-mobile">
-    <ion-grid>
-      <ion-row responsive-sm (click)='modalSend()'>
-        <ion-col col-2>
-          <img src="assets/img/camion_envio.png" />
-        </ion-col>
-        <ion-col>
-          <h3> ENVÍO GRATIS </h3>
-          <p> En compras superiores a $30.000 </p>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-    <ion-grid>
-      <ion-row responsive-sm (click)='modalWarranty()'>
-        <ion-col col-2>
-          <img src="assets/img/garantia.png" />
-        </ion-col>
-        <ion-col>
-          <h3> GARANTÍA TOTAL </h3>
-          <p> Todos nuestros productos están 100% garantizados </p>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-    <ion-grid>
-      <ion-row responsive-sm (click)='modalGuide()'>
-        <ion-col col-2>
-          <img src="assets/img/manual.png" />
-        </ion-col>
-        <ion-col>
-          <h3>MANUAL DE COMPRA</h3>
-          <p>Encontrarás como realizar tus compras online</p>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </div>
-
-  <div class="blue-section-desk">
-    <img style="margin-right: 10px;" src="assets/img/envio-gratis.png" alt="Envio Gratis" (click)='modalSend()'>
-    <img style="margin-right: 10px;" src="assets/img/garantia-total.png" alt="Garantia Total" (click)='modalWarranty()'>
-    <img src="assets/img/manual-compra.png" alt="Manual de Compra" (click)='modalGuide()'>
-  </div>
-
-  <div class="banner-happyClients">
-    <p>
-      <ion-icon name="checkmark"></ion-icon>
-    </p>
-    <h4> MÁS DE <h1> 4.000 </h1> CLIENTES FELICES </h4>
-  </div>
-
-  <div class="slider-footer">
-    <ion-slides *ngIf="!slidesList2.length" padding-top margin-top padding-bottom margin-bottom>
-      <ion-slide>
-        <div>
-          <img src="assets/img/dummie_830x300.png" alt="Cigarrillos electronicos bogotá - The Smokers Store" >
-        </div>
-      </ion-slide>
-    </ion-slides>
-    <ion-slides *ngIf="slidesList2.length > 1" pager=true loop="true" speed="1000" autoplay="5000" padding-top margin-top padding-bottom margin-bottom>
-      <ion-slide *ngFor="let slideFooter of slidesList2">
-        <div>
-          <img [src]="slideFooter.image" [alt]="slideFooter.alt" class="dummy_830_300">
-        </div>
-      </ion-slide>
-    </ion-slides>
-    <ion-slides *ngIf="slidesList2.length == 1" padding-top margin-top padding-bottom margin-bottom>
-      <ion-slide *ngFor="let slideFooter of slidesList2" >
-        <div>
-          <img [src]="slideFooter.image" [alt]="slideFooter.alt" class="dummy_830_300">
-        </div>
-      </ion-slide>
-    </ion-slides>
-  </div>
-
-  <div class="social-footer">
-    <div class="principal-panel">
-      <div class="social-panel" color="light">
-          <h6 style="margin-right: 20px;">REDES</h6>
-          <h1 class="strong">
-            <ion-icon name="logo-instagram" (click)="goToExternalUrl('https://www.instagram.com/cigarrilloselectronicostss/')"></ion-icon>
-            <ion-icon name="logo-facebook" (click)="goToExternalUrl('http://facebook.com/pg/thesmokersstore/')"></ion-icon>
-            <ion-icon name="logo-youtube" (click)="goToExternalUrl('https://www.youtube.com/channel/UCgGydfY1NwE1oPXBBzfMDrg')"></ion-icon>
-          </h1>
-      </div>
-      <div class="phone-panel" color="light">
-        <h6 style="margin-right: 20px;">LÍNEA DE ATENCIÓN Y WHATSAPP</h6>
-        <h1 class="strong"><ion-icon name="logo-whatsapp" color="light"></ion-icon> 305-7158236</h1>
-      </div>
-    </div>
-  </div>
-
-  <div class="footer-info-desk">
-    <div class="part1">
-      <h3>AFILIADO</h3>
-      <img src="assets/img/cc-afiliado.png" alt="camara de comercio" (click)="goToExternalUrl('https://www.ccce.org.co/afiliados?letter=t&page=1')"/>
-    </div>
-    <div class="part2">
-      <h3>RECIBIMOS TODOS LOS MEDIOS DE PAGO</h3>
-      <div class="part2-1">
-        <div class="part2-1-1">
-          <img src="assets/img/baloto.png" />
-          <img src="assets/img/pse.png" />
-        </div>
-        <div class="part2-1-2">
-          <img class="border-pay" src="assets/img/visa.png"/>
-          <img class="border-pay" src="assets/img/mastercard.png" />
-          <img class="border-pay" src="assets/img/american-express.png" />
-        </div>
-      </div>
-      <h3>TRANSACCIÓN 100% SEGURA</h3>
-    </div>
-  </div>
-
-  <div class="footer-info-mobile">
-    <img class="im1" src="assets/img/cm-mobile.jpeg" alt="camara de comercio" (click)="goToExternalUrl('https://www.ccce.org.co/afiliados?letter=t&page=1')">
-    <img src="assets/img/pay.jpeg" alt="Recibimos todos los medios de pago">
-  </div>
-
-  <div class="footer-harmful">
-    <div class="footer-harmful-size">
-      <p><span>ADVERTENCIA:</span> El CIGARRILLO ELECTRONICO contiene nicotina que es una sustancia altamente adictiva.
-        Está diseñado para ser utilizado por personas que hayan fumado con anterioridad siempre y cuando sean
-        mayores de edad. No lo use para tratar alguna condición médica o hábito. No use  si se encuentra en
-        periodo de lactancia, No lo use en estado de embarazo o sufre de alguna condición médica que le prohíba
-        su uso. Si muestra alguna sensibilidad a los CIGARRILLOS ELECTRONICOS, suspenda su uso. </p>
-      <div class="inkremental-sidebar">
-        <div class="part1">
-          <p>Powered By </p>
-        </div>
-        <div class="part2">
-            <a target="_blank" href="https://www.inkremental.co/"><img src="../../assets/img/logo_blanco_v1.png" alt="Inkremental SAS"></a>
-        </div>
-      </div>
-    </div>
   </div>
 </ion-content>
 
 <ion-footer>
-    <div class="footer-fixed" style="margin-top: 6px;">
-      <button ion-button class="shop-button" (click)="goToShop()">
-        TIENDA
-      </button>
-      <div class="phone-contact">
-        <p>Linea de atención y Whatsapp</p>
-        <h3 class="strong">305-7158236</h3>
-      </div>
+  <div class="footer-fixed" style="margin-top: 6px;">
+    <button ion-button class="go-to-button">
+      Pide tu cita
+    </button>
+    <div class="phone-contact">
+      <p>Linea de atención y Whatsapp</p>
+      <h3 class="strong">300-2799407</h3>
     </div>
+  </div>
 </ion-footer>

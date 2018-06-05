@@ -1,3 +1,53 @@
+<!--ion-menu [content]="content">
+  <ion-content >
+    <div class="logo-side-menu">
+      <img alt="The Smokers Store" src="assets/img/logo_300.png" (click)="openPage(pages[0])" menuClose>
+    </div>
+    <ion-list>
+      <button menuClose ion-item (click)="openPage(0)" color="primary">KUPA</button>
+      <button menuClose ion-item (click)="gotToCollection(8)" color="primary">{{ "PAGE8"  }}</button>
+      <button menuClose ion-item (click)="openPage(1)" color="primary">{{ "PAGE1"  }}</button>
+      <button ion-item (click)="showAboutUsDetail=!showAboutUsDetail" color="primary" icon-right>
+        {{ "ABOUT_US"  }}
+        <ion-icon name="ios-arrow-up" *ngIf="showAboutUsDetail"></ion-icon>
+        <ion-icon name="ios-arrow-down" *ngIf="!showAboutUsDetail"></ion-icon>
+      </button>
+      <div *ngIf="showAboutUsDetail" class="submenu">
+      <button menuClose ion-item (click)="openPage(2)">{{ "PAGE2"  }}</button>
+        <button menuClose ion-item (click)="openPage(3)">{{ "PAGE3"  }}</button>
+        <button menuClose ion-item (click)="openPage(4)">{{ "PAGE4"  }}</button>
+        <button menuClose ion-item (click)="openPage(7)">{{ "PAGE7"  }}</button>        
+      </div>
+      <button menuClose ion-item (click)="openPage(5)" color="primary">{{ "PAGE5"  }}</button>      
+      <button menuClose ion-item (click)="openPage(6)" color="primary">{{ "PAGE6"  }}</button>
+    </ion-list>    
+  </ion-content>
+</ion-menu-->
+
+<!--ion-list class="desktop-menu">
+    <button [ngClass]="{active: menu[1]}" ion-item (click)="openPage(1)" color="primary">{{ "SHOP"  }}</button>
+    <button [ngClass]="{active: menu[8]}" ion-item (click)="gotToCollection(8)" color="primary">{{ "HOME_COLLECTIONS"  }}</button>
+    <button [ngClass]="{active: (menu[2] || menu[3] || menu[4] || menu[7])}"ion-item (click)="showAboutUsDetail=!showAboutUsDetail" color="primary" icon-right>
+      {{ "ABOUT_US"  }}
+      <ion-icon name="ios-arrow-up" *ngIf="showAboutUsDetail"></ion-icon>
+      <ion-icon name="ios-arrow-down" *ngIf="!showAboutUsDetail"></ion-icon>
+    </button>
+    <div *ngIf="showAboutUsDetail" class="submenu">
+      <button [ngClass]="{active: menu[2]}" ion-item (click)="showAboutUsDetail=!showAboutUsDetail;openPage(2)">{{ "PAGE2"  }}</button>      
+      <button [ngClass]="{active: menu[3]}" ion-item (click)="showAboutUsDetail=!showAboutUsDetail;openPage(3)">{{ "PAGE3"  }}</button>
+      <button [ngClass]="{active: menu[4]}" ion-item (click)="showAboutUsDetail=!showAboutUsDetail;openPage(4)">{{ "PAGE4"  }}</button>
+      <button [ngClass]="{active: menu[7]}" ion-item (click)="showAboutUsDetail=!showAboutUsDetail;openPage(7)">{{ "PAGE7"  }}</button>      
+    </div>
+    <button [ngClass]="{active: menu[5]}" ion-item (click)="openPage(5)" color="primary">{{ "PAGE5"  }}</button>    
+    <button [ngClass]="{active: menu[6]}" ion-item (click)="openPage(6)" color="primary">{{ "PAGE6"  }}</button>
+    <button ion-button clear (click)='goToCart()'>
+      <img class="img-cart" src="assets/icon/cart-white.png"/>
+      <ion-badge item-right color='secondary' *ngIf="cartService.cartProducts.length>0">
+        {{cartService.cartProducts.length}}
+      </ion-badge>
+    </button>
+  </ion-list-->
+
 <ion-menu [content]="content">
   <ion-content>
     <div class="header-side-menu">
@@ -25,6 +75,22 @@
     </div>
 
     <ion-list>
+      <button menuClose ion-item (click)="openPage(0)" color="primary">KUPA</button>
+      <button menuClose ion-item (click)="gotToCollection(8)" color="primary">{{ "PAGE8" }}</button>
+      <button menuClose ion-item (click)="openPage(1)" color="primary">{{ "PAGE1" }}</button>
+      <button ion-item (click)="showAboutUsDetail=!showAboutUsDetail" color="primary" icon-right>
+        {{ "ABOUT_US" }}
+        <ion-icon name="ios-arrow-up" *ngIf="showAboutUsDetail"></ion-icon>
+        <ion-icon name="ios-arrow-down" *ngIf="!showAboutUsDetail"></ion-icon>
+      </button>
+      <div *ngIf="showAboutUsDetail" class="submenu">
+        <button menuClose ion-item (click)="openPage(2)">{{ "PAGE2" }}</button>
+        <button menuClose ion-item (click)="openPage(3)">{{ "PAGE3" }}</button>
+        <button menuClose ion-item (click)="openPage(4)">{{ "PAGE4" }}</button>
+        <button menuClose ion-item (click)="openPage(7)">{{ "PAGE7" }}</button>
+      </div>
+      <button menuClose ion-item (click)="openPage(5)" color="primary">{{ "PAGE5" }}</button>
+      <button menuClose ion-item (click)="openPage(6)" color="primary">{{ "PAGE6" }}</button>
       <button *ngIf="userService.user" ion-item (click)="showProfile=false;openPage({component: 'ProfilePage'})">
         <ion-icon name="person" style="margin-right:4px"></ion-icon>MI PERFIL
       </button>
@@ -40,112 +106,29 @@
 
 </ion-menu>
 
-<div class="max-desktop-menu" *ngIf='destop_menu'>
-  <ion-list class="desktop-menu">
-    <div class="panel-sup">
-      <div class="menu-networks dmiddle">
-        <div class="dmiddle">
-          <ion-icon style="margin-right: 15px;" color='light' name="logo-facebook" (click)="goToExternalUrl('http://facebook.com/pg/thesmokersstore/')"></ion-icon>
-        </div>
-
-        <div style="margin-right: 15px;" class="dmiddle">
-          <ion-icon style="margin-right: 15px;" color='light' name="logo-youtube" (click)="goToExternalUrl('https://www.youtube.com/channel/UCgGydfY1NwE1oPXBBzfMDrg')"></ion-icon>
-        </div>
-
-        <div class="dmiddle">
-          <ion-icon color='light' name="logo-instagram" (click)="goToExternalUrl('https://www.instagram.com/cigarrilloselectronicostss/')"></ion-icon>
-        </div>
-      </div>
-      <div class="dmiddle">
-        <ion-buttons class end>
-          <button ion-button clear (click)="openPage({component: 'Home'})">
-            <ion-icon name="md-search" color="light">CITA</ion-icon>
-            <ion-badge item-right color='secondary'>5</ion-badge>
-          </button>
-        </ion-buttons>
-      </div>
-    </div>
-
-    <div class="panel-inf" style="margin-top: 0px;">
-      <div class="left-info">
-        <div class="menu-pages">
-          <div class="dmiddle">
-            <button menuClose ion-item (click)="goToSmokers()">
-              INICIO
-            </button>
-          </div>
-          <div class="dmiddle">
-            <div class="line-white">
-            </div>
-          </div>
-        </div>
-        <div class="menu-pages" *ngFor="let p of pages; let i = index">
-          <div class="dmiddle">
-            <button *ngIf='!p.stage' menuClose ion-item (click)="showProfile=false;openPage(p)">
-              {{p.title}}
-            </button>
-            <button class='activeBlue' *ngIf='p.stage' menuClose ion-item (click)="showProfile=false;openPage(p)">
-              {{p.title}}
-            </button>
-          </div>
-          <div class="dmiddle">
-            <div class="line-white">
-            </div>
-          </div>
-        </div>
-
-
-        <div class="menu-login" *ngIf="!userService.user">
-          <div class="dmiddle">
-            <button *ngIf="!userService.user" ion-item (click)="showProfile=false;login()">
-              INGRESAR
-            </button>
-          </div>
-          <div class="dmiddle" *ngIf='i != ((pages.length)-1)'>
-            <div class="line-white">
-            </div>
-          </div>
-          <div class="dmiddle">
-            <button ion-item (click)="showProfile=false;openPage({component: 'Home'})">
-              REGÍSTRATE
-            </button>
-          </div>
-        </div>
-
-
-
-        <div class="menu-login" *ngIf="userService.user">
-          <div class="dmiddle">
-            <button ion-item color="secondary" (click)="showProfile=!showProfile">
-              <div class="dmiddle">
-                <ion-icon name="contact"></ion-icon>
-              </div>
-              <div class="dmiddle" style="padding-left: 5px; padding-right: 5px;">
-                {{userService.user.first_name}} {{userService.user.last_name}}
-              </div>
-              <div class="dmiddle">
-                <ion-icon name="ios-arrow-up" *ngIf="showProfile"></ion-icon>
-                <ion-icon name="ios-arrow-down" *ngIf="!showProfile"></ion-icon>
-              </div>
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div *ngIf="showProfile && userService.user" class="submenu">
-      <button ion-item (click)="showProfile=false;openPage({component: 'Home'})">
-        MI PERFIL
-      </button>
-      <button ion-item (click)="showProfile=false;openPage({component: 'Home'})">
-        MI ESTADO DE CUENTA
-      </button>
-      <button ion-item (click)="showProfile=false;logout()">
-        CERRAR SESIÓN
-      </button>
-    </div>
-  </ion-list>
-</div>
+<ion-list class="desktop-menu">
+  <button ion-item (click)="openPage(1)" color="primary">{{ "SHOP" }}</button>
+  <button ion-item (click)="gotToCollection(8)" color="primary">{{ "HOME_COLLECTIONS" }}</button>
+  <button class="active" ion-item (click)="showAboutUsDetail=!showAboutUsDetail" color="primary" icon-right>
+    {{ "ABOUT_US" }}
+    <ion-icon name="ios-arrow-up" *ngIf="showAboutUsDetail"></ion-icon>
+    <ion-icon name="ios-arrow-down" *ngIf="!showAboutUsDetail"></ion-icon>
+  </button>
+  <div *ngIf="showAboutUsDetail" class="submenu">
+    <button class="active" ion-item (click)="showAboutUsDetail=!showAboutUsDetail;openPage(2)">{{ "TRAVELERS" }}</button>
+    <button ion-item (click)="showAboutUsDetail=!showAboutUsDetail;openPage(3)">{{ "HISTORY" }}</button>
+    <button ion-item (click)="showAboutUsDetail=!showAboutUsDetail;openPage(4)">{{ "ILLUSTRATORS" }}</button>
+    <button ion-item (click)="showAboutUsDetail=!showAboutUsDetail;openPage(7)">{{ "CONTACT" }}</button>
+  </div>
+  <button ion-item (click)="openPage(5)" color="primary">{{ "BLOG" }}</button>
+  <button ion-item (click)="openPage(6)" color="primary">{{ "ALLIANCE" }}</button>
+  <button ion-item (click)="openPage(6)" color="primary">
+    CITAS
+    <ion-badge item-right color='secondary'>
+      1
+    </ion-badge>
+  </button>
+</ion-list>
 
 <div class="footer-desk">
   <div class="dlements">
@@ -166,6 +149,26 @@
       <span class="texDw">Bogotá Colombia</span>
     </div>
   </div>
+</div>
 
-  <!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
-  <ion-nav [root]="rootPage" #content swipeBackEnabled="false" (window:resize)="onResize()"></ion-nav>
+<ion-header>
+  <ion-navbar color='primary'>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title class="principal-img">
+      <img class="header-logo" alt="PsicoGuia" src="assets/img/logo_300.png" (click)="navCtrl.setRoot('Home');">
+      <strong *ngIf="configService?.isStaging"> - STAGING - {{configService?.hostname}}</strong>
+    </ion-title>
+
+    <ion-buttons class="mobile-button-cart" right>
+      <ion-icon name="md-cart" color="light"></ion-icon>
+      <ion-badge item-right color='secondary'>
+        35
+      </ion-badge>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false" (window:resize)="onResize()"></ion-nav>
