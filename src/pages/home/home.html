@@ -12,74 +12,16 @@
     </ion-buttons>
   </ion-navbar>
 </ion-header> -->
-<ion-header>
-  <ion-navbar color='primary'>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title class="principal-img">
-      <img class="header-logo" alt="PsicoGuia" src="assets/img/logo_300.png" (click)="navCtrl.setRoot('Home');">
-      <strong *ngIf="configService?.isStaging"> - STAGING - {{configService?.hostname}}</strong>
-    </ion-title>
-    <ion-buttons class="mobile-button-cart" end>
-      <ion-icon name="md-cart" color="light"></ion-icon>
-      <ion-badge item-right color='secondary'>
-        35
-      </ion-badge>
-    </ion-buttons>
-  </ion-navbar>
-</ion-header>
-
 <ion-content>
 
   <div class="divBanner">
     <h5>
-      Promocion 3249498 895984984
+      Banner de información adicional: Promocion 3249498 895984984
     </h5>
   </div>
 
-  <div class="page-part greyColor" name="home-main">
-
+  <div class="page-part greyColor" name="main-home">
     contenido principal
-  </div>
-
-
-  <div class="contact-info greyColor">
-    <ion-grid>
-      <ion-row>
-        <ion-col col-12 icon-left>
-          <ion-icon name="logo-whatsapp" color="secondary"></ion-icon>
-          <h3 class="strong blue">300-2799407</h3>
-          <img class="facebook-logo" alt="facebook/juancbestia" src="assets/icon/facebook.png" (click)="goToExternalUrl('http://facebook.com/juancbestia/')">
-          <img class="instagram-logo" alt="@jsdussanc" src="assets/icon/instagram.png" (click)="goToExternalUrl('https://www.instagram.com/jsdussanc/')">
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col col-6>
-          <ion-icon name="pin"></ion-icon>
-          <span class="texUp">Cra. 15 # 80-36 Of 102</span>
-          <br/>
-          <span class="texDw">Oficina principal norte</span>
-        </ion-col>
-        <ion-col col-6>
-          <ion-icon name="pin"></ion-icon>
-          <span class="texUp">Diagonal 69B sur # 78L-43</span>
-          <br/>
-          <span class="texDw">Punto de atención sur</span>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
   </div>
 </ion-content>
 
-<ion-footer>
-  <div class="footer-fixed" style="margin-top: 6px;">
-    <button ion-button class="go-to-button">
-      Pide tu cita
-    </button>
-    <div class="phone-contact">
-      <p>Linea de atención y Whatsapp</p>
-      <h3 class="strong">300-2799407</h3>
-    </div>
-  </div>
-</ion-footer>

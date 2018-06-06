@@ -130,26 +130,7 @@
   </button>
 </ion-list>
 
-<div class="footer-desk">
-  <div class="dlements">
-    <div class="dwhatsapp">
-      <h3 class="strong blue">
-        <ion-icon name="logo-whatsapp" color="secondary"></ion-icon>
-        3007299407
-      </h3>
-    </div>
-    <div class="dmiddle">
-      <div class="line-white">
-      </div>
-    </div>
-    <div class="dadd1">
-      <ion-icon name="pin"></ion-icon>
-      <span class="texUp">Cll falsa 123</span>
-      <br/>
-      <span class="texDw">Bogotá Colombia</span>
-    </div>
-  </div>
-</div>
+
 
 <ion-header>
   <ion-navbar color='primary'>
@@ -169,6 +150,19 @@
     </ion-buttons>
   </ion-navbar>
 </ion-header>
+
+
+<ion-footer>
+  <div class="footer-fixed" style="margin-top: 6px;">
+    <button ion-button class="go-to-button">
+      Pide tu cita
+    </button>
+    <div class="phone-contact">
+      <p>Linea de atención y Whatsapp</p>
+      <h3 class="strong">300-2799407</h3>
+    </div>
+  </div>
+</ion-footer>
 
 <!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
 <ion-nav [root]="rootPage" #content swipeBackEnabled="false" (window:resize)="onResize()"></ion-nav>

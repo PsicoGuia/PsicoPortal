@@ -531,7 +531,10 @@ ion-backdrop{
     background-color: #F7F7F8;
   }
 }
-
+ion-content{
+  margin-top: 58px;
+  position: relative;
+}
 /* LESS THAN DESKTOP SIZE*/
 @media (max-width:767px){
   .toolbar-title-md {
@@ -784,3 +787,52 @@ ion-title{
     outline: solid 1px #aaa;
   }
 }
+
+.footer-fixed {
+  /* center the element */
+  right: 0;
+  left: 0;
+  bottom: -5px;
+  margin-right: auto;
+  margin-left: auto;
+  /* give it dimensions */
+  white-space: nowrap;
+  z-index: 4;
+  width: 280px;
+
+ .go-to-button {
+   height: 32px !important;
+   padding-left: 10px;
+   padding-right: 10px;
+   font-weight: bold;
+   border-width: 2px;
+   box-shadow: 0px 0px 5px 1px #afafaf;
+   ion-icon {
+      margin-left: 10px;
+      font-weight: bolder;
+    }
+ }
+
+ .phone-contact {
+   background-color: map-get($colors, secondary);
+   display: inline-block;
+   width: 160px;
+   margin: 0;
+   padding: 6px;
+   color:  map-get($colors, light);
+   vertical-align: bottom;
+   margin-bottom: 4px;
+   box-shadow: 0px 0px 5px 1px #afafaf;
+   p {
+     font-size: 0.8rem;
+     margin: 0;
+     line-height: 3px;
+   }
+   h3 {
+     margin: 0;
+     text-align: right;
+     margin-bottom: -1px;
+   }
+ }
+}
+

@@ -11,7 +11,7 @@ import { MyApp } from '../../app/app.component';
 //import { WarrantyModal } from '../warranty-modal/warranty-modal';
 //import { GuideModal } from '../guide-modal/guide-modal';
 @IonicPage({
-  segment: 'tienda',
+  segment: 'home',
   priority: 'high'
 })
 @Component({
