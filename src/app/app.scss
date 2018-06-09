@@ -533,6 +533,9 @@ ion-backdrop{
 ion-content{
   margin-top: 58px;
   position: relative;
+  .scroll-content{
+    padding-bottom: 120px!important;
+  }
 }
 /* LESS THAN DESKTOP SIZE*/
 @media (max-width:767px){

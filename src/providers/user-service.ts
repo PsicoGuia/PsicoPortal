@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
-import { ConfigService } from '../providers/config-service';
+import { ConfigService, URL_API } from '../providers/config-service';
 import { Storage } from '@ionic/storage';
 import { ApiService } from './api';
 import { Settings } from './settings';
+
 
 @Injectable()
 export class UserService {
@@ -28,7 +29,7 @@ export class UserService {
       last_name: lastName,
       username: email
     }
-    return this.api.post('/api/' + 'crm/user/', paramUser);
+    return this.api.post(URL_API + 'crm/user/', paramUser);
   }
 
 
@@ -68,7 +69,7 @@ export class UserService {
       credentials.username = credentials.username.substring(0, 30)
     }
     return new Promise((resolve, reject) => {
-      this.api.post('/api/' + 'rest-auth/login/', credentials)
+      this.api.post(URL_API + 'rest-auth/login/', credentials)
         .then(res => {
           let token = 'token ' + res.key;
           return this.settigsService.setValue('token', token)
@@ -100,7 +101,24 @@ export class UserService {
   forgotPassword(email): Promise<any> {
     console.log("UserService:forgotPassword");
     //console.log("recovering password...");
-    return this.api.post('/api/' + 'rest-auth/password/reset/', { email: email });
+    return this.api.post(URL_API + 'rest-auth/password/reset/', { email: email });
+  }
+
+  signupmedic(first_name, last_name, identification_number, profesional_number, email, phone, password, version_terms, version_terms_abeusdata, notification): Promise<any> {
+    let params = {
+      "first_name": first_name,
+      "last_name": last_name,
+      "identification_number": identification_number,
+      "profesional_number": profesional_number,
+      "email": email,
+      "phone": phone,
+      "password": password,
+      "version_terms": version_terms,
+      "version_terms_abeusdata": version_terms_abeusdata,
+      "notification": notification,
+    }
+
+    return this.api.post(URL_API + 'crm/signupmedic/', params);
   }
 
 }

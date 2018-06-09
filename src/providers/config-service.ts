@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { FormControl } from "@angular/forms";
 import { HttpClient } from '@angular/common/http';
 declare var appGoogleAnalitics: any;
+export let URL_API = "localhost:8000/api/";
+
 
 @Injectable()
 export class ConfigService {

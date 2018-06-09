@@ -7,6 +7,10 @@ import { UserService } from '../providers/user-service';
 import { AlertController } from 'ionic-angular';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 
+//pages
+import { RegisterMedicPage } from '../pages/register-medic/register-medic';
+
+
 @Component({
   templateUrl: 'app.html'
 })
@@ -16,7 +20,7 @@ export class MyApp {
   pages: Array<{ title: string, component: any, icon: string, stage: boolean }>;
   showProfile = false;
   destop_menu: boolean = true;
-
+  register = RegisterMedicPage;
 
   constructor(
     public platform: Platform, 
@@ -35,6 +39,7 @@ export class MyApp {
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'TIENDA', component: 'Home', icon: 'ios-home', stage: false },
+      { title: 'REGISTER', component: 'RegisterMedicPage', icon: 'ios-home', stage: false },
       { title: 'PREGUNTAS', component: 'Faqs', icon: 'md-help', stage: false },
       { title: 'CONTÁCTANOS', component: 'Contact', icon: 'ios-call', stage: false },
     ];
@@ -74,13 +79,14 @@ export class MyApp {
   }
 
   openPage(page) {
-    if (page.component == 'CitySelectPage') {
-      this.destop_menu = false;
-    }
-    // Reset the content nav to have just this page
-    // we wouldn't want the back button to show in this scenario
+    this.nav.push(page.component);
+  }
+
+  pushPage(page){
+    page = this.pages[page];
     this.clearActive(page);
     this.nav.setRoot(page.component);
+
   }
 
   clearActive(page) {

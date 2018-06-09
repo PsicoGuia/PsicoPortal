@@ -122,6 +122,16 @@
   </div>
   <button ion-item (click)="openPage(5)" color="primary">{{ "BLOG" }}</button>
   <button ion-item (click)="openPage(6)" color="primary">{{ "ALLIANCE" }}</button>
+  <button ion-item  (click)="pushPage(1)" color="secondary">
+    Registrate
+  </button>
+  <!--button ion-item color="primary">
+    <button ion-button  [navPush]="'RegisterMedicPage'" color="secondary">
+      Registrate
+    </button>
+  </button-->
+  
+  
   <button ion-item (click)="openPage(6)" color="primary">
     CITAS
     <ion-badge item-right color='secondary'>

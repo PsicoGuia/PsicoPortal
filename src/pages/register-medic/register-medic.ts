@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { ConfigService } from '../../providers/config-service';
+import { UserService } from '../../providers/user-service';
 
 /**
  * Generated class for the RegisterMedicPage page.
@@ -20,10 +21,11 @@ import { ConfigService } from '../../providers/config-service';
 export class RegisterMedicPage {
 
 
-  regusterMedicForm: FormGroup = this.formBuilder.group({
+  registerMedicForm: FormGroup = this.formBuilder.group({
     'firstName': ['', [Validators.required, Validators.minLength(3), this.configService.nameValidator.bind(this)]],
     'lastName': ['', [Validators.required, Validators.minLength(3), this.configService.nameValidator.bind(this)]],
     'phone': ['', [Validators.required, Validators.minLength(7)]],
+    'numero ': ['', [Validators.required, Validators.minLength(7)]],
     'email': ['', [Validators.required, Validators.email]],
     'password': ['', [Validators.required, Validators.minLength(6)]],
     'validatePassword': ['', [Validators.required, Validators.minLength(6)]],
@@ -38,6 +40,7 @@ export class RegisterMedicPage {
     public navParams: NavParams,
     public formBuilder: FormBuilder,
     private configService: ConfigService,
+    private userService: UserService,
   ) {
   }
 
@@ -45,10 +48,23 @@ export class RegisterMedicPage {
     console.log('ionViewDidLoad RegisterMedicPage');
   }
 
-  register(){
+  register() {
     console.log("RegisterMedicPage:register");
-    
-    
+    this.userService.signupmedic(
+      this.registerMedicForm.value.firstName,
+      this.registerMedicForm.value.lastName,
+      undefined,
+      this.registerMedicForm.value.profesional_card_id,
+      this.registerMedicForm.value.email,
+      this.registerMedicForm.value.phone,
+      this.registerMedicForm.value.password,
+      1.0,
+      1.0,
+      this.registerMedicForm.value.email_notification).then((data) => {
+        console.log("register:OK", data);
+        this.configService.showToast("Usuario creado", 'toast-success')
+      }).catch(err => {
+        this.configService.showToast("Error al crear el usuario", "toast-failed")
+      })
   }
-
 }

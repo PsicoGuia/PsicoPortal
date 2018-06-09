@@ -4,20 +4,11 @@
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
-<ion-header>
-
-  <ion-navbar>
-    <ion-title>register-medic</ion-title>
-  </ion-navbar>
-
-</ion-header>
-
-
 <ion-content padding>
   <div class="max-page-wid">
     <h3 class="blue" padding>REGISTRO</h3>
 
-    <form [formGroup]="regusterMedicForm" (ngSubmit)="register()" margin-bottom>
+    <form [formGroup]="registerMedicForm" (ngSubmit)="register()" margin-bottom>
       <ion-item>
         <ion-label stacked>Correo electrónico*</ion-label>
         <ion-input type="email" autocapitalize="off" formControlName="email"></ion-input>

@@ -8,7 +8,7 @@ import 'rxjs/add/operator/toPromise';
  */
 @Injectable()
 export class ApiService {
-  url: string = 'https://example.com/api/v1';
+  url: string = '';
   _ready = false;
 
   constructor(
@@ -61,7 +61,7 @@ export class ApiService {
 
   private get_headers(): Headers {
     var headers = new Headers();
-    if (this.settigsService.settings.token) {
+    if (this.settigsService && this.settigsService.settings && this.settigsService.settings.token) {
       headers.append('Authorization', this.settigsService.settings.token);
     }
     headers.append('Accept', 'application/json');
@@ -71,7 +71,7 @@ export class ApiService {
 
   private post_headers(): Headers {
     let headers = new Headers();
-    if (this.settigsService.settings.token) {
+    if (this.settigsService && this.settigsService.settings && this.settigsService.settings.token) {
       headers.append('Authorization', this.settigsService.settings.token);
     }
     headers.append('Content-Type', 'application/json');
