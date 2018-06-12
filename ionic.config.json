@@ -5,7 +5,7 @@
   "proxies": [
     {
       "path": "/api/",
-      "proxyUrl": "https://cigarrilloselectronicostss.com/api/"
+      "proxyUrl": "http://localhost:8000/api/"
     },
     {
       "path": "/mailchimp/",

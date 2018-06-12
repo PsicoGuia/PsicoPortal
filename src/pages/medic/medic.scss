@@ -1,0 +1,24 @@
+page-medic {
+
+    th {
+        background: color($colors, secondary);
+        color: #FFF
+        
+    }
+
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        
+    }
+    
+    td, th {
+        border: 1px solid color($colors, primary);
+        text-align: left;
+        padding: 8px;
+    }
+    
+    tr:nth-child(even) {
+        background-color: color($colors, primary);
+    }
+}

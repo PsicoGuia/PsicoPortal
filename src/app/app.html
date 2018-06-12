@@ -122,6 +122,7 @@
   </div>
   <button ion-item (click)="openPage(5)" color="primary">{{ "BLOG" }}</button>
   <button ion-item (click)="openPage(6)" color="primary">{{ "ALLIANCE" }}</button>
+  <!--a ion-item href="/#/profile">PROFILE</a-->
   <button ion-item  (click)="pushPage(1)" color="secondary">
     Registrate
   </button>
@@ -142,24 +143,7 @@
 
 
 
-<ion-header>
-  <ion-navbar color='primary'>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title class="principal-img">
-      <img class="header-logo" alt="PsicoGuia" src="assets/img/logo_300.png" (click)="navCtrl.setRoot('Home');">
-      <strong *ngIf="configService?.isStaging"> - STAGING - {{configService?.hostname}}</strong>
-    </ion-title>
 
-    <ion-buttons class="mobile-button-cart" right>
-      <ion-icon name="md-calendar" color="light"></ion-icon>
-      <ion-badge item-right color='secondary'>
-        35
-      </ion-badge>
-    </ion-buttons>
-  </ion-navbar>
-</ion-header>
 
 
 <ion-footer>

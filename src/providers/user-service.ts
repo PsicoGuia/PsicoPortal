@@ -121,4 +121,8 @@ export class UserService {
     return this.api.post(URL_API + 'crm/signupmedic/', params);
   }
 
+  loginmedic(params): Promise<any> {
+    return this.api.post(URL_API + 'crm/loginmedic/', params);
+  }
+
 }

@@ -13,6 +13,7 @@ import { IonicStorageModule } from '@ionic/storage';
 import { Settings } from '../providers/settings';
 import { ApiService } from '../providers/api';
 import { HttpClientModule } from '@angular/common/http';
+import { MedicService } from '../providers/medic-service';
 //import {ImageModalPage} from '../pages/image-modal/image-modal'
 
 @NgModule({
@@ -41,6 +42,7 @@ import { HttpClientModule } from '@angular/common/http';
     Settings,
     ApiService,
     UserService,
+    MedicService,
 
   ]
 

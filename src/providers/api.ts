@@ -32,31 +32,31 @@ export class ApiService {
     }
     reqOpts.headers = this.get_headers();
     reqOpts.responseType = 'json';
-    return this.http.get(this.url + '/' + endpoint, reqOpts).toPromise();
+    return this.http.get(this.url + endpoint, reqOpts).toPromise();
   }
 
   post(endpoint: string, body: any, reqOpts: any = {}): Promise<any> {
     reqOpts.headers = this.post_headers();
     reqOpts.responseType = 'json';
-    return this.http.post(this.url + '/' + endpoint, body, reqOpts).toPromise();
+    return this.http.post(this.url + endpoint, body, reqOpts).toPromise();
   }
 
   put(endpoint: string, body: any, reqOpts: any = {}): Promise<any> {
     reqOpts.headers = this.post_headers();
     reqOpts.responseType = 'json';
-    return this.http.put(this.url + '/' + endpoint, body, reqOpts).toPromise();
+    return this.http.put(this.url + endpoint, body, reqOpts).toPromise();
   }
 
   delete(endpoint: string, reqOpts: any = {}): Promise<any> {
     reqOpts.headers = this.post_headers();
     reqOpts.responseType = 'json';
-    return this.http.delete(this.url + '/' + endpoint, reqOpts).toPromise();
+    return this.http.delete(this.url + endpoint, reqOpts).toPromise();
   }
 
   patch(endpoint: string, body: any, reqOpts: any = {}): Promise<any> {
     reqOpts.headers = this.post_headers();
     reqOpts.responseType = 'json';
-    return this.http.patch(this.url + '/' + endpoint, body, reqOpts).toPromise();
+    return this.http.patch(this.url + endpoint, body, reqOpts).toPromise();
   }
 
   private get_headers(): Headers {

@@ -149,7 +149,7 @@ ion-content .scroll-content>h3:first-child {
 /* SIDE MENU */
 
 .principal-img{
-  img{
+  .header-logo{
     max-width: 125px;
   }
 }
@@ -531,7 +531,7 @@ ion-backdrop{
   }
 }
 ion-content{
-  margin-top: 58px;
+  //margin-top: 58px;
   position: relative;
   .scroll-content{
     padding-bottom: 120px!important;
@@ -773,7 +773,7 @@ ion-title{
 
 @media only screen and (min-width: 1165px) {
   .principal-img{
-    img{
+    .header-logo{
       margin-left: 5px;
     }
   }
@@ -841,3 +841,6 @@ ion-title{
  }
 }
 
+.header-logo{
+  max-height: 37px;
+}
