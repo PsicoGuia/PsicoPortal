@@ -2,6 +2,7 @@ import { LoadingController, ToastController, AlertController, MenuController } f
 import { Injectable } from '@angular/core';
 import { FormControl } from "@angular/forms";
 import { HttpClient } from '@angular/common/http';
+
 declare var appGoogleAnalitics: any;
 export let URL_API = "/api/1.0/";
 
@@ -13,6 +14,7 @@ export class ConfigService {
   emailValidated: boolean;
   toast: any;
   toastPrev: any;
+  public debug = true;
 
   constructor(
     public toastCtrl: ToastController,

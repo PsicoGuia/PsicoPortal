@@ -19,20 +19,25 @@ import { UserService } from '../../providers/user-service';
   templateUrl: 'register-medic.html',
 })
 export class RegisterMedicPage {
-
+  loading = false;
+  passEqualValidator(control: FormControl): { [s: string]: boolean } {
+    console.log('passEqualValidator', control);
+    if (this.registerMedicForm && this.registerMedicForm.value && this.registerMedicForm.value.password != control.value) {
+      return { mismatchPasswords: true };
+    }
+  }
 
   registerMedicForm: FormGroup = this.formBuilder.group({
     'firstName': ['', [Validators.required, Validators.minLength(3), this.configService.nameValidator.bind(this)]],
     'lastName': ['', [Validators.required, Validators.minLength(3), this.configService.nameValidator.bind(this)]],
     'phone': ['', [Validators.required, Validators.minLength(7)]],
-    'numero ': ['', [Validators.required, Validators.minLength(7)]],
     'email': ['', [Validators.required, Validators.email]],
     'password': ['', [Validators.required, Validators.minLength(6)]],
-    'validatePassword': ['', [Validators.required, Validators.minLength(6)]],
+    'validatePassword': ['', [Validators.required, Validators.minLength(6), this.passEqualValidator.bind(this)]],
     'profesional_card_id': ['', [Validators.required, Validators.minLength(7)]],
     'term_cond': [false, [Validators.required, Validators.requiredTrue]],
     'habeas_data': [false, [Validators.required, Validators.requiredTrue]],
-    'email_notification': [false, [Validators.required, Validators.requiredTrue]],
+    'email_notification': [false, []],
   });
 
 
@@ -46,10 +51,25 @@ export class RegisterMedicPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad RegisterMedicPage');
+    if (this.configService.debug) {
+      this.registerMedicForm.setValue({
+        firstName: "name test",
+        lastName: "last name test",
+        phone: "1234567",
+        email: "1234567@yopmail.com",
+        password: "1234567",
+        validatePassword: "1234567",
+        profesional_card_id: "1234567",
+        term_cond: true,
+        habeas_data: true,
+        email_notification: true,
+      });
+    }
   }
 
   register() {
     console.log("RegisterMedicPage:register");
+    this.loading = true;
     this.userService.signupmedic(
       this.registerMedicForm.value.firstName,
       this.registerMedicForm.value.lastName,
@@ -62,9 +82,13 @@ export class RegisterMedicPage {
       1.0,
       this.registerMedicForm.value.email_notification).then((data) => {
         console.log("register:OK", data);
-        this.configService.showToast("Usuario creado", 'toast-success')
+        this.configService.showToast("Porfavor active su cuenta por correo antes de continuar", 'toast-success')
+        this.navCtrl.setRoot('LoginMedicPage');
+        this.loading = false;
       }).catch(err => {
+        console.log("register:err", err);
         this.configService.showToast("Error al crear el usuario", "toast-failed")
+        this.loading = false;
       })
   }
 }

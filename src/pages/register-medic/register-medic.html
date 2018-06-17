@@ -52,7 +52,7 @@
         <ion-label stacked>Teléfono*</ion-label>
         <ion-input type="phone" formControlName="phone"></ion-input>
       </ion-item>
-      <ion-item *ngIf="selectCity" (click)="noCity()">
+      <ion-item>
         <ion-label stacked>No. Tarjeta Profesional*</ion-label>
         <ion-input type="text" formControlName="profesional_card_id"></ion-input>
       </ion-item>
@@ -78,7 +78,8 @@
           Acepto recibir correo con información y publicidad de psicoguia 
         </ion-label>
       </div>
-      <button ion-button type="submit" block color="secondary">Registrarse</button>
+      <button *ngIf="!loading" ion-button type="submit" block color="secondary" [disabled]="!registerMedicForm.valid">Registrarse</button>
+      <button ion-button *ngIf="loading" block color="secondary" disabled><ion-spinner name="crescent"></ion-spinner></button>
     </form>
   </div>
 </ion-content>
