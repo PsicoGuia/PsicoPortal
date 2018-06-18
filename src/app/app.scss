@@ -60,7 +60,7 @@ p.small{
 }
 
 .header {
-  .ion-md-cart {
+  .ion-md-search {
     font-size: 2em;
     margin-right: 10px;
   }
@@ -213,7 +213,7 @@ ion-menu .logo-side-menu{
 
 ion-menu .submenu button {
     padding-left: 40px;
-    background-color: #3a3837;
+    background-color: color($colors,navbarColor);
 }
 
 ion-menu .side-menu-lang-picker{
@@ -685,19 +685,20 @@ ion-title{
     }
     .submenu{
       position: absolute;
-      left: 240px;
+      right: 0px;
       top: 52px;
+      width: 200px;
 
       button.item.item-block.item-md{
         display: flex;
         width: 100%;
-        background-color: #3a3837;
+        background-color: color($colors,navbarColor);
         color: map-get($colors, light);
       }
 
       button.item.item-block.item-md:hover{
         background-color: map-get($colors, light);
-        color: #3a3837;
+        color: color($colors,navbarColor);
       }
     }
     .item-md.item-block{
@@ -737,6 +738,7 @@ ion-title{
 
   ion-list.desktop-menu{
     left: 46%;
+    text-align: right;
 
   }
   div.desktop-slogan{

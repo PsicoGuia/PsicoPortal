@@ -19,17 +19,16 @@ export class Settings {
   ) {
   }
 
-  load(defaults: any): Promise<any> {
-    this._defaults = defaults;
+  load(defaults = this._defaults): Promise<any> {
     return this.storage.get(this.SETTINGS_KEY).then((value) => {
       if (value) {
         this.settings = value;
-        return this._mergeDefaults(this._defaults).then((val) => {
+        return this._mergeDefaults(defaults).then((val) => {
           this.ready = true;
         })
 
       } else {
-        return this.setAll(this._defaults).then((val) => {
+        return this.setAll(defaults).then((val) => {
           this.settings = val;
           this.ready = true;
         })
@@ -90,5 +89,11 @@ export class Settings {
 
   get allSettings(): any {
     return this.settings;
+  }
+
+  cleanUser(): Promise<any>{
+    delete this.settings.user;
+    delete this.settings.token;
+    return this.storage.set(this.SETTINGS_KEY, this.settings)
   }
 }

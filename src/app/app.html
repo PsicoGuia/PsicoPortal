@@ -55,7 +55,7 @@
         <img alt="The Smokers Store" src="assets/img/logo_300.png" (click)="openPage(pages[0])" menuClose>
       </div>
 
-      <div *ngIf="!userService.user" margin-top>
+      <div *ngIf="!settings?.settings?.user" margin-top>
         <button ion-button clear color="light" (click)="login()">
           Iniciar sesión
         </button>
@@ -64,10 +64,10 @@
         </button>
       </div>
 
-      <div class="login-side-menu" *ngIf="userService.user">
+      <div class="login-side-menu" *ngIf="settings?.settings?.user">
         <ion-icon name="contact"></ion-icon>
         <h4 padding-bottom text-center>
-          {{userService.user.first_name}} {{userService.user.last_name}}
+          {{settings?.settings?.user.first_name}}
         </h4>
 
       </div>
@@ -75,7 +75,7 @@
     </div>
 
     <ion-list>
-      <button menuClose ion-item (click)="openPage(0)" color="primary">KUPA</button>
+      <button menuClose ion-item (click)="openPage(0)" color="primary">PsicoGuia</button>
       <button menuClose ion-item (click)="gotToCollection(8)" color="primary">{{ "PAGE8" }}</button>
       <button menuClose ion-item (click)="openPage(1)" color="primary">{{ "PAGE1" }}</button>
       <button ion-item (click)="showAboutUsDetail=!showAboutUsDetail" color="primary" icon-right>
@@ -91,13 +91,13 @@
       </div>
       <button menuClose ion-item (click)="openPage(5)" color="primary">{{ "PAGE5" }}</button>
       <button menuClose ion-item (click)="openPage(6)" color="primary">{{ "PAGE6" }}</button>
-      <button *ngIf="userService.user" ion-item (click)="showProfile=false;openPage({component: 'ProfilePage'})">
+      <button *ngIf="settings?.settings?.user" ion-item (click)="showProfile=false;openPage({component: 'ProfilePage'})">
         <ion-icon name="person" style="margin-right:4px"></ion-icon>MI PERFIL
       </button>
-      <button *ngIf="userService.user" menuClose ion-item (click)="openPage({component: 'UserPointsPage'})">
+      <button *ngIf="settings?.settings?.user" menuClose ion-item (click)="openPage({component: 'UserPointsPage'})">
         <ion-icon name="cash" style="margin-right:4px"></ion-icon>MI ESTADO DE CUENTA
       </button>
-      <button *ngIf="userService.user" ion-item (click)="logout()">
+      <button *ngIf="settings?.settings?.user" ion-item (click)="logout()">
         <ion-icon name="md-exit" style="margin-right:4px"></ion-icon>CERRAR SESIÓN
       </button>
     </ion-list>
@@ -107,23 +107,11 @@
 </ion-menu>
 
 <ion-list class="desktop-menu">
-  <button class="active" ion-item (click)="showAboutUsDetail=!showAboutUsDetail" color="primary" icon-right>
-    {{ "ABOUT_US" }}
-    <ion-icon name="ios-arrow-up" *ngIf="showAboutUsDetail"></ion-icon>
-    <ion-icon name="ios-arrow-down" *ngIf="!showAboutUsDetail"></ion-icon>
-  </button>
-  <div *ngIf="showAboutUsDetail" class="submenu">
-    <button class="active" ion-item (click)="showAboutUsDetail=!showAboutUsDetail;openPage(2)">{{ "TRAVELERS" }}</button>
-    <button ion-item (click)="showAboutUsDetail=!showAboutUsDetail;openPage(3)">{{ "HISTORY" }}</button>
-    <button ion-item (click)="showAboutUsDetail=!showAboutUsDetail;openPage(4)">{{ "ILLUSTRATORS" }}</button>
-    <button ion-item (click)="showAboutUsDetail=!showAboutUsDetail;openPage(7)">{{ "CONTACT" }}</button>
-  </div>
   <button ion-item (click)="openPage(5)" color="primary">{{ "BLOG" }}</button>
   <button ion-item (click)="openPage(6)" color="primary">{{ "ALLIANCE" }}</button>
   <!--a ion-item href="/#/profile">PROFILE</a-->
-  <button ion-item  (click)="pushPage(1)" color="secondary">
-    Registrate
-  </button>
+  
+  
   <!--button ion-item color="primary">
     <button ion-button  [navPush]="'RegisterMedicPage'" color="secondary">
       Registrate
@@ -132,10 +120,29 @@
   
   
   <button ion-item (click)="openPage(6)" color="primary">
-    CITAS
+    <ion-icon name="md-search" color="light"></ion-icon>
     <ion-badge item-right color='secondary'>
       1
     </ion-badge>
+  </button>
+
+  <button  ion-item color="primary" (click)="logout()">
+    Acerca de nosotros
+  </button>
+  <button *ngIf="settings?.settings?.user?.user" class="active" ion-item (click)="userOptions=!userOptions" color="primary" icon-left>
+    <ion-icon name="person" style="margin-right:4px"></ion-icon>{{settings?.settings?.user?.user?.first_name}}
+    <ion-icon name="ios-arrow-up" *ngIf="userOptions"></ion-icon>
+    <ion-icon name="ios-arrow-down" *ngIf="!userOptions"></ion-icon>
+  </button>
+  <div *ngIf="userOptions" class="submenu">
+    <button ion-item (click)="userOptions=!userOptions;openPage(3)">{{ "Perfil" }}</button>
+    <button ion-item (click)="userOptions=!userOptions;logout()">{{ "Cerrar sesión" }}</button>
+  </div>
+  <button ion-item  *ngIf="!settings?.settings?.user?.user" (click)="pushPage(2)" color="primary">
+    Inicia sesión
+  </button>
+  <button ion-item  *ngIf="!settings?.settings?.user?.user" (click)="pushPage(1)" color="secondary">
+    Registrate
   </button>
 </ion-list>
 

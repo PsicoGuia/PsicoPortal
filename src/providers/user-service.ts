@@ -37,16 +37,16 @@ export class UserService {
     console.log("UserService:checkAuthentication");
     return this.settigsService.onReady()
       .then(() => {
-        let endpoint = '/api/' + 'rest-auth/user/';
-        this.api.get(endpoint)
+        let endpoint = URL_API + 'rest-auth/user/';
+        return this.api.get(endpoint)
       })
       .then(data => {
         // Store app user
         this.user = data;
-        return this.settigsService.setValue('appuser', data);
+        this.settigsService.settings.user.user = data;
+        return this.settigsService.setValue('user', this.settigsService.settings.user);
       })
   }
-
 
   getStoredUser(): Promise<any> {
     console.log("UserService:getStoredUser");
@@ -65,7 +65,7 @@ export class UserService {
 
   login(credentials): Promise<any> {
     console.log("UserService:login");
-    if (credentials.username.length > 30) { // django-user length max
+    if (credentials.username.length > 150) { // django-user length max
       credentials.username = credentials.username.substring(0, 30)
     }
     return new Promise((resolve, reject) => {
@@ -88,12 +88,8 @@ export class UserService {
 
   logout(): Promise<any> {
     console.log("UserService:logout");
-    //console.log("Log Out...");
-    return this.settigsService.setValue('token', '').then((value) => {
+    return this.settigsService.cleanUser().then((value) => {
       this.user = undefined;
-    }).then(() => {
-      this.settigsService.setValue('appuser', '').then((value) => {
-      });
     });
   }
 
@@ -105,6 +101,11 @@ export class UserService {
   }
 
   signupmedic(first_name, last_name, identification_number, profesional_number, email, phone, password, version_terms, version_terms_abeusdata, notification): Promise<any> {
+    console.log("UserService:login");
+    if (email.length > 150) { // django-user length max
+      email = email.substring(0, 30)
+    }
+
     let params = {
       "first_name": first_name,
       "last_name": last_name,
@@ -118,11 +119,25 @@ export class UserService {
       "notification": notification,
     }
 
-    return this.api.post(URL_API + 'crm/signupmedic/', params);
+    return this.api.post(URL_API + 'crm/signupmedic/', params).then((data) => {
+      console.log("response:" + URL_API + 'crm/signupmedic/', data);
+      return data;
+    });
   }
 
   loginmedic(params): Promise<any> {
-    return this.api.post(URL_API + 'crm/loginmedic/', params);
+    return this.api.post(URL_API + 'crm/loginmedic/', params).then((data) => {
+      console.log("response:" + URL_API + 'crm/signupmedic/', data);
+      return data;
+    }).then(res => {
+      let token = 'token ' + res.key;
+      return this.settigsService.setValue('token', token).then(() => {
+        return this.settigsService.setValue('user', res.person).then(() => {
+        })
+      }).then((data) => {
+        return ("UserData Saved");
+      });
+    });
   }
 
 }

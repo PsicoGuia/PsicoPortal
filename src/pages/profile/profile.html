@@ -10,7 +10,7 @@
     </ion-title>
     <ion-buttons class='cart-mobile' end>
       <button ion-button clear [navPush]="'Cart'">
-        <ion-icon name="md-cart" color="light"></ion-icon>
+        <ion-icon name="md-search" color="light"></ion-icon>
         <ion-badge item-right color='secondary'>{{35}}</ion-badge>
       </button>
     </ion-buttons>
@@ -39,8 +39,8 @@
             data-dnt="true">Follow @mertskaplan</a>
         </div>
 
-        <a title="{{ profile.user.username }}" href="{{ profile.picture }}" class="twPc-avatarLink">
-          <img alt="{{ profile.user.username }}" src="{{ profile.picture }}" class="twPc-avatarImg">
+        <a title="{{ profile.person.user.username }}" href="{{ profile.picture }}" class="twPc-avatarLink">
+          <img alt="{{ profile.person.use.username }}" src="{{ profile.picture }}" class="twPc-avatarImg">
         </a>
 
         <div class="twPc-divUser">

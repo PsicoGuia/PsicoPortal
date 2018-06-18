@@ -1,4 +1,4 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Settings } from './settings';
@@ -59,24 +59,26 @@ export class ApiService {
     return this.http.patch(this.url + endpoint, body, reqOpts).toPromise();
   }
 
-  private get_headers(): Headers {
-    var headers = new Headers();
-    if (this.settigsService && this.settigsService.settings && this.settigsService.settings.token) {
-      headers.append('Authorization', this.settigsService.settings.token);
+  private get_headers(): HttpHeaders {
+    let h: any = {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
     }
-    headers.append('Accept', 'application/json');
-    headers.append('Content-Type', 'application/json');
-    return headers;
+    if (this.settigsService && this.settigsService.settings && this.settigsService.settings.token) {
+      h.Authorization = this.settigsService.settings.token;
+    }
+    return  new HttpHeaders(h);
   }
 
-  private post_headers(): Headers {
-    let headers = new Headers();
-    if (this.settigsService && this.settigsService.settings && this.settigsService.settings.token) {
-      headers.append('Authorization', this.settigsService.settings.token);
+  private post_headers(options?): HttpHeaders {
+    let h: any = {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      "Access-Control-Allow-Methods": "POST, GET, OPTIONS, PUT, DELETE, PATCH",
     }
-    headers.append('Content-Type', 'application/json');
-    headers.append('Accept', 'application/json');
-    headers.append("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE, PATCH");
-    return headers;
+    if (this.settigsService && this.settigsService.settings && this.settigsService.settings.token) {
+      h.Authorization = this.settigsService.settings.token;
+    }
+    return new HttpHeaders(h);
   }
 }

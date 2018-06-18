@@ -9,6 +9,7 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 //pages
 import { RegisterMedicPage } from '../pages/register-medic/register-medic';
+import { Settings } from '../providers/settings';
 
 
 @Component({
@@ -23,21 +24,25 @@ export class MyApp {
   register = RegisterMedicPage;
 
   constructor(
-    public platform: Platform, 
+    public platform: Platform,
     public splashScreen: SplashScreen,
-    public statusBar: StatusBar, 
+    public statusBar: StatusBar,
     public configService: ConfigService,
-    public userService: UserService, 
+    public userService: UserService,
     private alertCtrl: AlertController,
-    public events: Events, 
+    public events: Events,
     private inAppBrowser: InAppBrowser,
     private modal: ModalController,
+    private settings: Settings,
   ) {
 
     this.initializeApp();
 
     // used for an example of ngFor and navigation
     this.pages = [
+      { title: 'Inicio', component: 'Home', icon: 'ios-home', stage: false },
+      { title: 'Registrate', component: 'RegisterMedicPage', icon: 'ios-home', stage: false },
+      { title: 'Iniciar sesión', component: 'LoginMedicPage', icon: 'ios-home', stage: false },
       { title: 'TIENDA', component: 'Home', icon: 'ios-home', stage: false },
       { title: 'REGISTER', component: 'RegisterMedicPage', icon: 'ios-home', stage: false },
       { title: 'PREGUNTAS', component: 'Faqs', icon: 'md-help', stage: false },
@@ -66,6 +71,7 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+      this.settings.load();
       this.onResize();
       console.log("PLATFORMS ", this.platform.platforms());
 
@@ -79,13 +85,15 @@ export class MyApp {
   }
 
   openPage(page) {
-    this.nav.push(page.component);
-  }
-
-  pushPage(page){
     page = this.pages[page];
     this.clearActive(page);
     this.nav.setRoot(page.component);
+  }
+
+  pushPage(page) {
+    page = this.pages[page];
+    this.clearActive(page);
+    this.nav.push(page.component);
 
   }
 
@@ -122,12 +130,15 @@ export class MyApp {
     //check if its app user SYNC Continuous
     return this.userService.getStoredUser()
       .then((res: any) => {
-        console.log("loadUserInfo:res1", res.person);
+        console.log("loadUserInfo:res1", res);
         return this.userService.checkAuthentication()
       }).then((res2: any) => {
         console.log("loadUserInfo:res2", res2)
       }).catch((err) => {
         console.log("loadUserInfo:error", err)
+        this.settings.cleanUser().then((data) => {
+          console.log("cleanUser", data)
+        })
       });
   }
 
