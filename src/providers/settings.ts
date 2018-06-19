@@ -10,7 +10,7 @@ export class Settings {
 
   public settings: any;
 
-  _defaults: any;
+  _defaults: any = {};
   _readyPromise: Promise<any>;
   private ready = false;
 
