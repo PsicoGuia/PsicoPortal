@@ -20,12 +20,147 @@
 <ion-content padding>
   <ion-grid>
     <ion-row class="row-picture ">
-      <div class="background-image" style="background-image: url('http://casitaoaxaca.com/koken/storage/cache/images/000/029/oxc-fb-profile-img-h1,medium_large.1501091503.png');">
+      <div class="background-image" [ngStyle]="{'background-image': 'url(' + profile.picture + ')'}">
       </div>
-      <img class="avatar-profile center" alt="{{ profile.user.username }}" src="{{ profile.picture }}">
-
+      <img class="avatar-profile center" alt="{{ profile?.person?.user?.username }}" src="{{ profile.picture }}">
     </ion-row>
   </ion-grid>
+
+  <ion-card *ngIf="profile?.person">
+    <ion-card-header color="primary">
+      <p text-wrap>Datos personales</p>
+      <ion-icon style="float: right;" (click)="takeAction('personal-info')" name="more">
+      </ion-icon>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-row>
+        <ion-col col-4>
+          <ion-item>
+            <h2>Correo:</h2>
+            <p text-wrap>{{profile.person.user.email}}</p>
+          </ion-item>
+        </ion-col>
+        <ion-col col-4>
+          <ion-item>
+            <h2>Telefono:
+              <p text-wrap>{{profile.person.phone}}</p>
+            </h2>
+          </ion-item>
+        </ion-col>
+        <ion-col col-4>
+          <ion-item>
+            <h2 text-wrap>Notificación de correos:
+              <p text-wrap>{{profile.person.notification ? 'Activado': 'Desactivado'}}</p>
+            </h2>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <br/>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card *ngIf="profile">
+    <ion-card-header color="primary">
+      <p text-wrap>Datos del perfil</p>
+      <ion-icon style="float: right;" (click)="takeAction('profile-info')" name="more">
+      </ion-icon>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-row>
+        <ion-col col-3>
+          <ion-item>
+            <h2>Genero:
+              <p text-wrap *ngIf="profile.genre">{{getGenero(profile.genre)}}</p>
+            </h2>
+          </ion-item>
+        </ion-col>
+        <ion-col col-3>
+          <ion-item>
+            <h2>Documento de identidad:
+              <p text-wrap>{{profile.personalDocumentType}} {{profile.personalDocumentNumber}}</p>
+            </h2>
+          </ion-item>
+        </ion-col>
+        <ion-col col-3>
+          <ion-item>
+            <h2>Genero:
+              <p text-wrap *ngIf="profile.genre">{{getGenero(profile.genre)}}</p>
+            </h2>
+          </ion-item>
+        </ion-col>
+        <ion-col col-3>
+          <ion-item>
+            <h2>Archivo documento de identidad:
+              <p text-wrap>
+                <a [href]="profile.personalDocumentFile">{{profile.personalDocumentFile}}</a>
+              </p>
+            </h2>
+          </ion-item>
+        </ion-col>
+        <ion-col col-3>
+          <ion-item>
+            <h2>Número de tarjeta profesional:
+              <p text-wrap>{{profile.professionalCardNumber}}</p>
+            </h2>
+          </ion-item>
+        </ion-col>
+        <ion-col col-3>
+          <ion-item>
+            <h2>Archivo de tarjeta profesional:
+              <p text-wrap>
+                <a [href]="profile.professionalCardFile">{{profile.professionalCardFile}}</a>
+                <p>
+            </h2>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header color="primary">
+      <p text-wrap>Ubicación del perfil</p>
+      <ion-icon style="float: right;" (click)="takeAction('location-info')" name="more">
+      </ion-icon>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-row>
+        <ion-col col-3>
+          <ion-item>
+            <h2>Ubicación del perfil (minima):
+              <br/>
+              <p text-wrap>Ciudad: {{profile.city}}</p>
+              <p text-wrap *ngIf="profile?.position">Localización: Lat: {{profile.position.coordinates[1] | number:'1.2' }} - Long: {{profile.position.coordinates[0] | number:'1.2'}} </p>
+            </h2>
+          </ion-item>
+        </ion-col>
+        <ion-col col-3>
+          <ion-item>
+            <h2>Ubicación del perfil (Address):
+              <p text-wrap>Id: {{profile.address.id}}</p>
+              <p text-wrap>Dirección: {{profile.address.formatted}}</p>
+              <p text-wrap>Localización: Lat: {{profile.address.latitude}} - Long: {{profile.address.longitude}} </p>
+            </h2>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <div padding style="height: 240px;" id='map1' #map></div>
+
+    </ion-card-content>
+  </ion-card>
+
+
+
+
+
+
+
+
+
+
+
+
 
   <div class="row">
     <div class="twPc-div">
@@ -34,16 +169,15 @@
       <div>
         <div class="twPc-button">
           <a href="https://twitter.com/mertskaplan" class="twitter-follow-button" data-show-count="false" data-size="large" data-show-screen-name="false"
-            data-dnt="true">Follow @mertskaplan</a>
+            data-dnt="true">Follow @jsdussanc</a>
         </div>
-
-        <a title="{{ profile.user.username }}" href="{{ profile.picture }}" class="twPc-avatarLink">
-          <img alt="{{ profile.user.username }}" src="{{ profile.picture }}" class="twPc-avatarImg">
+        <a title="{{ profile?.person?.user?.username }}" href="{{ profile.picture }}" class="twPc-avatarLink">
+          <img alt="{{ profile?.person?.user?.username }}" src="{{ profile.picture }}" class="twPc-avatarImg">
         </a>
 
         <div class="twPc-divUser">
           <div class="twPc-divName">
-            {{ profile.user.first_name }} {{ profile.user.last_name }}
+            {{ profile?.person?.user?.first_name }} {{ profile?.person?.user?.last_name }}
           </div>
           <span>
             {{ profile.professionalCardNumber }}
@@ -86,5 +220,8 @@
     </div>
     <!-- code end -->
   </div>
+
+
+
 
 </ion-content>

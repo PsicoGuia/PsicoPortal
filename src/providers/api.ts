@@ -32,31 +32,62 @@ export class ApiService {
     }
     reqOpts.headers = this.get_headers();
     reqOpts.responseType = 'json';
-    return this.http.get(this.url + endpoint, reqOpts).toPromise();
+    return this.http.get(this.url + endpoint, reqOpts).toPromise()
+    .then(data=>{
+      console.log("Api:get:sucess:"+this.url + endpoint,reqOpts,data);
+      return data;
+    }).catch(err=>{
+      console.log("Api:get:err:"+this.url + endpoint,reqOpts,err);
+      return Promise.reject(err);
+    });
   }
 
   post(endpoint: string, body: any, reqOpts: any = {}): Promise<any> {
     reqOpts.headers = this.post_headers();
     reqOpts.responseType = 'json';
-    return this.http.post(this.url + endpoint, body, reqOpts).toPromise();
+    return this.http.post(this.url + endpoint, body, reqOpts).toPromise().then(data=>{
+      console.log("Api:post:sucess:"+this.url + endpoint,reqOpts,data);
+      return data;
+    }).catch(err=>{
+      console.log("Api:post:err:"+this.url + endpoint,reqOpts,err);
+      return Promise.reject(err);
+    });
   }
 
   put(endpoint: string, body: any, reqOpts: any = {}): Promise<any> {
     reqOpts.headers = this.post_headers();
     reqOpts.responseType = 'json';
-    return this.http.put(this.url + endpoint, body, reqOpts).toPromise();
+    return this.http.put(this.url + endpoint, body, reqOpts).toPromise().then(data=>{
+      console.log("Api:put:sucess:"+this.url + endpoint,reqOpts,data);
+      return data;
+    }).catch(err=>{
+      console.log("Api:put:err:"+this.url + endpoint,reqOpts,err);
+      return Promise.reject(err);
+    });
   }
 
   delete(endpoint: string, reqOpts: any = {}): Promise<any> {
     reqOpts.headers = this.post_headers();
     reqOpts.responseType = 'json';
-    return this.http.delete(this.url + endpoint, reqOpts).toPromise();
+    return this.http.delete(this.url + endpoint, reqOpts).toPromise().then(data=>{
+      console.log("Api:delete:sucess:"+this.url + endpoint,reqOpts,data);
+      return data;
+    }).catch(err=>{
+      console.log("Api:delete:err:"+this.url + endpoint,reqOpts,err);
+      return Promise.reject(err);
+    });
   }
 
   patch(endpoint: string, body: any, reqOpts: any = {}): Promise<any> {
     reqOpts.headers = this.post_headers();
     reqOpts.responseType = 'json';
-    return this.http.patch(this.url + endpoint, body, reqOpts).toPromise();
+    return this.http.patch(this.url + endpoint, body, reqOpts).toPromise().then(data=>{
+      console.log("Api:patch:sucess:"+this.url + endpoint,reqOpts,data);
+      return data;
+    }).catch(err=>{
+      console.log("Api:patch:err:"+this.url + endpoint,reqOpts,err);
+      return Promise.reject(err);
+    });
   }
 
   private get_headers(): HttpHeaders {

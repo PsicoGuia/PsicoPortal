@@ -20,7 +20,7 @@ export class MedicService {
   }
   getProfiles(): Promise<any> {
     console.log("MedicService:getProfiles");
-    return this.api.get(URL_API + 'medic/profile/');
+    return this.settigsService.onReady().then(() => { return this.api.get(URL_API + 'medic/profile/') });
   }
 
 
