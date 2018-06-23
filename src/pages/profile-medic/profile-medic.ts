@@ -335,11 +335,14 @@ export class ProfileMedicPage {
     }
   }
 
-  takeAction(card) {
+  takeActionEdit(card) {
+    console.log("edit"+card)
     this.edit = card;
-    this.editProfile = JSON.stringify(this.profile);
+    this.editProfile = JSON.parse(JSON.stringify(this.profile));
   
   }
+
+  
 
   pinSymbol(color) {
     return {

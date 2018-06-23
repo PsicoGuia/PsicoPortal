@@ -1,4 +1,5 @@
 <ion-header>
+      <button ion-button clear [navPush]="'Cart'">
   <div class="container">
     <header-qmercas></header-qmercas>
   </div>
@@ -16,8 +17,9 @@
   <ion-card *ngIf="profile?.person">
     <ion-card-header color="primary">
       <p text-wrap>Datos personales</p>
-      <ion-icon style="float: right;" (click)="takeAction('personal-info')" name="md-create">
-      </ion-icon>
+      <ion-icon *ngIf="edit != 'personal-info'" style="float: right;" (click)="takeActionEdit('personal-info')" name="md-create"></ion-icon>
+      <ion-icon *ngIf="edit == 'personal-info'" style="float: right;" (click)="takeActionSave('personal-info')" name="md-checkmark">Cancel</ion-icon>
+      <ion-icon *ngIf="edit == 'personal-info'" style="float: right;" (click)="takeActionCancel('personal-info')" name="md-close">Save</ion-icon>
     </ion-card-header>
     <ion-card-content>
       <ion-row *ngIf="edit != 'personal-info'">
@@ -57,6 +59,47 @@
             <h2 text-wrap>Notificación de correos:
               <p text-wrap>{{profile.person.notification ? 'Activado': 'Desactivado'}}</p>
             </h2>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row *ngIf="edit == 'personal-info'">
+        <ion-col col-4>
+          <ion-item text-center>
+            <h2>Calificacion de usuarios:</h2>
+            <p text-wrap>54</p>
+          </ion-item>
+        </ion-col>
+        <ion-col col-4>
+          <ion-item text-center>
+            <h2>Citas atendidas:</h2>
+            <p text-wrap>885</p>
+          </ion-item>
+        </ion-col>
+        <ion-col col-4>
+          <ion-item text-center>
+            <h2>Años de experiencia:</h2>
+            <p text-wrap>5</p>
+          </ion-item>
+        </ion-col>
+        <ion-col col-4>
+          <ion-item>
+            <ion-label>Correo:</ion-label>
+            <ion-input [(ngModel)]="editProfile.person.user.email" name="email"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col col-4>
+          <ion-item>
+            <ion-label>Telefono:</ion-label>
+            <ion-input [(ngModel)]="editProfile.person.phone" name="phone"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col col-4>
+          <ion-item>
+            <h2 text-wrap>
+              <p text-wrap>{{profile.person.notification ? 'Activado': 'Desactivado'}}</p>
+            </h2>
+            <ion-label>Notificación de correos:</ion-label>
+            <ion-checkbox [(ngModel)]="editProfile.person.notification"></ion-checkbox>
           </ion-item>
         </ion-col>
       </ion-row>
@@ -118,6 +161,54 @@
           </ion-item>
         </ion-col>
       </ion-row>
+      <ion-row>
+          <ion-col col-3>
+            <ion-item>
+              <h2>Genero:
+                <p text-wrap *ngIf="profile.genre">{{getGenero(profile.genre)}}</p>
+              </h2>
+            </ion-item>
+          </ion-col>
+          <ion-col col-3>
+            <ion-item>
+              <h2>Documento de identidad:
+                <p text-wrap>{{profile.personalDocumentType}} {{profile.personalDocumentNumber}}</p>
+              </h2>
+            </ion-item>
+          </ion-col>
+          <ion-col col-3>
+            <ion-item>
+              <h2>Genero:
+                <p text-wrap *ngIf="profile.genre">{{getGenero(profile.genre)}}</p>
+              </h2>
+            </ion-item>
+          </ion-col>
+          <ion-col col-3>
+            <ion-item>
+              <h2>Archivo documento de identidad:
+                <p text-wrap>
+                  <a [href]="profile.personalDocumentFile">{{profile.personalDocumentFile}}</a>
+                </p>
+              </h2>
+            </ion-item>
+          </ion-col>
+          <ion-col col-3>
+            <ion-item>
+              <h2>Número de tarjeta profesional:
+                <p text-wrap>{{profile.professionalCardNumber}}</p>
+              </h2>
+            </ion-item>
+          </ion-col>
+          <ion-col col-3>
+            <ion-item>
+              <h2>Archivo de tarjeta profesional:
+                <p text-wrap>
+                  <a [href]="profile.professionalCardFile">{{profile.professionalCardFile}}</a>
+                  <p>
+              </h2>
+            </ion-item>
+          </ion-col>
+        </ion-row>
     </ion-card-content>
   </ion-card>
 
