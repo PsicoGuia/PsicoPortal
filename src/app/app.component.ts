@@ -39,15 +39,7 @@ export class MyApp {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
-    this.pages = [
-      { title: 'Inicio', component: 'Home', icon: 'ios-home', stage: false },
-      { title: 'Registrate', component: 'RegisterMedicPage', icon: 'ios-home', stage: false },
-      { title: 'Iniciar sesión', component: 'LoginMedicPage', icon: 'ios-home', stage: false },
-      { title: 'TIENDA', component: 'Home', icon: 'ios-home', stage: false },
-      { title: 'REGISTER', component: 'RegisterMedicPage', icon: 'ios-home', stage: false },
-      { title: 'PREGUNTAS', component: 'Faqs', icon: 'md-help', stage: false },
-      { title: 'CONTÁCTANOS', component: 'Contact', icon: 'ios-call', stage: false },
-    ];
+    
 
     events.subscribe('goPage', (page) => {
       console.log("envent goPage", page);
@@ -94,7 +86,6 @@ export class MyApp {
     page = this.pages[page];
     this.clearActive(page);
     this.nav.push(page.component);
-
   }
 
   clearActive(page) {

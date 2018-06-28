@@ -5,22 +5,9 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-  <ion-navbar color='primary'>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>
-      <a href="/#/">
-        <img class="header-logo" alt="PsicoGuia" src="assets/img/logo_300.png">
-      </a>
-    </ion-title>
-    <ion-buttons class='cart-mobile' end>
-      <button ion-button clear [navPush]="'Cart'">
-        <ion-icon name="md-search" color="light"></ion-icon>
-        <ion-badge item-right color='secondary'>{{35}}</ion-badge>
-      </button>
-    </ion-buttons>
-  </ion-navbar>
+  <div class="container">
+    <header-qmercas></header-qmercas>
+  </div>
 </ion-header>
 
 <ion-content padding>
@@ -37,7 +24,9 @@
         <ion-input type="password" formControlName="password"></ion-input>
       </ion-item>
       {{settings?.settings?.user | json}}
-      <button ion-button *ngIf="loading" block color="secondary" disabled><ion-spinner name="crescent"></ion-spinner></button>
+      <button ion-button *ngIf="loading" block color="secondary" disabled>
+        <ion-spinner name="crescent"></ion-spinner>
+      </button>
       <button ion-button *ngIf="!loading" type="submit" block color="secondary" [disabled]="!loginMedicForm.valid">Entrar</button>
     </form>
   </div>

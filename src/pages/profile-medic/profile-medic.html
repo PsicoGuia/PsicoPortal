@@ -1,20 +1,7 @@
 <ion-header>
-  <ion-navbar color='primary'>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>
-      <a href="/#/">
-        <img class="header-logo" alt="PsicoGuia" src="assets/img/logo_300.png">
-      </a>
-    </ion-title>
-    <ion-buttons class='cart-mobile' end>
-      <button ion-button clear [navPush]="'Cart'">
-        <ion-icon name="md-search" color="light"></ion-icon>
-        <ion-badge item-right color='secondary'>{{35}}</ion-badge>
-      </button>
-    </ion-buttons>
-  </ion-navbar>
+  <div class="container">
+    <header-qmercas></header-qmercas>
+  </div>
 </ion-header>
 
 <ion-content padding>
@@ -130,7 +117,8 @@
             <h2>Ubicación del perfil (minima):
               <br/>
               <p text-wrap>Ciudad: {{profile.city}}</p>
-              <p text-wrap *ngIf="profile?.position">Localización: Lat: {{profile.position.coordinates[1] | number:'1.2' }} - Long: {{profile.position.coordinates[0] | number:'1.2'}} </p>
+              <p text-wrap *ngIf="profile?.position">Localización: Lat: {{profile.position.coordinates[1] | number:'1.2' }} - Long: {{profile.position.coordinates[0]
+                | number:'1.2'}} </p>
             </h2>
           </ion-item>
         </ion-col>

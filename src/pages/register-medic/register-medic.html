@@ -5,23 +5,10 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-    <ion-navbar color='primary'>
-      <button ion-button menuToggle>
-        <ion-icon name="menu"></ion-icon>
-      </button>
-      <ion-title>
-        <a href="/#/">
-          <img class="header-logo" alt="PsicoGuia" src="assets/img/logo_300.png">
-        </a>
-      </ion-title>
-      <ion-buttons class='cart-mobile' end>
-        <button ion-button clear [navPush]="'Cart'">
-          <ion-icon name="md-search" color="light"></ion-icon>
-          <ion-badge item-right color='secondary'>{{35}}</ion-badge>
-        </button>
-      </ion-buttons>
-    </ion-navbar>
-  </ion-header>
+  <div class="container">
+    <header-qmercas></header-qmercas>
+  </div>
+</ion-header>
 
 <ion-content padding>
   <div class="max-page-wid">
@@ -75,11 +62,13 @@
       <div class="term-conditions">
         <ion-label>
           <ion-checkbox formControlName="email_notification"></ion-checkbox>
-          Acepto recibir correo con información y publicidad de psicoguia 
+          Acepto recibir correo con información y publicidad de psicoguia
         </ion-label>
       </div>
       <button *ngIf="!loading" ion-button type="submit" block color="secondary" [disabled]="!registerMedicForm.valid">Registrarse</button>
-      <button ion-button *ngIf="loading" block color="secondary" disabled><ion-spinner name="crescent"></ion-spinner></button>
+      <button ion-button *ngIf="loading" block color="secondary" disabled>
+        <ion-spinner name="crescent"></ion-spinner>
+      </button>
     </form>
   </div>
 </ion-content>

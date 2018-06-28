@@ -25,6 +25,16 @@ export class ConfigService {
   ) {
   }
 
+  public pages = [
+    { title: 'Inicio', component: 'Home', icon: 'ios-home', stage: false , segment:"/"},
+    { title: 'Registrate', component: 'RegisterMedicPage', icon: 'ios-home', stage: false , segment:"/"},
+    { title: 'Iniciar sesión', component: 'LoginMedicPage', icon: 'ios-home', stage: false , segment:"/"},
+    { title: 'Perfil', component: '', icon: 'ios-home', stage: false , segment:"/"},
+    { title: 'REGISTER', component: 'RegisterMedicPage', icon: 'ios-home', stage: false , segment:"/"},
+    { title: 'PREGUNTAS', component: 'Faqs', icon: 'md-help', stage: false , segment:"/"},
+    { title: 'CONTÁCTANOS', component: 'Contact', icon: 'ios-call', stage: false , segment:"/"},
+  ];
+
   showLoader(msg: string) {
     if (!msg) msg = "Cargando...";
     this.loading = this.loadingCtrl.create({

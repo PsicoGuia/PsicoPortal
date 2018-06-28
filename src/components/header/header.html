@@ -1,0 +1,36 @@
+<ion-navbar>
+  <ion-buttons start>
+    <button ion-button icon-only padding menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+  </ion-buttons>
+  <ion-title>
+    <a href="{{getPage('Home').segment}}" (click)="openPage(getPage('Home')); $event.preventDefault();">
+      <img class="header-logo" alt="PsicoGuia" src="assets/img/logo_300.png">
+    </a>
+  </ion-title>
+  <ion-buttons end>
+    <!--ion-select [(ngModel)]="cityProvider.city" (ionChange)="authProvider.addressesByCity(+cityProvider.city)" (ionChange)="cityChange()" [selectOptions]="{title:'Ciudades'}" okText="Aceptar" cancelText="Cancelar" class="hidden-xs">
+      <ion-option *ngFor="let city of cityProvider.cities" [value]="city.id">{{city.name}}</ion-option>
+    </ion-select-->
+    <!--ion-select *ngIf="authProvider.user!==null" [(ngModel)]="authProvider.address" [selectOptions]="{title:'Direcciones'}" okText="Aceptar" cancelText="Cancelar" class="hidden-xs" (ionChange)='setDefaultWarehouse(cityProvider.city, authProvider.address)'>
+      <ion-option *ngFor="let address of authProvider.user.user_client.addresses | active | city:cityProvider.city" [value]="address.id">{{address.address}}</ion-option>
+    </ion-select-->
+    <a class="hidden-md" *ngIf="!settings?.settings?.user?.user" padding href="{{getPage('RegisterMedicPage').segment}}" (click)="$event.preventDefault(); pushPage(getPage('RegisterMedicPage'));"
+      ion-button text-uppercase class="hidden-xs">{{getPage('RegisterMedicPage').title}}</a>
+    <a class="hidden-md" *ngIf="!settings?.settings?.user?.user" padding href="{{getPage('LoginMedicPage').segment}}" (click)="$event.preventDefault(); pushPage(getPage('LoginMedicPage'));"
+      ion-button text-uppercase class="hidden-xs">{{getPage('LoginMedicPage').title}}</a>
+    <button class="hidden-md" padding *ngIf="settings?.settings?.user?.user" class="active" ion-button (click)="userMenu($event)"
+      color="primary" icon-left>
+      <ion-icon name="person" style="margin-right:4px"></ion-icon>{{settings?.settings?.user?.user?.first_name}}
+      <ion-icon name="ios-arrow-down"></ion-icon>
+    </button>
+    <button padding (click)="statusSearch()" ion-button icon-only>
+      <ion-icon name="search"></ion-icon>
+    </button>
+  </ion-buttons>
+</ion-navbar>
+
+<ion-toolbar *ngIf="showSearch" no-border-top>
+  <ion-searchbar (search)="search($event)" placeholder="Buscar"></ion-searchbar>
+</ion-toolbar>

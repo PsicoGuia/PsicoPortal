@@ -14,11 +14,13 @@ import { Settings } from '../providers/settings';
 import { ApiService } from '../providers/api';
 import { HttpClientModule } from '@angular/common/http';
 import { MedicService } from '../providers/medic-service';
+import { UserPopoverPage } from '../components/header/userpopover';
 //import {ImageModalPage} from '../pages/image-modal/image-modal'
 
 @NgModule({
   declarations: [
     MyApp,
+    UserPopoverPage,
   ],
   imports: [
     BrowserModule,
@@ -32,6 +34,7 @@ import { MedicService } from '../providers/medic-service';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
+    UserPopoverPage,
   ],
   providers: [
     { provide: ErrorHandler, useClass: IonicErrorHandler },
