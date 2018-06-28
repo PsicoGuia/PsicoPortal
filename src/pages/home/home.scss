@@ -1,0 +1,25 @@
+page-home {
+
+  .divBanner {
+    color: white;
+    background-color: map-get($colors, secondary);
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    padding: 10px 0;
+    >h5 {
+      margin: 0px;
+      font-size: 1.1rem;
+    }
+  }
+  .page-part {
+    @media only screen and (min-width: 850px) {
+      width: 850px;
+    }
+    margin-left: auto;
+    margin-right: auto;
+    h2{
+      font-weight: 300;
+    }
+  }
+}

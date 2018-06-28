@@ -1,0 +1,42 @@
+<!--ion-header>
+  <ion-navbar color='primary'>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>
+      <a href="/#/">
+        <img class="header-logo" alt="PsicoGuia" src="assets/img/logo_300.png">
+      </a>
+    </ion-title>
+    <ion-buttons class='cart-mobile' end>
+      <button ion-button clear [navPush]="'Cart'">
+        <ion-icon name="md-search" color="light"></ion-icon>
+        <ion-badge item-right color='secondary'>{{35}}</ion-badge>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header-->
+<ion-header>
+  <div class="container">
+    <header-qmercas></header-qmercas>
+  </div>
+</ion-header>
+<ion-content>
+
+  <div class="divBanner">
+    <h5>
+      Banner de información adicional: Promocion 3249498 895984984
+    </h5>
+  </div>
+
+  <div class="page-part greyColor" name="main-home">
+    <h1>Bienvenido a PsicoGuia</h1>
+    <p class="lead">Este portal brinda a pacientes y profesionales de la salud mental un espacio donde pueden contactarse de manera facil,
+      agil y efectiva.</p>
+    <p class="lead">
+      <a ion-button href="#/patient" class="btn btn-lg btn-secondary">Paciente</a>
+      <a ion-button href="#/medic" class="btn btn-lg btn-secondary">Profesional</a>
+    </p>
+
+  </div>
+</ion-content>

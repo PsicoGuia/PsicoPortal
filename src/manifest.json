@@ -1,0 +1,13 @@
+{
+  "name": "The Smokers Store",
+  "short_name": "TSS",
+  "start_url": "index.html",
+  "display": "standalone",
+  "icons": [{
+    "src": "assets/img/smokerslogo512x512.png",
+    "sizes": "512x512",
+    "type": "image/png"
+  }],
+  "background_color": "#262626",
+  "theme_color": "#262626"
+}

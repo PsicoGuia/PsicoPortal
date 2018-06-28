@@ -1,0 +1,365 @@
+// http://ionicframework.com/docs/theming/
+
+
+// App Global Sass
+// --------------------------------------------------
+// Put style rules here that you want to apply globally. These
+// styles are for the entire app and not just one component.
+// Additionally, this file can be also used as an entry point
+// to import other Sass files to be included in the output CSS.
+//
+// Shared Sass variables, which can be used to adjust Ionic's
+// default Sass variables, belong in "theme/variables.scss".
+//
+// To declare rules for a specific mode, create a child rule
+// for the .md, .ios, or .wp mode classes. The mode class is
+// automatically applied to the <body> element in the app.
+
+ion-content{
+  background: url(/assets/img/bg.jpg)
+}
+.alert-message{
+  overflow: hidden;
+}
+
+body {
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+}
+
+a{
+  text-decoration:none;
+}
+
+s {
+  text-decoration-color: red;
+}
+
+ion-content {
+  background-color: #fafafa !important;
+}
+
+ion-item {
+  background-color: transparent !important;
+}
+
+.no-spin-number {
+  -moz-appearance:textfield;
+  input,
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+  }
+}
+
+.warning-toast {
+  .toast-message {
+    background-color: color($colors, danger);
+  }
+}
+
+.alert-message {
+    overflow-y: initial;
+}
+
+.toolbar-background {
+  background: transparent;
+}
+
+ion-header {
+  background: color($colors, primary);
+  box-shadow: 0 2px 5px rgba(0,0,0,.6);
+}
+
+.header-md::after {
+  background-image: none;
+}
+
+ion-menu {
+  .toolbar-background {
+    background: transparent;
+  }
+  ion-select {
+    margin: 0 auto;
+    position: relative;
+    .select-text {
+      overflow: visible;
+    }
+  }
+}
+
+.secundary-background-color {
+  background: color($colors, primary);
+}
+
+.bar-button-default-md,
+.bar-button-clear-md-default,
+.bar-button-md-default,
+.bar-button-default-ios {
+  color: #fff;
+}
+
+.toolbar-title-md,
+.toolbar-title-ios {
+  color: #fff;
+}
+
+.toolbar-md {
+  min-height: 63px;
+  max-height: 63px;
+
+}
+
+.button-gray {
+  background-color: #b8b8b8;
+}
+
+.primary-text-color {
+  color: color($colors, primary);
+}
+
+.white-text-color {
+  color: #fff;
+}
+
+.gray-background {
+  color: color($colors, dark);
+}
+
+
+.user-side-menu {
+  color: #fff;
+
+  ion-icon {
+    color: color($colors, primary);
+  }
+
+  .user-side-menu-icon {
+    font-size: 10.2em;
+  }
+
+  .user-side-menu-addbutton {
+    color: #fff;
+  }
+
+  .toolbar-background {
+    background: color($colors, primary);
+  }
+}
+
+.table {
+  .t-head {
+    font-weight: bold;
+    border-bottom: 2px solid #ddd;
+  }
+  .t-body {
+      border-bottom: 1px solid #ddd;
+  }
+}
+
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.container-content {
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0,0,0,.6);
+}
+
+.shadow {
+  box-shadow: 0 2px 5px rgba(0,0,0,.6);
+}
+
+.long-text {
+  line-height: 30px;
+  padding: 20px;
+}
+
+.background-transparent {
+  background-color: transparent !important;
+}
+
+.product-margin h2 {
+  margin-top: 0px !important;
+}
+
+.visible-xs,
+.visible-sm,
+.visible-md,
+.visible-lg,
+.visible-xl {
+  display: none !important;
+}
+.visible-xs-block,
+.visible-xs-inline,
+.visible-xs-inline-block,
+.visible-sm-block,
+.visible-sm-inline,
+.visible-sm-inline-block,
+.visible-md-block,
+.visible-md-inline,
+.visible-md-inline-block,
+.visible-lg-block,
+.visible-lg-inline,
+.visible-lg-inline-block,
+.visible-xl-block,
+.visible-xl-inline,
+.visible-xl-inline-block {
+  display: none !important;
+}
+
+@media (min-width: 768px) {
+  .container {
+    margin: auto;
+    max-width: 750px;
+  }
+}
+
+@media (min-width: 992px) {
+  .container {
+    margin: auto;
+    max-width: 970px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+    margin: auto;
+    max-width: 1170px;
+  }
+}
+
+@media (max-width: 575px) {
+  .hidden-xs {
+    display: none !important;
+  }
+  .card-product h2 {
+    font-size: 2.2rem;
+  }
+  .category-title {
+    font-size: 1.2rem;
+  }
+}
+@media (max-width: 575px) {
+  .hidden-xs {
+    display: none !important;
+  }
+  .visible-xs {
+    display: block !important;
+  }
+  .visible-xs-block {
+    display: block !important;
+  }
+  .visible-xs-inline {
+    display: inline !important;
+  }
+  .visible-xs-inline-block {
+    display: inline-block !important;
+  }
+}
+@media (min-width: 576px) and (max-width: 767px) {
+  .hidden-sm {
+    display: none !important;
+  }
+}
+@media (min-width: 767px) and (max-width: 991px) {
+  .hidden-md {
+    display: none !important;
+  }
+  .bar-button-menutoggle {
+    display: none;
+  }
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+  .hidden-lg {
+    display: none !important;
+  }
+  .visible-lg {
+    display: block !important;
+  }
+  .visible-lg-block {
+    display: block !important;
+  }
+  .visible-lg-inline {
+    display: inline !important;
+  }
+  .visible-lg-inline-block {
+    display: inline-block !important;
+  }
+  .bar-button-menutoggle {
+    display: none;
+  }
+}
+@media (min-width: 1200px) {
+  .hidden-xl {
+    display: none !important;
+  }
+  .visible-xl {
+    display: block !important;
+  }
+  .visible-xl-block {
+    display: block !important;
+  }
+  .visible-xl-inline {
+    display: inline !important;
+  }
+  .visible-xl-inline-block {
+    display: inline-block !important;
+  }
+  .bar-button-menutoggle {
+    display: none;
+  }
+}
+
+
+
+.footer-fixed {
+  /* center the element */
+  right: 0;
+  left: 0;
+  bottom: -5px;
+  margin-right: auto;
+  margin-left: auto;
+  /* give it dimensions */
+  white-space: nowrap;
+  z-index: 4;
+  width: 280px;
+
+ .go-to-button {
+   height: 32px !important;
+   padding-left: 10px;
+   padding-right: 10px;
+   font-weight: bold;
+   border-width: 2px;
+   box-shadow: 0px 0px 5px 1px #afafaf;
+   ion-icon {
+      margin-left: 10px;
+      font-weight: bolder;
+    }
+ }
+
+ .phone-contact {
+   background-color: map-get($colors, secondary);
+   display: inline-block;
+   width: 160px;
+   margin: 0;
+   padding: 6px;
+   color:  map-get($colors, light);
+   vertical-align: bottom;
+   margin-bottom: 4px;
+   box-shadow: 0px 0px 5px 1px #afafaf;
+   p {
+     font-size: 0.8rem;
+     margin: 0;
+     line-height: 3px;
+   }
+   h3 {
+     margin: 0;
+     text-align: right;
+     margin-bottom: -1px;
+   }
+ }
+}
