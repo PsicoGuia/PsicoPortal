@@ -22,6 +22,7 @@ export class ProfileMedicPage {
   profile: any;
   stduies = [];
   listProfiles = [];
+  attentionChannel = "Consultorio";
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -98,9 +99,9 @@ export class ProfileMedicPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad getProfiles');
+    console.debug('ionViewDidLoad getProfiles');
     this.medicService.getProfiles().then(data => {
-      console.log('ionViewDidLoad getProfiles2', data);
+      console.debug('ionViewDidLoad getProfiles2', data);
       this.listProfiles = data;
       if (this.listProfiles.length) {
         this.profile = this.listProfiles[0];
@@ -128,11 +129,11 @@ export class ProfileMedicPage {
       position: pos2LatLng,
       map: this.map,
       title: 'pos2',
-      icon:  this.pinSymbol("blue")
+      icon: this.pinSymbol("blue")
     });
 
     var info = '<div class="contact-info" style="font-family: Roboto, \"Helvetica Neue\", sans-serif;"><strong>Pos1</strong><br/>' +
-      '<p>'+ this.profile.city+' </p>' +
+      '<p>' + this.profile.city + ' </p>' +
       '</div>';
 
     var infoWindow = new google.maps.InfoWindow({
@@ -160,18 +161,26 @@ export class ProfileMedicPage {
     }
   }
 
-  takeAction(card){
-    alert('edit'+ card)
+  takeAction(card) {
+    alert('edit' + card)
   }
-  
+
   pinSymbol(color) {
     return {
-        fillColor: color,
-        fillOpacity: 1,
-        strokeColor: '#000',
-        strokeWeight: 2,
-        scale: 1,
-   };
-}
+      fillColor: color,
+      fillOpacity: 1,
+      strokeColor: '#000',
+      strokeWeight: 2,
+      scale: 1,
+    };
+  }
+
+  clickAttentionChannel() {
+    console.debug("clickAttentionChannel()");
+  }
+
+  clickNewAttentionChannel(){
+    console.debug("clickNewAttentionChannel()");
+  }
 
 }
