@@ -84,7 +84,7 @@ export class ConfigService {
 
 
   checkScreen() {
-    //console.log('WINDOW',window.screen)
+    //console.debug('WINDOW',window.screen)
     setTimeout(() => {
       if (window.screen.width < 768)
         this.menuCtrl.enable(true);
@@ -94,7 +94,7 @@ export class ConfigService {
   }
 
   analyticsPage(url) {
-    //console.log("ANALITICS GOOGLE ", url);
+    //console.debug("ANALITICS GOOGLE ", url);
     appGoogleAnalitics.sedPageAnalitics(url);
   }
 

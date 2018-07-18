@@ -42,17 +42,17 @@ export class MyApp {
     
 
     events.subscribe('goPage', (page) => {
-      console.log("envent goPage", page);
+      console.debug("envent goPage", page);
       this.openPage(page);
     });
 
     events.subscribe('enableHeader', () => {
-      console.log('envent enableHeader');
+      console.debug('envent enableHeader');
       this.destop_menu = true;
     });
 
     events.subscribe('disabledHandler', () => {
-      console.log('envent disabledHandler');
+      console.debug('envent disabledHandler');
       this.destop_menu = false;
     });
   }
@@ -65,7 +65,7 @@ export class MyApp {
       this.splashScreen.hide();
       this.settings.load();
       this.onResize();
-      console.log("PLATFORMS ", this.platform.platforms());
+      console.debug("PLATFORMS ", this.platform.platforms());
 
       // Load if  user logged
       this.loadUserInfo().then((result) => {
@@ -112,7 +112,7 @@ export class MyApp {
     this.userService.logout().then((result) => {
       this.nav.setRoot(this.pages[0].component);
     }, (err) => {
-      console.log("logout:error", err)
+      console.debug("logout:error", err)
     });
   }
 
@@ -121,14 +121,14 @@ export class MyApp {
     //check if its app user SYNC Continuous
     return this.userService.getStoredUser()
       .then((res: any) => {
-        console.log("loadUserInfo:res1", res);
+        console.debug("loadUserInfo:res1", res);
         return this.userService.checkAuthentication()
       }).then((res2: any) => {
-        console.log("loadUserInfo:res2", res2)
+        console.debug("loadUserInfo:res2", res2)
       }).catch((err) => {
-        console.log("loadUserInfo:error", err)
+        console.debug("loadUserInfo:error", err)
         this.settings.cleanUser().then((data) => {
-          console.log("cleanUser", data)
+          console.debug("cleanUser", data)
         })
       });
   }

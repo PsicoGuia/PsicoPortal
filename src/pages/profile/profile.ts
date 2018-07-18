@@ -39,7 +39,7 @@ export class ProfilePage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ProfilePage');
+    console.debug('ionViewDidLoad ProfilePage');
   }
 
 }

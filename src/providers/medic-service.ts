@@ -16,10 +16,10 @@ export class MedicService {
     private configService: ConfigService,
     private settigsService: Settings,
   ) {
-    console.log('Hello MedicService Provider');
+    console.debug('Hello MedicService Provider');
   }
   getProfiles(): Promise<any> {
-    console.log("MedicService:getProfiles");
+    console.debug("MedicService:getProfiles");
     return this.settigsService.onReady().then(() => { return this.api.get(URL_API + 'medic/profile/') });
   }
 
