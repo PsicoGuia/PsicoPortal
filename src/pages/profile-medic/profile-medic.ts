@@ -108,6 +108,8 @@ export class ProfileMedicPage {
         this.loadMap();
       }
     })
+    // Init DropDown UISemantic
+    $('.ui.dropdown').dropdown();
   }
 
   loadMap() {
