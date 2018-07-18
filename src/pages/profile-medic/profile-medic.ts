@@ -175,11 +175,19 @@ export class ProfileMedicPage {
     };
   }
 
-  clickAttentionChannel() {
-    console.debug("clickAttentionChannel()");
+  clickAttentionChannel(item) {
+    console.debug("clickAttentionChannel()",item);
   }
 
   clickNewAttentionChannel(){
+    console.debug("clickNewAttentionChannel()");
+  }
+
+  clickStudie(item){
+    console.debug("clickNewAttentionChannel()",item);
+  }
+
+  clickNewStudie(){
     console.debug("clickNewAttentionChannel()");
   }
 

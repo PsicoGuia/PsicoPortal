@@ -157,7 +157,7 @@
       <div [ngSwitch]="attentionChannel">
         <ion-list *ngSwitchCase="'Consultorio'">
           <!-- <ion-list-header>Contenido Consultrio</ion-list-header> -->
-          <button ion-item (click)="clickAttentionChannel()" *ngFor="let item of profile.office_set">
+          <button ion-item (click)="clickAttentionChannel(item)" *ngFor="let item of profile.office_set">
             <ion-avatar item-start>
               <img *ngIf="item.images" src="{{item.images[0].image}}">
             </ion-avatar>
@@ -168,7 +168,7 @@
         </ion-list>
         <ion-list *ngSwitchCase="'Chat'">
           <!-- <ion-list-header> Contenido Chat</ion-list-header> -->
-          <button ion-item (click)="clickAttentionChannel()" *ngFor="let item of profile.chat_set">
+          <button ion-item (click)="clickAttentionChannel(item)" *ngFor="let item of profile.chat_set">
             <ion-avatar item-start>
               <img *ngIf="item.images" src="{{item.images[0].image}}">
             </ion-avatar>
@@ -180,7 +180,7 @@
 
         <ion-list *ngSwitchCase="'Domicilio'">
           <!-- <ion-list-header> Contenido Domicilio</ion-list-header> -->
-          <button ion-item (click)="clickAttentionChannel()" *ngFor="let item of profile.homevisit_set">
+          <button ion-item (click)="clickAttentionChannel(item)" *ngFor="let item of profile.homevisit_set">
             <ion-avatar item-start>
               <img *ngIf="item.images" src="{{item.images[0].image}}">
             </ion-avatar>
@@ -201,11 +201,25 @@
   </ion-card>
 
 
-
-
-
-
-
+  <ion-card *ngIf="profile">
+    <ion-card-header color="primary">
+      <p text-wrap>Estudios</p>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <button ion-item (click)="clickStudie(item)" *ngFor="let item of profile.studies_set">
+          <h2>{{item.id}} - {{item.title}}</h2>
+          <p>Años de experiencia: {{item.experienceYears}} | Nivel:{{item.level}}</p>
+          <ion-note item-end>{{item.date | date: "longDate"}}</ion-note>
+        </button>
+      </ion-list>
+      <div style="width: 100%;text-align:right;">
+        <button ion-button item-right clear (click)="clickNewStudie()">
+          <ion-icon name="add">Añadir</ion-icon>
+        </button>
+      </div>
+    </ion-card-content>
+  </ion-card>
 
 
 

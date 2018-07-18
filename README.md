@@ -42,3 +42,6 @@
 	Include /etc/letsencrypt/options-ssl-apache.conf
 	SSLCertificateChainFile /etc/letsencrypt/live/psicoguia.com/chain.pem
 </VirtualHost>
+```
+# TODO
+Estudio + Instituto
