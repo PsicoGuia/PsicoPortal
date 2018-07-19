@@ -1,7 +1,9 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { MedicService } from '../../providers/medic-service';
+import * as $ from 'jquery'; // I hate jQQuery
 declare var google: any;
+declare var semanticPisco: any;
 /**
  * Generated class for the ProfilePage page.
  *
@@ -109,7 +111,7 @@ export class ProfileMedicPage {
       }
     })
     // Init DropDown UISemantic
-    $('.ui.dropdown').dropdown();
+    semanticPisco.dropdown('.ui.dropdown');
   }
 
   loadMap() {
