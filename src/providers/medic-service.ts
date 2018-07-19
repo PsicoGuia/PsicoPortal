@@ -10,6 +10,7 @@ import { Settings } from './settings';
 export class MedicService {
 
   private user: any;
+  private _categories: any;
 
   constructor(
     private api: ApiService,
@@ -18,9 +19,20 @@ export class MedicService {
   ) {
     console.debug('Hello MedicService Provider');
   }
+
   getProfiles(): Promise<any> {
     console.debug("MedicService:getProfiles");
     return this.settigsService.onReady().then(() => { return this.api.get(URL_API + 'medic/profile/') });
+  }
+
+  getPatologies(): Promise<any> {
+    console.debug("MedicService:getPatologies", this._categories);
+    if (this._categories) {
+      return Promise.resolve(this._categories);
+    }
+    return this.settigsService.onReady()
+      .then(() => { return this.api.get(URL_API + 'medic/categoryPatology/') })
+      .then(data => { return this._categories = data; });
   }
 
 
