@@ -16,12 +16,30 @@
   <ion-card *ngIf="profile?.person">
     <ion-card-header color="primary">
       <p text-wrap>Datos personales</p>
-      <ion-icon style="float: right;" (click)="takeAction('personal-info')" name="more">
+      <ion-icon style="float: right;" (click)="takeAction('personal-info')" name="md-create">
       </ion-icon>
     </ion-card-header>
     <ion-card-content>
-      <ion-row>
-        <ion-col col-md-4>
+      <ion-row *ngIf="edit != 'personal-info'">
+        <ion-col col-4>
+          <ion-item text-center>
+            <h2>Calificacion de usuarios:</h2>
+            <p text-wrap>54</p>
+          </ion-item>
+        </ion-col>
+        <ion-col col-4>
+          <ion-item text-center>
+            <h2>Citas atendidas:</h2>
+            <p text-wrap>885</p>
+          </ion-item>
+        </ion-col>
+        <ion-col col-4>
+          <ion-item text-center>
+            <h2>Años de experiencia:</h2>
+            <p text-wrap>5</p>
+          </ion-item>
+        </ion-col>
+        <ion-col col-4>
           <ion-item>
             <h2>Correo:</h2>
             <p text-wrap>{{profile.person.user.email}}</p>
@@ -42,14 +60,13 @@
           </ion-item>
         </ion-col>
       </ion-row>
-      <br/>
     </ion-card-content>
   </ion-card>
 
   <ion-card *ngIf="profile">
     <ion-card-header color="primary">
       <p text-wrap>Datos del perfil</p>
-      <ion-icon style="float: right;" (click)="takeAction('profile-info')" name="more">
+      <ion-icon style="float: right;" (click)="takeAction('profile-info')" name="md-create">
       </ion-icon>
     </ion-card-header>
     <ion-card-content>
@@ -107,7 +124,7 @@
   <ion-card>
     <ion-card-header color="primary">
       <p text-wrap>Ubicación del perfil</p>
-      <ion-icon style="float: right;" (click)="takeAction('location-info')" name="more">
+      <ion-icon style="float: right;" (click)="takeAction('location-info')" name="md-create">
       </ion-icon>
     </ion-card-header>
     <ion-card-content>

@@ -24,6 +24,8 @@ export class ProfileMedicPage {
   profile: any;
   stduies = [];
   listProfiles = [];
+  edit = "";
+  editProfile: any;
   listCategories = [];
   attentionChannel = "Consultorio";
   constructor(
@@ -334,7 +336,9 @@ export class ProfileMedicPage {
   }
 
   takeAction(card) {
-    alert('edit' + card)
+    this.edit = card;
+    this.editProfile = JSON.stringify(this.profile);
+  
   }
 
   pinSymbol(color) {
