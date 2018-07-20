@@ -1,5 +1,4 @@
 <ion-header>
-      <button ion-button clear [navPush]="'Cart'">
   <div class="container">
     <header-qmercas></header-qmercas>
   </div>
@@ -18,27 +17,27 @@
     <ion-card-header color="primary">
       <p text-wrap>Datos personales</p>
       <ion-icon *ngIf="edit != 'personal-info'" style="float: right;" (click)="takeActionEdit('personal-info')" name="md-create"></ion-icon>
-      <ion-icon *ngIf="edit == 'personal-info'" style="float: right;" (click)="takeActionSave('personal-info')" name="md-checkmark">Cancel</ion-icon>
-      <ion-icon *ngIf="edit == 'personal-info'" style="float: right;" (click)="takeActionCancel('personal-info')" name="md-close">Save</ion-icon>
+      <button *ngIf="edit == 'personal-info'" color="success" ion-button (click)="takeActionSave('personal-info')" style="float: right;">
+        <ion-icon name="md-checkmark">Save</ion-icon>
+      </button>
+      <button *ngIf="edit == 'personal-info'" color="danger" ion-button (click)="takeActionCancel('personal-info')" style="float: right;">
+        <ion-icon name="md-close">Cancel</ion-icon>
+      </button>
     </ion-card-header>
     <ion-card-content>
+
+      <!-- Read User -->
       <ion-row *ngIf="edit != 'personal-info'">
         <ion-col col-4>
-          <ion-item text-center>
-            <h2>Calificacion de usuarios:</h2>
-            <p text-wrap>54</p>
+          <ion-item>
+            <h2>Nombre:</h2>
+            <p text-wrap>{{profile.person.user.first_name}}</p>
           </ion-item>
         </ion-col>
         <ion-col col-4>
-          <ion-item text-center>
-            <h2>Citas atendidas:</h2>
-            <p text-wrap>885</p>
-          </ion-item>
-        </ion-col>
-        <ion-col col-4>
-          <ion-item text-center>
-            <h2>Años de experiencia:</h2>
-            <p text-wrap>5</p>
+          <ion-item>
+            <h2>Apellido:</h2>
+            <p text-wrap>{{profile.person.user.last_name}}</p>
           </ion-item>
         </ion-col>
         <ion-col col-4>
@@ -62,23 +61,19 @@
           </ion-item>
         </ion-col>
       </ion-row>
+
+      <!-- Update user -->
       <ion-row *ngIf="edit == 'personal-info'">
         <ion-col col-4>
-          <ion-item text-center>
-            <h2>Calificacion de usuarios:</h2>
-            <p text-wrap>54</p>
+          <ion-item>
+            <ion-label>Nombre:</ion-label>
+            <ion-input [(ngModel)]="editProfile.person.user.first_name" name="first_name"></ion-input>
           </ion-item>
         </ion-col>
         <ion-col col-4>
-          <ion-item text-center>
-            <h2>Citas atendidas:</h2>
-            <p text-wrap>885</p>
-          </ion-item>
-        </ion-col>
-        <ion-col col-4>
-          <ion-item text-center>
-            <h2>Años de experiencia:</h2>
-            <p text-wrap>5</p>
+          <ion-item>
+            <ion-label>Apellido:</ion-label>
+            <ion-input [(ngModel)]="editProfile.person.user.last_name" name="last_name"></ion-input>
           </ion-item>
         </ion-col>
         <ion-col col-4>
@@ -109,11 +104,39 @@
   <ion-card *ngIf="profile">
     <ion-card-header color="primary">
       <p text-wrap>Datos del perfil</p>
-      <ion-icon style="float: right;" (click)="takeAction('profile-info')" name="md-create">
-      </ion-icon>
+      <ion-icon *ngIf="edit != 'profile-info'" style="float: right;" (click)="takeActionEdit('profile-info')" name="md-create"></ion-icon>
+      <button *ngIf="edit == 'profile-info'" color="success" ion-button (click)="takeActionSave('profile-info')" style="float: right;">
+        <ion-icon name="md-checkmark">Save</ion-icon>
+      </button>
+      <button *ngIf="edit == 'profile-info'" color="danger" ion-button (click)="takeActionCancel('profile-info')" style="float: right;">
+        <ion-icon name="md-close">Cancel</ion-icon>
+      </button>
     </ion-card-header>
+
     <ion-card-content>
       <ion-row>
+        <!-- stadistics profile -->
+        <ion-col col-4>
+          <ion-item text-center>
+            <h2>Calificacion de usuarios:</h2>
+            <p text-wrap>54</p>
+          </ion-item>
+        </ion-col>
+        <ion-col col-4>
+          <ion-item text-center>
+            <h2>Citas atendidas:</h2>
+            <p text-wrap>885</p>
+          </ion-item>
+        </ion-col>
+        <ion-col col-4>
+          <ion-item text-center>
+            <h2>Años de experiencia:</h2>
+            <p text-wrap>5</p>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <!-- read profile -->
+      <ion-row *ngIf="edit != 'profile-info'">
         <ion-col col-md-3>
           <ion-item>
             <h2>Genero:
@@ -121,6 +144,7 @@
             </h2>
           </ion-item>
         </ion-col>
+
         <ion-col col-md-3>
           <ion-item>
             <h2>Documento de identidad:
@@ -128,13 +152,7 @@
             </h2>
           </ion-item>
         </ion-col>
-        <ion-col col-md-3>
-          <ion-item>
-            <h2>Genero:
-              <p text-wrap *ngIf="profile.genre">{{getGenero(profile.genre)}}</p>
-            </h2>
-          </ion-item>
-        </ion-col>
+
         <ion-col col-md-3>
           <ion-item>
             <h2>Archivo documento de identidad:
@@ -160,57 +178,70 @@
             </h2>
           </ion-item>
         </ion-col>
+        <ion-col col-md-3>
+          <ion-item>
+            <h2>Tipo de moneda:
+              <p text-wrap>{{profile.cost_currency}}</p>
+            </h2>
+          </ion-item>
+        </ion-col>
+        <ion-col col-md-3>
+          <ion-item>
+            <h2>Costo:
+              <p text-wrap>{{profile.cost}}</p>
+            </h2>
+          </ion-item>
+        </ion-col>
       </ion-row>
-      <ion-row>
-          <ion-col col-3>
-            <ion-item>
-              <h2>Genero:
-                <p text-wrap *ngIf="profile.genre">{{getGenero(profile.genre)}}</p>
-              </h2>
-            </ion-item>
-          </ion-col>
-          <ion-col col-3>
-            <ion-item>
-              <h2>Documento de identidad:
-                <p text-wrap>{{profile.personalDocumentType}} {{profile.personalDocumentNumber}}</p>
-              </h2>
-            </ion-item>
-          </ion-col>
-          <ion-col col-3>
-            <ion-item>
-              <h2>Genero:
-                <p text-wrap *ngIf="profile.genre">{{getGenero(profile.genre)}}</p>
-              </h2>
-            </ion-item>
-          </ion-col>
-          <ion-col col-3>
-            <ion-item>
-              <h2>Archivo documento de identidad:
-                <p text-wrap>
-                  <a [href]="profile.personalDocumentFile">{{profile.personalDocumentFile}}</a>
-                </p>
-              </h2>
-            </ion-item>
-          </ion-col>
-          <ion-col col-3>
-            <ion-item>
-              <h2>Número de tarjeta profesional:
-                <p text-wrap>{{profile.professionalCardNumber}}</p>
-              </h2>
-            </ion-item>
-          </ion-col>
-          <ion-col col-3>
-            <ion-item>
-              <h2>Archivo de tarjeta profesional:
-                <p text-wrap>
-                  <a [href]="profile.professionalCardFile">{{profile.professionalCardFile}}</a>
-                  <p>
-              </h2>
-            </ion-item>
-          </ion-col>
-        </ion-row>
+
+      <!-- Update Profile-->
+      <ion-row *ngIf="edit == 'profile-info'">
+        <ion-col col-md-6>
+          <ion-item>
+            <ion-label>Genero: </ion-label>
+            <ion-select [(ngModel)]="editProfile.genre">
+              <ion-option value="M">Masculino</ion-option>
+              <ion-option value="F">Femenino</ion-option>
+              <ion-option value="">No definido</ion-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+        <ion-col col-md-6>
+          <ion-item>
+            <ion-label>Tipo de documento de identidad:</ion-label>
+            <ion-select [(ngModel)]="editProfile.personalDocumentType">
+              <ion-option value="TI">Tarjeta de identidad</ion-option>
+              <ion-option value="CC">Cedula</ion-option>
+              <ion-option value="F">Pasaporte</ion-option>
+              <ion-option value="??">No definido</ion-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+        <ion-col col-md-6>
+          <ion-item>
+            <ion-label>Número de documento de identidad:</ion-label>
+            <ion-input [(ngModel)]="editProfile.personalDocumentNumber" name="phone"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col col-md-6>
+          <ion-label>Archivo documento de identidad:</ion-label>
+          <input type="file" (change)="filesChange($event,'personalDocumentFile')">
+        </ion-col>
+        <ion-col col-md-6>
+          <ion-item>
+            <ion-label>Número de tarjeta profesional:</ion-label>
+            <ion-input [(ngModel)]="editProfile.professionalCardNumber" name="phone"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col col-md-6>
+          <ion-label>Archivo de tarjeta profesional:</ion-label>
+          <input type="file" (change)="filesChange($event,'professionalCardFile')">
+        </ion-col>
+      </ion-row>
     </ion-card-content>
   </ion-card>
+
+
 
   <ion-card>
     <ion-card-header color="primary">
@@ -240,9 +271,8 @@
           </ion-item>
         </ion-col>
       </ion-row>
-
+      <!-- Map Inject -->
       <div padding style="height: 240px;" id='map1' #map></div>
-
     </ion-card-content>
   </ion-card>
 
@@ -273,6 +303,7 @@
             <p>{{item.city}} {{item.address}}</p>
             <ion-note item-end>{{item.created | date: "longDate"}}</ion-note>
           </button>
+          <ion-item *ngIf="!profile.office_set?.length">No cuentas con consultorios</ion-item>
         </ion-list>
         <ion-list *ngSwitchCase="'Chat'">
           <!-- <ion-list-header> Contenido Chat</ion-list-header> -->
@@ -284,6 +315,7 @@
             <p>{{item.city}} {{item.address}}</p>
             <ion-note item-end>{{item.created | date: "longDate"}}</ion-note>
           </button>
+          <ion-item *ngIf="!profile.chat_set?.length">No cuentas con chats</ion-item>
         </ion-list>
 
         <ion-list *ngSwitchCase="'Domicilio'">
@@ -296,6 +328,7 @@
             <p>{{item.city}} {{item.address}}</p>
             <ion-note item-end>{{item.created | date: "longDate"}}</ion-note>
           </button>
+          <ion-item *ngIf="!profile.homevisit_set?.length">No cuentas con domicilios</ion-item>
         </ion-list>
 
         <div style="width: 100%;text-align:right;">
@@ -405,7 +438,7 @@
         </div>
       </div>
     </div>
-    <!-- code end -->
+
   </div>
 
 
