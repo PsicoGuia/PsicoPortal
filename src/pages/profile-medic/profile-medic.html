@@ -338,10 +338,7 @@
     <ion-card-content class="card-patology" style="height: 300px">
       <select class="ui fluid search dropdown" multiple="">
         <option value="">Escoge las patologias </option>
-        <option *ngFor="let item of listCategories" [selected]="patologiInProfile(item)" [value]="item.id">{{item.name}}        </option>
-        <option selected value="AK">Alaska</option>
-        <option value="AZ">Arizona</option>
-
+        <option *ngFor="let item of listCategories" [selected]="patologiInProfile(item)" [value]="item.id">{{item.name}}</option>
       </select>
       <br/>
     </ion-card-content>
