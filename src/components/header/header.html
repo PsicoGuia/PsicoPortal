@@ -25,9 +25,9 @@
       <ion-icon name="person" style="margin-right:4px"></ion-icon>{{settings?.settings?.user?.user?.first_name}}
       <ion-icon name="ios-arrow-down"></ion-icon>
     </button>
-    <button padding (click)="statusSearch()" ion-button icon-only>
-      <ion-icon name="search"></ion-icon>
-    </button>
+    <a class="hidden-md" padding href="{{getPage('SearchPage').segment}}" (click)="$event.preventDefault(); openPage(getPage('SearchPage'));"
+    ion-button text-uppercase class="hidden-xs"><ion-icon name="search"></ion-icon></a>
+    
   </ion-buttons>
 </ion-navbar>
 

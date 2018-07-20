@@ -19,20 +19,22 @@ export class ConfigService {
   constructor(
     public toastCtrl: ToastController,
     public loadingCtrl: LoadingController,
-    public alertCtrl: AlertController, 
-    public http: HttpClient, 
+    public alertCtrl: AlertController,
+    public http: HttpClient,
     public menuCtrl: MenuController,
   ) {
   }
 
   public pages = [
-    { title: 'Inicio', component: 'Home', icon: 'ios-home', stage: false , segment:"/"},
-    { title: 'Registrate', component: 'RegisterMedicPage', icon: 'ios-home', stage: false , segment:"/"},
-    { title: 'Iniciar sesión', component: 'LoginMedicPage', icon: 'ios-home', stage: false , segment:"/"},
-    { title: 'Perfil', component: '', icon: 'ios-home', stage: false , segment:"/"},
-    { title: 'REGISTER', component: 'RegisterMedicPage', icon: 'ios-home', stage: false , segment:"/"},
-    { title: 'PREGUNTAS', component: 'Faqs', icon: 'md-help', stage: false , segment:"/"},
-    { title: 'CONTÁCTANOS', component: 'Contact', icon: 'ios-call', stage: false , segment:"/"},
+    { title: 'Inicio', component: 'Home', icon: 'ios-home', stage: false, segment: "/" },
+    { title: 'Registrate', component: 'RegisterMedicPage', icon: 'ios-home', stage: false, segment: "/" },
+    { title: 'Iniciar sesión', component: 'LoginMedicPage', icon: 'ios-home', stage: false, segment: "/" },
+    { title: 'Perfil', component: '', icon: 'ios-home', stage: false, segment: "/" },
+    { title: 'REGISTER', component: 'RegisterMedicPage', icon: 'ios-home', stage: false, segment: "/" },
+    { title: 'PREGUNTAS', component: 'Faqs', icon: 'md-help', stage: false, segment: "/" },
+    { title: 'CONTÁCTANOS', component: 'Contact', icon: 'ios-call', stage: false, segment: "/" },
+    { title: 'BUSCAR', component: 'SearchPage', icon: 'search', stage: false, segment: "/search" },
+    
   ];
 
   showLoader(msg: string) {
@@ -98,5 +100,15 @@ export class ConfigService {
     appGoogleAnalitics.sedPageAnalitics(url);
   }
 
+  // MAP Tools
+  pinSymbol(color) {
+    return {
+      fillColor: color,
+      fillOpacity: 1,
+      strokeColor: '#000',
+      strokeWeight: 2,
+      scale: 1,
+    };
+  }
 
 }
