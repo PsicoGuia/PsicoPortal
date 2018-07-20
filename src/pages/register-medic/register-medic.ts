@@ -21,7 +21,7 @@ import { UserService } from '../../providers/user-service';
 export class RegisterMedicPage {
   loading = false;
   passEqualValidator(control: FormControl): { [s: string]: boolean } {
-    console.log('passEqualValidator', control);
+    console.debug('passEqualValidator', control);
     if (this.registerMedicForm && this.registerMedicForm.value && this.registerMedicForm.value.password != control.value) {
       return { mismatchPasswords: true };
     }
@@ -50,7 +50,7 @@ export class RegisterMedicPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad RegisterMedicPage');
+    console.debug('ionViewDidLoad RegisterMedicPage');
     if (this.configService.debug) {
       this.registerMedicForm.setValue({
         firstName: "name test",
@@ -68,7 +68,7 @@ export class RegisterMedicPage {
   }
 
   register() {
-    console.log("RegisterMedicPage:register");
+    console.debug("RegisterMedicPage:register");
     this.loading = true;
     this.userService.signupmedic(
       this.registerMedicForm.value.firstName,
@@ -81,12 +81,12 @@ export class RegisterMedicPage {
       1.0,
       1.0,
       this.registerMedicForm.value.email_notification).then((data) => {
-        console.log("register:OK", data);
+        console.debug("register:OK", data);
         this.configService.showToast("Porfavor active su cuenta por correo antes de continuar", 'toast-success')
         this.navCtrl.setRoot('LoginMedicPage');
         this.loading = false;
       }).catch(err => {
-        console.log("register:err", err);
+        console.debug("register:err", err);
         this.configService.showToast("Error al crear el usuario", "toast-failed")
         this.loading = false;
       })

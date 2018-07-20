@@ -21,20 +21,20 @@
     </ion-card-header>
     <ion-card-content>
       <ion-row>
-        <ion-col col-4>
+        <ion-col col-md-4>
           <ion-item>
             <h2>Correo:</h2>
             <p text-wrap>{{profile.person.user.email}}</p>
           </ion-item>
         </ion-col>
-        <ion-col col-4>
+        <ion-col col-md-4>
           <ion-item>
             <h2>Telefono:
               <p text-wrap>{{profile.person.phone}}</p>
             </h2>
           </ion-item>
         </ion-col>
-        <ion-col col-4>
+        <ion-col col-md-4>
           <ion-item>
             <h2 text-wrap>Notificación de correos:
               <p text-wrap>{{profile.person.notification ? 'Activado': 'Desactivado'}}</p>
@@ -54,28 +54,28 @@
     </ion-card-header>
     <ion-card-content>
       <ion-row>
-        <ion-col col-3>
+        <ion-col col-md-3>
           <ion-item>
             <h2>Genero:
               <p text-wrap *ngIf="profile.genre">{{getGenero(profile.genre)}}</p>
             </h2>
           </ion-item>
         </ion-col>
-        <ion-col col-3>
+        <ion-col col-md-3>
           <ion-item>
             <h2>Documento de identidad:
               <p text-wrap>{{profile.personalDocumentType}} {{profile.personalDocumentNumber}}</p>
             </h2>
           </ion-item>
         </ion-col>
-        <ion-col col-3>
+        <ion-col col-md-3>
           <ion-item>
             <h2>Genero:
               <p text-wrap *ngIf="profile.genre">{{getGenero(profile.genre)}}</p>
             </h2>
           </ion-item>
         </ion-col>
-        <ion-col col-3>
+        <ion-col col-md-3>
           <ion-item>
             <h2>Archivo documento de identidad:
               <p text-wrap>
@@ -84,14 +84,14 @@
             </h2>
           </ion-item>
         </ion-col>
-        <ion-col col-3>
+        <ion-col col-md-3>
           <ion-item>
             <h2>Número de tarjeta profesional:
               <p text-wrap>{{profile.professionalCardNumber}}</p>
             </h2>
           </ion-item>
         </ion-col>
-        <ion-col col-3>
+        <ion-col col-md-3>
           <ion-item>
             <h2>Archivo de tarjeta profesional:
               <p text-wrap>
@@ -112,7 +112,7 @@
     </ion-card-header>
     <ion-card-content>
       <ion-row>
-        <ion-col col-3>
+        <ion-col col-md-3>
           <ion-item>
             <h2>Ubicación del perfil (minima):
               <br/>
@@ -122,7 +122,7 @@
             </h2>
           </ion-item>
         </ion-col>
-        <ion-col col-3>
+        <ion-col col-md-3>
           <ion-item>
             <h2>Ubicación del perfil (Address):
               <p text-wrap>Id: {{profile.address.id}}</p>
@@ -138,12 +138,106 @@
     </ion-card-content>
   </ion-card>
 
+  <ion-card *ngIf="profile">
+    <ion-card-header color="primary">
+      <p text-wrap>Canales de atención</p>
+      <ion-segment [(ngModel)]="attentionChannel">
+        <ion-segment-button value="Consultorio">
+          <ion-icon name="home">Consultorio</ion-icon>
+        </ion-segment-button>
+        <ion-segment-button value="Chat">
+          <ion-icon name="ios-chatbubbles">Chat</ion-icon>
+        </ion-segment-button>
+        <ion-segment-button value="Domicilio">
+          <ion-icon name="ios-basket">Domicilio</ion-icon>
+        </ion-segment-button>
+      </ion-segment>
+    </ion-card-header>
+    <ion-card-content>
+      <div [ngSwitch]="attentionChannel">
+        <ion-list *ngSwitchCase="'Consultorio'">
+          <!-- <ion-list-header>Contenido Consultrio</ion-list-header> -->
+          <button ion-item (click)="clickAttentionChannel(item)" *ngFor="let item of profile.office_set">
+            <ion-avatar item-start>
+              <img *ngIf="item.images" src="{{item.images[0].image}}">
+            </ion-avatar>
+            <h2>{{item.id}} - {{item.description}}</h2>
+            <p>{{item.city}} {{item.address}}</p>
+            <ion-note item-end>{{item.created | date: "longDate"}}</ion-note>
+          </button>
+        </ion-list>
+        <ion-list *ngSwitchCase="'Chat'">
+          <!-- <ion-list-header> Contenido Chat</ion-list-header> -->
+          <button ion-item (click)="clickAttentionChannel(item)" *ngFor="let item of profile.chat_set">
+            <ion-avatar item-start>
+              <img *ngIf="item.images" src="{{item.images[0].image}}">
+            </ion-avatar>
+            <h2>{{item.id}} - {{item.description}}</h2>
+            <p>{{item.city}} {{item.address}}</p>
+            <ion-note item-end>{{item.created | date: "longDate"}}</ion-note>
+          </button>
+        </ion-list>
+
+        <ion-list *ngSwitchCase="'Domicilio'">
+          <!-- <ion-list-header> Contenido Domicilio</ion-list-header> -->
+          <button ion-item (click)="clickAttentionChannel(item)" *ngFor="let item of profile.homevisit_set">
+            <ion-avatar item-start>
+              <img *ngIf="item.images" src="{{item.images[0].image}}">
+            </ion-avatar>
+            <h2>{{item.id}} - {{item.description}}</h2>
+            <p>{{item.city}} {{item.address}}</p>
+            <ion-note item-end>{{item.created | date: "longDate"}}</ion-note>
+          </button>
+        </ion-list>
+
+        <div style="width: 100%;text-align:right;">
+          <button ion-button item-right clear (click)="clickNewAttentionChannel()">
+            <ion-icon name="add">Añadir</ion-icon>
+          </button>
+        </div>
+
+      </div>
+    </ion-card-content>
+  </ion-card>
 
 
+  <ion-card *ngIf="profile">
+    <ion-card-header color="primary">
+      <p text-wrap>Estudios</p>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <button ion-item (click)="clickStudie(item)" *ngFor="let item of profile.studies_set">
+          <h2>{{item.id}} - {{item.title}}</h2>
+          <p>Años de experiencia: {{item.experienceYears}} | Nivel:{{item.level}}</p>
+          <ion-note item-end>{{item.date | date: "longDate"}}</ion-note>
+        </button>
+      </ion-list>
+      <div style="width: 100%;text-align:right;">
+        <button ion-button item-right clear (click)="clickNewStudie()">
+          <ion-icon name="add">Añadir</ion-icon>
+        </button>
+      </div>
+    </ion-card-content>
+  </ion-card>
 
+  <ion-card *ngIf="profile">
+    <ion-card-header color="primary">
+      <p text-wrap>Patolgías soportadas</p>
+      <ion-icon style="float: right;" (click)="takeAction('patology')" name="more">
+      </ion-icon>
+    </ion-card-header>
+    <ion-card-content class="card-patology" style="height: 300px">
+      <select class="ui fluid search dropdown" multiple="">
+        <option value="">Escoge las patologias </option>
+        <option *ngFor="let item of listCategories" [selected]="patologiInProfile(item)" [value]="item.id">{{item.name}}        </option>
+        <option selected value="AK">Alaska</option>
+        <option value="AZ">Arizona</option>
 
-
-
+      </select>
+      <br/>
+    </ion-card-content>
+  </ion-card>
 
 
 

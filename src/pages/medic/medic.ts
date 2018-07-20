@@ -24,7 +24,7 @@ export class MedicPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad MedicPage');
+    console.debug('ionViewDidLoad MedicPage');
   }
 
 }

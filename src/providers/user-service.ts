@@ -16,12 +16,12 @@ export class UserService {
     private configService: ConfigService,
     private settigsService: Settings,
   ) {
-    console.log('Hello UserService Provider');
+    console.debug('Hello UserService Provider');
   }
 
 
   createUser(email, password, firstName, lastName, phone, country, city, address, notes, refered) {
-    console.log("UserService:checkAuthentication");
+    console.debug("UserService:checkAuthentication");
     let paramUser = {
       email: email,
       password: password,
@@ -34,7 +34,7 @@ export class UserService {
 
 
   checkAuthentication(): Promise<any> {
-    console.log("UserService:checkAuthentication");
+    console.debug("UserService:checkAuthentication");
     return this.settigsService.onReady()
       .then(() => {
         let endpoint = URL_API + 'rest-auth/user/';
@@ -49,7 +49,7 @@ export class UserService {
   }
 
   getStoredUser(): Promise<any> {
-    console.log("UserService:getStoredUser");
+    console.debug("UserService:getStoredUser");
     return new Promise((resolve, reject) => {
       // Storage is ready to use
       if (this.user) {
@@ -64,7 +64,7 @@ export class UserService {
 
 
   login(credentials): Promise<any> {
-    console.log("UserService:login");
+    console.debug("UserService:login");
     if (credentials.username.length > 150) { // django-user length max
       credentials.username = credentials.username.substring(0, 30)
     }
@@ -87,7 +87,7 @@ export class UserService {
 
 
   logout(): Promise<any> {
-    console.log("UserService:logout");
+    console.debug("UserService:logout");
     return this.settigsService.cleanUser().then((value) => {
       this.user = undefined;
     });
@@ -95,13 +95,13 @@ export class UserService {
 
 
   forgotPassword(email): Promise<any> {
-    console.log("UserService:forgotPassword");
-    //console.log("recovering password...");
+    console.debug("UserService:forgotPassword");
+    //console.debug("recovering password...");
     return this.api.post(URL_API + 'rest-auth/password/reset/', { email: email });
   }
 
   signupmedic(first_name, last_name, identification_number, profesional_number, email, phone, password, version_terms, version_terms_abeusdata, notification): Promise<any> {
-    console.log("UserService:login");
+    console.debug("UserService:login");
     if (email.length > 150) { // django-user length max
       email = email.substring(0, 30)
     }
@@ -120,14 +120,14 @@ export class UserService {
     }
 
     return this.api.post(URL_API + 'crm/signupmedic/', params).then((data) => {
-      console.log("response:" + URL_API + 'crm/signupmedic/', data);
+      console.debug("response:" + URL_API + 'crm/signupmedic/', data);
       return data;
     });
   }
 
   loginmedic(params): Promise<any> {
     return this.api.post(URL_API + 'crm/loginmedic/', params).then((data) => {
-      console.log("response:" + URL_API + 'crm/signupmedic/', data);
+      console.debug("response:" + URL_API + 'crm/signupmedic/', data);
       return data;
     }).then(res => {
       let token = 'token ' + res.key;

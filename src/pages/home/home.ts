@@ -81,7 +81,7 @@ export class Home {
     try {
       let size = (document.getElementsByName("categorys-main")).length - 1;
       let yOffset = (document.getElementsByName("categorys-main")[size]).offsetTop;
-      //console.log("offset", yOffset);
+      //console.debug("offset", yOffset);
       this.content.scrollTo(0, yOffset, 1000);
     }
     catch (e) {

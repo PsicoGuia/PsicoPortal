@@ -35,23 +35,23 @@ export class LoginMedicPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad LoginMedicPage');
+    console.debug('ionViewDidLoad LoginMedicPage');
   }
 
   login() {
-    console.log("RegisterMeLoginMedicPagedicPage:register", this.settings.settings.user);
+    console.debug("RegisterMeLoginMedicPagedicPage:register", this.settings.settings.user);
     this.loading = true;
     this.userService.loginmedic({
       email: this.loginMedicForm.value.email,
       password: this.loginMedicForm.value.password
     })
       .then((data) => {
-        console.log("login:OK", data);
+        console.debug("login:OK", data);
         this.configService.showToast("Bienvenido", 'toast-success')
         this.loading = false;
         this.navCtrl.setRoot('ProfileMedicPage');
       }).catch(err => {
-        console.log("login:err", err);
+        console.debug("login:err", err);
         this.configService.showToast("Revisa tus credenciales", "toast-failed")
         this.loading = false;
       })
