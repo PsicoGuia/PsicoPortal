@@ -41,7 +41,7 @@ export class MedicService {
       return Promise.resolve(this._categories);
     }
     return this.settigsService.onReady()
-      .then(() => { return this.api.get(URL_API + 'medic/categoryPatology/') })
+      .then(() => { return this.api.get(URL_API + 'medic/patology/') })
       .then(data => { return this._categories = data; });
   }
 

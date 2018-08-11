@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { MedicService } from '../../providers/medic-service';
 import { ConfigService } from '../../providers/config-service';
 import { ProfileMedicDetailPage } from '../profile-medic-detail/profile-medic-detail';
+import { GoogleService } from '../../providers/google-service';
 declare var google: any;
 
 /**
@@ -22,9 +23,12 @@ declare var google: any;
 export class SearchPage {
   @ViewChild('map') mapElement: ElementRef;
   map: any;
-  private listCategories = [];
+  private listPatologies = [];
+  patologiesSelected = [];
   filters = {};
+  address;
   listProfiles = [];
+  myLocationMarker;
   private dummyLocations = [
     { type: "profile", title: "perfil1", lat: 4.6394723, long: -74.0738202 },
     { type: "profile", title: "perfil2", lat: 4.6393723, long: -74.0718202 },
@@ -75,17 +79,17 @@ export class SearchPage {
     public navParams: NavParams,
     private medicService: MedicService,
     private condigService: ConfigService,
+    private googleService: GoogleService
 
   ) {
   }
 
   ionViewDidLoad() {
     console.debug('ionViewDidLoad SearchPage');
-    this.medicService.getPatologies().then(data => { this.listCategories = data })
-    this.medicService.getProfiles(this.filters).then(data => {
-      this.listProfiles = data;
-    })
+    this.medicService.getPatologies().then(data => { this.listPatologies = data })
+    this.loadProfiles();
     this.loadMap();
+    this.initInputGoogle()
 
   }
 
@@ -129,6 +133,43 @@ export class SearchPage {
     });
   }
 
+
+  setMyLocationMarker(lat, long) {
+    let icon = "http://maps.google.com/mapfiles/ms/icons/blue-dot.png";
+    let posLatLng = { lat: lat, lng: long };
+    if (!this.myLocationMarker) {
+      this.myLocationMarker = new google.maps.Marker({
+        position: posLatLng,
+        map: this.map,
+        title: 'Tú ubicación',
+        animation: google.maps.Animation.DROP,
+        draggable: true,
+        icon: icon
+      });
+    } else {
+      this.myLocationMarker.setPosition(posLatLng);
+    }
+    this.map.panTo(posLatLng)
+  }
+
+  initInputGoogle() {
+    let input = document.getElementById('address-ac').getElementsByTagName('input')[0];
+    let options = this.googleService.options;
+    // Create the autocomplete object, restricting the search to geographical
+    // location types.
+    this.googleService.autocomplete = new google.maps.places.Autocomplete(input, options);
+
+    // When the user selects an address from the dropdown, populate the address
+    // fields in the form.
+    this.googleService.autocomplete.addListener('place_changed', (data) => {
+      // double LookUp fix problem
+      this.googleService.searchAddress(this.googleService.autocomplete.getPlace().formatted_address).then(data => {
+        console.log("searchAddress", data);
+        this.onPalceChanged(data);
+      })
+    });
+  }
+
   getColorOfPOI(item) {
     switch (item.type) {
       case "profile":
@@ -148,6 +189,43 @@ export class SearchPage {
   clickCardProfile(profile) {
     console.log("clickCardProfile");
     this.navCtrl.setRoot(ProfileMedicDetailPage, { id: profile.id })
+  }
+
+
+  loadProfiles() {
+    this.medicService.getProfiles(this.filters).then(data => {
+      this.listProfiles = data;
+    });
+  }
+
+
+  onPalceChanged(data) {
+    console.log("onPalceChanged", data);
+    this.setMyLocationMarker(data.lat, data.lng);
+
+  }
+
+
+  getLocation() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((data) => {
+        console.log("getLocation:data", data);
+        this.setMyLocationMarker(data.coords.latitude, data.coords.longitude);
+      }, (data) => {
+        console.log("getLocation:error", data);
+      }, {
+          maximumAge: 75000,
+          timeout: 15000
+        });
+    }
+    else {
+      alert("GPS_NOT_SUPPORTED");
+    }
+  }
+
+
+  onSelectPatolgyChange(event) {
+    console.log(this.patologiesSelected);
   }
 
 }
