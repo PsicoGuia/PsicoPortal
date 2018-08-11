@@ -16,6 +16,8 @@
     <!--ion-select *ngIf="authProvider.user!==null" [(ngModel)]="authProvider.address" [selectOptions]="{title:'Direcciones'}" okText="Aceptar" cancelText="Cancelar" class="hidden-xs" (ionChange)='setDefaultWarehouse(cityProvider.city, authProvider.address)'>
       <ion-option *ngFor="let address of authProvider.user.user_client.addresses | active | city:cityProvider.city" [value]="address.id">{{address.address}}</ion-option>
     </ion-select-->
+    <a class="hidden-md" padding href="{{getPage('FaqPqrPage').segment}}" (click)="$event.preventDefault(); pushPage(getPage('FaqPqrPage'));"
+      ion-button text-uppercase class="hidden-xs">{{getPage('FaqPqrPage').title}}</a>
     <a class="hidden-md" *ngIf="!settings?.settings?.user?.user" padding href="{{getPage('RegisterMedicPage').segment}}" (click)="$event.preventDefault(); pushPage(getPage('RegisterMedicPage'));"
       ion-button text-uppercase class="hidden-xs">{{getPage('RegisterMedicPage').title}}</a>
     <a class="hidden-md" *ngIf="!settings?.settings?.user?.user" padding href="{{getPage('LoginMedicPage').segment}}" (click)="$event.preventDefault(); pushPage(getPage('LoginMedicPage'));"
@@ -25,9 +27,11 @@
       <ion-icon name="person" style="margin-right:4px"></ion-icon>{{settings?.settings?.user?.user?.first_name}}
       <ion-icon name="ios-arrow-down"></ion-icon>
     </button>
-    <button padding (click)="statusSearch()" ion-button icon-only>
+    <a class="hidden-md" padding href="{{getPage('SearchPage').segment}}" (click)="$event.preventDefault(); openPage(getPage('SearchPage'));"
+      ion-button text-uppercase class="hidden-xs">
       <ion-icon name="search"></ion-icon>
-    </button>
+    </a>
+
   </ion-buttons>
 </ion-navbar>
 

@@ -14,6 +14,7 @@ import { Settings } from '../providers/settings';
 import { ApiService } from '../providers/api';
 import { HttpClientModule } from '@angular/common/http';
 import { MedicService } from '../providers/medic-service';
+import { GoogleService } from '../providers/google-service';
 import { UserPopoverPage } from '../components/header/userpopover';
 //import {ImageModalPage} from '../pages/image-modal/image-modal'
 
@@ -46,6 +47,7 @@ import { UserPopoverPage } from '../components/header/userpopover';
     ApiService,
     UserService,
     MedicService,
+    GoogleService,
 
   ]
 

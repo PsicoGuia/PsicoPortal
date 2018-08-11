@@ -1,0 +1,61 @@
+<ion-header>
+  <div class="container">
+    <header-psicoguia></header-psicoguia>
+  </div>
+</ion-header>
+
+
+<ion-content padding>
+  <div class="filters">
+    <ion-card>
+      <ion-card-header color="primary">
+        <p text-wrap>Filtros:</p>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-item>
+          <ion-label>Ingresa tu ubicación</ion-label>
+          <ion-input id="address-ac" type="text" [(ngModel)]="address" placeholder="Ej: Carrera 15 #85-41"></ion-input>
+        </ion-item>
+        <button ion-button block (click)="getLocation()">
+          <ion-icon name="locate">Obtener ubicación por GPS</ion-icon>
+        </button>
+        <ion-item>
+          <ion-label>Seleciona las patolgías que quieres filtrar</ion-label>
+          <ion-select [(ngModel)]="patologiesSelected" (ionChange)="onSelectPatolgyChange($event)" multiple="true">
+            <ion-option *ngFor="let patolgy of listPatologies" value="{{patolgy.id}}">{{patolgy.name}}</ion-option>
+          </ion-select>
+        </ion-item>
+      </ion-card-content>
+
+
+    </ion-card>
+
+  </div>
+  <!-- Map Inject -->
+  <div padding style="height: 240px;" id='map1' #map></div>
+
+  <div class="list-profiles">
+    <ion-card (click)="clickCardProfile(profile)" *ngFor="let profile of listProfiles">
+      <ion-item>
+        <ion-avatar item-start>
+          <img alt="{{ profile?.person?.user?.username }}" src="{{ profile.picture }}">
+        </ion-avatar>
+        <a href="#/profile-medic-detail/{{profile.id}}"(click)="clickCardProfile(profile)">
+          {{profile.profile_title}}
+        </a>
+        <p>Calificacion de usuarios:54 Citas atendidas:885 Años de experiencia:5 </p>
+      </ion-item>
+      <div text-center>
+        <img class="center" style="max-width: 526px;" alt="{{ profile?.person?.user?.username }}" src="{{ profile.picture }}">
+      </div>
+      <ion-fab right top>
+        <button ion-fab>
+          <ion-icon name="wine"></ion-icon>
+        </button>
+      </ion-fab>
+      <ion-card-content padding-horizontal>
+        <p text-justify>{{profile.about_me}}</p>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

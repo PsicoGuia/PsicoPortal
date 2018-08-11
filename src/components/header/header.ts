@@ -6,7 +6,7 @@ import { ConfigService } from '../../providers/config-service';
 import { UserPopoverPage } from './userpopover';
 
 @Component({
-  selector: 'header-qmercas',
+  selector: 'header-psicoguia',
   templateUrl: 'header.html'
 })
 export class HeaderComponent {

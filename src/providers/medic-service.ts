@@ -20,9 +20,19 @@ export class MedicService {
     console.debug('Hello MedicService Provider');
   }
 
-  getProfiles(): Promise<any> {
+  getProfileDetail(id, params = {}): Promise<any> {
     console.debug("MedicService:getProfiles");
-    return this.settigsService.onReady().then(() => { return this.api.get(URL_API + 'medic/profile/') });
+    return this.settigsService.onReady().then(() => { return this.api.get(URL_API + 'medic/profile/' + id + "/", params) });
+  }
+
+  getProfiles(params = {}): Promise<any> {
+    console.debug("MedicService:getProfiles");
+    return this.settigsService.onReady().then(() => { return this.api.get(URL_API + 'medic/profile/', params) });
+  }
+
+  getMyProfiles(params = {}): Promise<any> {
+    console.debug("MedicService:getMyProfiles");
+    return this.settigsService.onReady().then(() => { return this.api.get(URL_API + 'medic/profile/my-profile', params) });
   }
 
   getPatologies(): Promise<any> {
@@ -31,7 +41,7 @@ export class MedicService {
       return Promise.resolve(this._categories);
     }
     return this.settigsService.onReady()
-      .then(() => { return this.api.get(URL_API + 'medic/categoryPatology/') })
+      .then(() => { return this.api.get(URL_API + 'medic/patology/') })
       .then(data => { return this._categories = data; });
   }
 

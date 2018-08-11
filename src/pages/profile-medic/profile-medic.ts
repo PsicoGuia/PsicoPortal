@@ -1,7 +1,6 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { MedicService } from '../../providers/medic-service';
-import * as $ from 'jquery'; // I hate jQQuery
 declare var google: any;
 declare var semanticPisco: any;
 /**
@@ -24,6 +23,8 @@ export class ProfileMedicPage {
   profile: any;
   stduies = [];
   listProfiles = [];
+  edit = "";
+  editProfile: any;
   listCategories = [];
   attentionChannel = "Consultorio";
   constructor(
@@ -270,7 +271,7 @@ export class ProfileMedicPage {
   ionViewDidLoad() {
     console.debug('ionViewDidLoad getProfiles');
     this.medicService.getPatologies().then(data => { this.listCategories = data })
-    this.medicService.getProfiles().then(data => {
+    this.medicService.getMyProfiles().then(data => {
       console.debug('ionViewDidLoad getProfiles2', data);
       this.listProfiles = data;
       if (this.listProfiles.length) {
@@ -285,8 +286,7 @@ export class ProfileMedicPage {
   loadMap() {
 
     var pos1LatLng = { lat: this.profile.position.coordinates[1], lng: this.profile.position.coordinates[0] };
-    var pos2LatLng = { lat: this.profile.address.latitude, lng: this.profile.address.longitude };
-
+    
     this.map = new google.maps.Map(this.mapElement.nativeElement, {
       zoom: 15,
       center: pos1LatLng
@@ -297,13 +297,6 @@ export class ProfileMedicPage {
       title: 'pos1',
     });
 
-    var marker2 = new google.maps.Marker({
-      position: pos2LatLng,
-      map: this.map,
-      title: 'pos2',
-      icon: this.pinSymbol("blue")
-    });
-
     var info = '<div class="contact-info" style="font-family: Roboto, \"Helvetica Neue\", sans-serif;"><strong>Pos1</strong><br/>' +
       '<p>' + this.profile.city + ' </p>' +
       '</div>';
@@ -311,10 +304,7 @@ export class ProfileMedicPage {
     var infoWindow = new google.maps.InfoWindow({
       content: info
     });
-    marker2.addListener('click', function () {
-      infoWindow.open(this.map, marker2);
-    });
-
+    
     marker.addListener('click', function () {
       infoWindow.open(this.map, marker);
     });
@@ -333,9 +323,14 @@ export class ProfileMedicPage {
     }
   }
 
-  takeAction(card) {
-    alert('edit' + card)
+  takeActionEdit(card) {
+    console.log("edit"+card)
+    this.edit = card;
+    this.editProfile = JSON.parse(JSON.stringify(this.profile));
+  
   }
+
+  
 
   pinSymbol(color) {
     return {
