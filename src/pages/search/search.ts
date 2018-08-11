@@ -108,7 +108,7 @@ export class SearchPage {
       title: 'pos1',
     });
     var info = '<div class="contact-info" style="font-family: Roboto, \"Helvetica Neue\", sans-serif;"><strong>Pos1</strong><br/>' +
-      '<p>INFO DE PRUEBA </p>' +
+      '<a href="#/profile-medic-detail/1">Doctor JuanSe Dussan</a>' +
       '</div>';
 
     var infoWindow = new google.maps.InfoWindow({

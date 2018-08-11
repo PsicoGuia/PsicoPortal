@@ -40,8 +40,8 @@
         <ion-avatar item-start>
           <img alt="{{ profile?.person?.user?.username }}" src="{{ profile.picture }}">
         </ion-avatar>
-        <a (click)="clickCardProfile(profile)">
-          <h2>{{profile.profile_title}}</h2>
+        <a href="#/profile-medic-detail/{{profile.id}}"(click)="clickCardProfile(profile)">
+          {{profile.profile_title}}
         </a>
         <p>Calificacion de usuarios:54 Citas atendidas:885 Años de experiencia:5 </p>
       </ion-item>

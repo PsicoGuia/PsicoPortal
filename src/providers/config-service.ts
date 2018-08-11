@@ -33,8 +33,9 @@ export class ConfigService {
     { title: 'REGISTER', component: 'RegisterMedicPage', icon: 'ios-home', stage: false, segment: "/" },
     { title: 'PREGUNTAS', component: 'Faqs', icon: 'md-help', stage: false, segment: "/" },
     { title: 'CONTÁCTANOS', component: 'Contact', icon: 'ios-call', stage: false, segment: "/" },
-    { title: 'BUSCAR', component: 'SearchPage', icon: 'search', stage: false, segment: "/search" },
-    
+    { title: 'BUSCAR', component: 'SearchPage', icon: 'search', stage: false, segment: "#/search" },
+    { title: 'AYUDA', component: 'FaqPqrPage', icon: 'information-circle', stage: false, segment: "#/help" },
+
   ];
 
   showLoader(msg: string) {
@@ -71,44 +72,45 @@ export class ConfigService {
 
 
   nameValidator(control: FormControl): { [s: string]: boolean } {
-    if (!control.value.match("^[a-zA-Z ,.']+$")) {
+    //if (!control.value.match("^[a-zA-Z ,.']+$")) {
+    if (1 != 1){ // force truncate FIXME
       return { invalidName: true };
-    }
   }
+}
 
 
-  emailValidator(control: FormControl): { [s: string]: boolean } {
-    var EMAIL_REGEXP = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)+$/i;
-    if (!EMAIL_REGEXP.test(control.value)) {
-      return { invalidEmail: true };
-    }
+emailValidator(control: FormControl): { [s: string]: boolean } {
+  var EMAIL_REGEXP = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)+$/i;
+  if (!EMAIL_REGEXP.test(control.value)) {
+    return { invalidEmail: true };
   }
+}
 
 
-  checkScreen() {
-    //console.debug('WINDOW',window.screen)
-    setTimeout(() => {
-      if (window.screen.width < 768)
-        this.menuCtrl.enable(true);
-      else
-        this.menuCtrl.enable(false);
-    }, 100);
-  }
+checkScreen() {
+  //console.debug('WINDOW',window.screen)
+  setTimeout(() => {
+    if (window.screen.width < 768)
+      this.menuCtrl.enable(true);
+    else
+      this.menuCtrl.enable(false);
+  }, 100);
+}
 
-  analyticsPage(url) {
-    //console.debug("ANALITICS GOOGLE ", url);
-    appGoogleAnalitics.sedPageAnalitics(url);
-  }
+analyticsPage(url) {
+  //console.debug("ANALITICS GOOGLE ", url);
+  appGoogleAnalitics.sedPageAnalitics(url);
+}
 
-  // MAP Tools
-  pinSymbol(color) {
-    return {
-      fillColor: color,
-      fillOpacity: 1,
-      strokeColor: '#000',
-      strokeWeight: 2,
-      scale: 1,
-    };
-  }
+// MAP Tools
+pinSymbol(color) {
+  return {
+    fillColor: color,
+    fillOpacity: 1,
+    strokeColor: '#000',
+    strokeWeight: 2,
+    scale: 1,
+  };
+}
 
 }
