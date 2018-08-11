@@ -2,6 +2,8 @@ import { Component, ViewChild, ElementRef } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { MedicService } from '../../providers/medic-service';
 import { ConfigService } from '../../providers/config-service';
+import { ProfileMedicDetailPage } from '../profile-medic-detail/profile-medic-detail';
+declare var google: any;
 
 /**
  * Generated class for the SearchPage page.
@@ -21,6 +23,8 @@ export class SearchPage {
   @ViewChild('map') mapElement: ElementRef;
   map: any;
   private listCategories = [];
+  filters = {};
+  listProfiles = [];
   private dummyLocations = [
     { type: "profile", title: "perfil1", lat: 4.6394723, long: -74.0738202 },
     { type: "profile", title: "perfil2", lat: 4.6393723, long: -74.0718202 },
@@ -78,6 +82,9 @@ export class SearchPage {
   ionViewDidLoad() {
     console.debug('ionViewDidLoad SearchPage');
     this.medicService.getPatologies().then(data => { this.listCategories = data })
+    this.medicService.getProfiles(this.filters).then(data => {
+      this.listProfiles = data;
+    })
     this.loadMap();
 
   }
@@ -85,7 +92,7 @@ export class SearchPage {
   loadMap() {
 
     var pos1LatLng = { lat: this.dummyLocations[0].lat, lng: this.dummyLocations[0].long };
-    var pos2LatLng = { lat: this.dummyLocations[1].lat, lng: this.dummyLocations[1].long };
+
 
     this.map = new google.maps.Map(this.mapElement.nativeElement, {
       zoom: 15,
@@ -96,14 +103,6 @@ export class SearchPage {
       map: this.map,
       title: 'pos1',
     });
-
-    var marker2 = new google.maps.Marker({
-      position: pos2LatLng,
-      map: this.map,
-      title: 'pos2',
-      icon: this.condigService.pinSymbol("blue")
-    });
-
     var info = '<div class="contact-info" style="font-family: Roboto, \"Helvetica Neue\", sans-serif;"><strong>Pos1</strong><br/>' +
       '<p>INFO DE PRUEBA </p>' +
       '</div>';
@@ -111,8 +110,18 @@ export class SearchPage {
     var infoWindow = new google.maps.InfoWindow({
       content: info
     });
-    marker2.addListener('click', function () {
-      infoWindow.open(this.map, marker2);
+
+    this.dummyLocations.forEach(element => {
+      var pos2LatLng = { lat: element.lat, lng: element.long };
+      var marker2 = new google.maps.Marker({
+        position: pos2LatLng,
+        map: this.map,
+        title: 'pos2',
+        icon: this.condigService.pinSymbol("blue")
+      });
+      marker2.addListener('click', function () {
+        infoWindow.open(this.map, marker2);
+      });
     });
 
     marker.addListener('click', function () {
@@ -132,9 +141,13 @@ export class SearchPage {
         return "yellow";
       default:
         return "red";
-        break;
     }
 
+  }
+
+  clickCardProfile(profile) {
+    console.log("clickCardProfile");
+    this.navCtrl.setRoot(ProfileMedicDetailPage, { id: profile.id })
   }
 
 }

@@ -1,6 +1,6 @@
 <ion-header>
   <div class="container">
-    <header-qmercas></header-qmercas>
+    <header-psicoguia></header-psicoguia>
   </div>
 </ion-header>
 
@@ -137,6 +137,22 @@
       </ion-row>
       <!-- read profile -->
       <ion-row *ngIf="edit != 'profile-info'">
+        <ion-col col-md-12>
+          <ion-item>
+            <h2>Nombre del perfil:
+              <p text-wrap *ngIf="profile.profile_title">{{profile.profile_title}}</p>
+            </h2>
+          </ion-item>
+        </ion-col>
+
+        <ion-col col-md-12>
+          <ion-item>
+            <h2>Sobre mi:
+              <p text-wrap *ngIf="profile.about_me">{{profile.about_me}}</p>
+            </h2>
+          </ion-item>
+        </ion-col>
+
         <ion-col col-md-3>
           <ion-item>
             <h2>Genero:
@@ -196,6 +212,20 @@
 
       <!-- Update Profile-->
       <ion-row *ngIf="edit == 'profile-info'">
+        <ion-col col-md-12>
+          <ion-item>
+            <ion-label>Nombre del perfil:</ion-label>
+            <ion-input [(ngModel)]="editProfile.profile_title" name="text"></ion-input>
+          </ion-item>
+        </ion-col>
+
+        <ion-col col-md-12>
+          <ion-item>
+            <ion-label>Sobre mi:</ion-label>
+            <ion-textarea [(ngModel)]="editProfile.about_me" name="text"></ion-textarea>
+          </ion-item>
+        </ion-col>
+
         <ion-col col-md-6>
           <ion-item>
             <ion-label>Genero: </ion-label>

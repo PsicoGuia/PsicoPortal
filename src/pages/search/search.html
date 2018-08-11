@@ -1,6 +1,6 @@
 <ion-header>
   <div class="container">
-    <header-qmercas></header-qmercas>
+    <header-psicoguia></header-psicoguia>
   </div>
 </ion-header>
 
@@ -8,4 +8,29 @@
 <ion-content padding>
   <!-- Map Inject -->
   <div padding style="height: 240px;" id='map1' #map></div>
+
+  <div class="list-profiles">
+    <ion-card (click)="clickCardProfile(profile)" *ngFor="let profile of listProfiles">
+      <ion-item>
+        <ion-avatar item-start>
+          <img alt="{{ profile?.person?.user?.username }}" src="{{ profile.picture }}">
+        </ion-avatar>
+        <a (click)="clickCardProfile(profile)">
+          <h2>{{profile.profile_title}}</h2>
+        </a>
+        <p>Calificacion de usuarios:54 Citas atendidas:885 Años de experiencia:5 </p>
+      </ion-item>
+      <div text-center style="max-width: 526px;">
+        <img alt="{{ profile?.person?.user?.username }}" src="{{ profile.picture }}">
+      </div>
+      <ion-fab right top>
+        <button ion-fab>
+          <ion-icon name="wine"></ion-icon>
+        </button>
+      </ion-fab>
+      <ion-card-content padding-horizontal>
+        <p text-justify>{{profile.about_me}}</p>
+      </ion-card-content>
+    </ion-card>
+  </div>
 </ion-content>

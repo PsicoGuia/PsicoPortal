@@ -1,7 +1,6 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { MedicService } from '../../providers/medic-service';
-import * as $ from 'jquery'; // I hate jQQuery
 declare var google: any;
 declare var semanticPisco: any;
 /**
@@ -272,7 +271,7 @@ export class ProfileMedicPage {
   ionViewDidLoad() {
     console.debug('ionViewDidLoad getProfiles');
     this.medicService.getPatologies().then(data => { this.listCategories = data })
-    this.medicService.getProfiles().then(data => {
+    this.medicService.getMyProfiles().then(data => {
       console.debug('ionViewDidLoad getProfiles2', data);
       this.listProfiles = data;
       if (this.listProfiles.length) {

@@ -1,6 +1,5 @@
 {
   "name": "PsicoPortal",
-  "app_id": "",
   "type": "ionic-angular",
   "proxies": [
     {
@@ -11,8 +10,5 @@
       "path": "/mailchimp/",
       "proxyUrl": "https://us15.api.mailchimp.com/3.0/lists/XXX/members/"
     }
-  ],
-  "integrations": {
-    "cordova": {}
-  }
+  ]
 }
