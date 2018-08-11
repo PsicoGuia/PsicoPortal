@@ -287,7 +287,7 @@
               <br/>
               <p text-wrap>Ciudad: {{profile.city}}</p>
               <br>
-              <p text-wrap>Dirección: TODO</p>
+              <p text-wrap>Dirección: {{profile.address_full}}</p>
               <p text-wrap *ngIf="profile?.position">Localización: Lat: {{profile.position.coordinates[1] | number:'1.2' }} - Long: {{profile.position.coordinates[0]
                 | number:'1.2'}} </p>
             </h2>

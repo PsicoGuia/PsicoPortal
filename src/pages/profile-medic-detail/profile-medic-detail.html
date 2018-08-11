@@ -12,8 +12,8 @@
 
 
 <ion-content padding>
-  <div *ngIf="profile">
-    <ion-grid>
+  <div>
+    <ion-grid *ngIf="profile">
       <ion-row class="row-picture ">
         <div class="background-image" [ngStyle]="{'background-image': 'url(' + profile.picture + ')'}">
         </div>
@@ -23,9 +23,13 @@
 
     <ion-grid>
       <ion-row>
-        <ion-col col-8>
+        <ion-col col-8 *ngIf="profile">
           <ion-card>
             <ion-row>
+              <ion-col padding col-md-12>
+                <h1 text-wrap *ngIf="profile.profile_title">{{profile.profile_title}}
+                </h1>
+              </ion-col>
               <!-- stadistics profile -->
               <ion-col col-4>
                 <ion-item text-center>
@@ -48,13 +52,6 @@
             </ion-row>
             <!-- read profile -->
             <ion-row>
-              <ion-col col-md-12>
-                <ion-item>
-                  <h2 text-wrap *ngIf="profile.profile_title">{{profile.profile_title}}
-                  </h2>
-                </ion-item>
-              </ion-col>
-
               <ion-col col-md-12>
                 <ion-item>
                   <h2>Sobre mi:
@@ -90,14 +87,108 @@
               </ion-col>
             </ion-row>
             <ion-row>
-              <ion-col col-md-12>
+              <ion-col padding col-md-12>
                 <h2>Costo de la cita:</h2>
                 <p>
                   El costo promedio de cada cita redondea el valor de : {{profile.cost}} {{profile.cost_currency}}
                 </p>
               </ion-col>
-
             </ion-row>
+            <ion-row padding>
+              <ion-col col-12>
+                <h2>Especialista en:</h2>
+              </ion-col>
+              <ion-col col-2 *ngFor="let patologyOrCategory of profile.profilepatologyorcategory_set">
+                <ul>
+                  <li>{{patologyOrCategory.patology?.name}}{{patologyOrCategory.category?.name}}</li>
+                </ul>
+              </ion-col>
+            </ion-row>
+          </ion-card>
+
+          <ion-card *ngIf="profile">
+            <ion-card-header color="primary">
+              <p text-wrap>Estudios</p>
+            </ion-card-header>
+            <ion-card-content>
+              <ion-list>
+                <button ion-item (click)="clickStudie(item)" *ngFor="let item of profile.studies_set">
+                  <h2>{{item.title}}</h2>
+                  <p>Años de experiencia: {{item.experienceYears}} | Nivel:{{item.level}}</p>
+                  <ion-note item-end>{{item.date | date: "longDate"}}</ion-note>
+                </button>
+              </ion-list>
+              <div style="width: 100%;text-align:right;">
+                <button ion-button item-right clear (click)="clickNewStudie()">
+                  <ion-icon name="add">Añadir</ion-icon>
+                </button>
+              </div>
+            </ion-card-content>
+          </ion-card>
+
+          <ion-card *ngIf="profile">
+            <ion-card-header color="primary">
+              <p text-wrap>Canales de atención</p>
+              <ion-segment [(ngModel)]="attentionChannel">
+                <ion-segment-button value="Consultorio">
+                  <ion-icon name="home">Consultorio</ion-icon>
+                </ion-segment-button>
+                <ion-segment-button value="Chat">
+                  <ion-icon name="ios-chatbubbles">Chat</ion-icon>
+                </ion-segment-button>
+                <ion-segment-button value="Domicilio">
+                  <ion-icon name="ios-basket">Domicilio</ion-icon>
+                </ion-segment-button>
+              </ion-segment>
+            </ion-card-header>
+            <ion-card-content>
+              <div [ngSwitch]="attentionChannel">
+                <ion-list *ngSwitchCase="'Consultorio'">
+                  <!-- <ion-list-header>Contenido Consultrio</ion-list-header> -->
+                  <button ion-item (click)="clickAttentionChannel(item)" *ngFor="let item of profile.office_set">
+                    <ion-avatar item-start>
+                      <img *ngIf="item.images" src="{{item.images[0].image}}">
+                    </ion-avatar>
+                    <h2>{{item.description}}</h2>
+                    <p>{{item.city}} {{item.address}}</p>
+                    <ion-note item-end>{{item.created | date: "longDate"}}</ion-note>
+                  </button>
+                  <ion-item *ngIf="!profile.office_set?.length">No cuentas con consultorios</ion-item>
+                </ion-list>
+                <ion-list *ngSwitchCase="'Chat'">
+                  <!-- <ion-list-header> Contenido Chat</ion-list-header> -->
+                  <button ion-item (click)="clickAttentionChannel(item)" *ngFor="let item of profile.chat_set">
+                    <ion-avatar item-start>
+                      <img *ngIf="item.images" src="{{item.images[0].image}}">
+                    </ion-avatar>
+                    <h2>{{item.description}}</h2>
+                    <p>{{item.city}} {{item.address}}</p>
+                    <ion-note item-end>{{item.created | date: "longDate"}}</ion-note>
+                  </button>
+                  <ion-item *ngIf="!profile.chat_set?.length">No cuentas con chats</ion-item>
+                </ion-list>
+
+                <ion-list *ngSwitchCase="'Domicilio'">
+                  <!-- <ion-list-header> Contenido Domicilio</ion-list-header> -->
+                  <button ion-item (click)="clickAttentionChannel(item)" *ngFor="let item of profile.homevisit_set">
+                    <ion-avatar item-start>
+                      <img *ngIf="item.images" src="{{item.images[0].image}}">
+                    </ion-avatar>
+                    <h2>{{item.description}}</h2>
+                    <p>{{item.city}} {{item.address}}</p>
+                    <ion-note item-end>{{item.created | date: "longDate"}}</ion-note>
+                  </button>
+                  <ion-item *ngIf="!profile.homevisit_set?.length">No cuentas con domicilios</ion-item>
+                </ion-list>
+
+                <div style="width: 100%;text-align:right;">
+                  <button ion-button item-right clear (click)="clickNewAttentionChannel()">
+                    <ion-icon name="add">Añadir</ion-icon>
+                  </button>
+                </div>
+
+              </div>
+            </ion-card-content>
           </ion-card>
         </ion-col>
 
@@ -105,7 +196,7 @@
         <!-- CONTACT -->
         <ion-col col-4>
           <ion-card>
-            <ion-row *ngIf="contact">
+            <ion-row *ngIf="contact && profile">
               <ion-col col-12>
                 <ion-item>
                   <h2>Nombre:</h2>
@@ -131,11 +222,19 @@
                   </h2>
                 </ion-item>
               </ion-col>
-
+              <ion-col col-12>
+                <ion-item>
+                  <h2>Dirección:
+                    <p text-wrap>{{profile.address_full}}</p>
+                  </h2>
+                </ion-item>
+              </ion-col>
             </ion-row>
+            <!-- Map Inject -->
+            <div padding style="height: 240px;" id='map-profile-medic-detail' #map></div>
             <ion-row>
               <ion-col col-12>
-                <button (click)="contact = !contact" ion-button block></button>
+                <button (click)="contact = !contact" ion-button block>Contactalo!</button>
               </ion-col>
             </ion-row>
           </ion-card>
