@@ -1,13 +1,13 @@
 {
-  "name": "The Smokers Store",
-  "short_name": "TSS",
+  "name": "PsicoGuia - Encuentra tu psicologo más cercano online facil, agil y efectivo",
+  "short_name": "PsicoGuia",
   "start_url": "index.html",
   "display": "standalone",
   "icons": [{
-    "src": "assets/img/smokerslogo512x512.png",
+    "src": "https://www.piscogia.co/assets/img/logo_300.png",
     "sizes": "512x512",
     "type": "image/png"
   }],
-  "background_color": "#262626",
-  "theme_color": "#262626"
+  "background_color": "#10AC71",
+  "theme_color": "#10AC71"
 }

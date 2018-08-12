@@ -14,6 +14,16 @@
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
 
+// Font Style
+h1 {
+  color: color($colors, primary) !important;
+}
+h2,
+h3,
+h4 {
+  color: color($colors, secondary) !important;
+}
+// End Font Style
 ion-content {
   background: url(/assets/img/bg.jpg) no-repeat center center fixed;
   -webkit-background-size: cover;
@@ -64,9 +74,20 @@ ion-item {
   }
 }
 
-.warning-toast {
-  .toast-message {
+.toast-error {
+  .toast-message,
+  .toast-container,
+  .toast-button {
     background-color: color($colors, danger);
+  }
+}
+
+.toast-success {
+  .toast-message,
+  .toast-container,
+  .toast-button {
+    background-color: color($colors, primary);
+    border: none;
   }
 }
 
@@ -331,7 +352,7 @@ ion-menu {
   }
 
   .phone-contact {
-    background-color: color($colors, secondary);
+    background-color: color($colors, primary);
     display: inline-block;
     width: 160px;
     margin: 0;
@@ -344,8 +365,10 @@ ion-menu {
       font-size: 0.8rem;
       margin: 0;
       line-height: 3px;
+      color: color($colors, light);
     }
     h3 {
+      color: color($colors, light) !important;
       margin: 0;
       text-align: right;
       margin-bottom: -1px;

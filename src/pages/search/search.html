@@ -16,8 +16,9 @@
           <ion-label stacked>Ingresa tu ubicación</ion-label>
           <ion-input id="address-ac" type="text" [(ngModel)]="address" placeholder="Ej: Carrera 15 #85-41"></ion-input>
         </ion-item>
+        <h3 text-center>ó</h3>
         <button ion-button block (click)="getLocation()">
-          <ion-icon name="locate">Obtener ubicación por GPS</ion-icon>
+          <ion-icon name="locate">Usa tú GPS</ion-icon>
         </button>
         <ion-item>
           <ion-label stacked>Seleciona las patolgías que quieres filtrar</ion-label>
@@ -40,7 +41,7 @@
         <ion-avatar item-start>
           <img alt="{{ profile?.person?.user?.username }}" src="{{ profile.picture }}">
         </ion-avatar>
-        <a href="#/profile-medic-detail/{{profile.id}}"(click)="clickCardProfile(profile)">
+        <a href="#/profile-medic-detail/{{profile.id}}" (click)="clickCardProfile(profile)">
           {{profile.profile_title}}
         </a>
         <p>Calificacion de usuarios:54 Citas atendidas:885 Años de experiencia:5 </p>
@@ -50,7 +51,7 @@
       </div>
       <ion-fab right top>
         <button ion-fab>
-          <ion-icon name="wine"></ion-icon>
+          <ion-icon name="information-circle"></ion-icon>
         </button>
       </ion-fab>
       <ion-card-content padding-horizontal>

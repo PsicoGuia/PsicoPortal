@@ -2,7 +2,9 @@ import {
   LoadingController,
   ToastController,
   AlertController,
-  MenuController
+  MenuController,
+  NavController,
+  App
 } from "ionic-angular";
 import { Injectable } from "@angular/core";
 import { FormControl } from "@angular/forms";
@@ -26,7 +28,8 @@ export class ConfigService {
     public alertCtrl: AlertController,
     public http: HttpClient,
     public menuCtrl: MenuController,
-    public settings: Settings
+    public settings: Settings,
+    public app: App
   ) {}
 
   public pages = [
@@ -47,7 +50,7 @@ export class ConfigService {
       segment: "#/search"
     },
     {
-      title: "REGISTER",
+      title: "REGISTRARSE",
       show: () => {
         return this.isNotAutenticated();
       },
@@ -92,8 +95,46 @@ export class ConfigService {
       icon: "information-circle",
       stage: false,
       segment: "#/help"
+    },
+    {
+      title: "PQR",
+      show: false,
+      component: "PqrPage",
+      icon: "information-circle",
+      stage: false,
+      segment: "#/help"
     }
   ];
+
+  getPage(componentName) {
+    return this.pages.find(item => {
+      return item.component == componentName;
+    });
+  }
+
+  openPage(page) {
+    this.clearActive(page);
+    this.app.getActiveNav().setRoot(page.component);
+  }
+
+  pushPage(page) {
+    this.clearActive(page);
+    this.app.getActiveNav().push(page.component);
+  }
+
+  clearActive(page) {
+    for (let pg of this.pages) {
+      if (page) {
+        if (pg.title == page.title) {
+          pg.stage = true;
+        } else {
+          pg.stage = false;
+        }
+      } else {
+        pg.stage = false;
+      }
+    }
+  }
 
   showLoader(msg: string) {
     if (!msg) msg = "Cargando...";
@@ -109,7 +150,7 @@ export class ConfigService {
     }
   }
 
-  showToast(msg: string, style = "") {
+  showToast(msg: string, style = "toast-success") {
     if (this.toast) {
       this.toastPrev = this.toast;
     }
