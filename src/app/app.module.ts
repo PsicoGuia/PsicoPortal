@@ -16,6 +16,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MedicService } from '../providers/medic-service';
 import { GoogleService } from '../providers/google-service';
 import { UserPopoverPage } from '../components/header/userpopover';
+import { PQRService } from '../providers/pqr-service';
 //import {ImageModalPage} from '../pages/image-modal/image-modal'
 
 @NgModule({
@@ -48,7 +49,7 @@ import { UserPopoverPage } from '../components/header/userpopover';
     UserService,
     MedicService,
     GoogleService,
-
+    PQRService,
   ]
 
 })

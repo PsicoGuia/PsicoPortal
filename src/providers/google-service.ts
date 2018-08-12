@@ -10,7 +10,7 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class GoogleService {
 
-  public apikey: string = "AIzaSyA8e0_24cIiwlp_Vi-2h5ZFg92D9YwHEh8"; //FIXME
+  public apikey: string = "AIzaSyCQccce99Xzt23VYwc4GShNc2QC6Zq3dOI"; //FIXME
   public autocomplete: any;
   public options: any = {
     types: ['address']

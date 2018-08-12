@@ -23,7 +23,7 @@
 
     <ion-grid>
       <ion-row>
-        <ion-col col-8 *ngIf="profile">
+        <ion-col col-md-8 *ngIf="profile">
           <ion-card>
             <ion-row>
               <ion-col padding col-md-12>
@@ -194,8 +194,10 @@
 
 
         <!-- CONTACT -->
-        <ion-col col-4>
+        <ion-col col-md-4>
           <ion-card>
+            <!-- Map Inject -->
+            <div padding style="height: 240px;" id='map-profile-medic-detail' #map></div>
             <ion-row *ngIf="contact && profile">
               <ion-col col-12>
                 <ion-item>
@@ -230,10 +232,8 @@
                 </ion-item>
               </ion-col>
             </ion-row>
-            <!-- Map Inject -->
-            <div padding style="height: 240px;" id='map-profile-medic-detail' #map></div>
             <ion-row>
-              <ion-col col-12>
+              <ion-col *ngIf="!contact" col-12>
                 <button (click)="contact = !contact" ion-button block>Contactalo!</button>
               </ion-col>
             </ion-row>
