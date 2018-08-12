@@ -1,17 +1,19 @@
-import { Component, ViewChild, ElementRef } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { MedicService } from '../../providers/medic-service';
+import { Component, ViewChild, ElementRef } from "@angular/core";
+import { IonicPage, NavController, NavParams } from "ionic-angular";
+import { MedicService } from "../../providers/medic-service";
+import { PqrPage } from "../pqr/pqr";
 declare var google: any;
 
 @IonicPage({
   segment: "profile-medic-detail/:id"
 })
 @Component({
-  selector: 'page-profile-medic-detail',
-  templateUrl: 'profile-medic-detail.html',
+  selector: "page-profile-medic-detail",
+  templateUrl: "profile-medic-detail.html"
 })
 export class ProfileMedicDetailPage {
-  @ViewChild('map') mapElement: ElementRef;
+  @ViewChild("map")
+  mapElement: ElementRef;
   map: any;
   profile: any;
   stduies = [];
@@ -22,22 +24,24 @@ export class ProfileMedicDetailPage {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    public medicService: MedicService,
+    public medicService: MedicService
   ) {
     this.idProfile = this.navParams.get("id");
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ProfileMedicDetailPage', this.idProfile);
+    console.log("ionViewDidLoad ProfileMedicDetailPage", this.idProfile);
     this.medicService.getProfileDetail(this.idProfile).then(data => {
       this.profile = data;
       this.loadMap();
-    })
+    });
   }
 
   loadMap() {
-
-    var pos1LatLng = { lat: this.profile.position.coordinates[1], lng: this.profile.position.coordinates[0] };
+    var pos1LatLng = {
+      lat: this.profile.position.coordinates[1],
+      lng: this.profile.position.coordinates[0]
+    };
 
     console.log("this.mapElement.nativeElement", this.mapElement.nativeElement);
 
@@ -48,34 +52,42 @@ export class ProfileMedicDetailPage {
     var marker = new google.maps.Marker({
       position: pos1LatLng,
       map: this.map,
-      title: 'pos1',
+      title: "pos1"
     });
 
-    var info = '<div class="contact-info" style="font-family: Roboto, \"Helvetica Neue\", sans-serif;"><strong>Pos1</strong><br/>' +
-      '<p>' + this.profile.city + ' </p>' +
-      '</div>';
+    var info =
+      '<div class="contact-info" style="font-family: Roboto, "Helvetica Neue", sans-serif;"><strong>Pos1</strong><br/>' +
+      "<p>" +
+      this.profile.city +
+      " </p>" +
+      "</div>";
 
     var infoWindow = new google.maps.InfoWindow({
       content: info
     });
 
-    marker.addListener('click', function () {
+    marker.addListener("click", function() {
       infoWindow.open(this.map, marker);
     });
   }
 
-  
   getGenero(genero) {
     switch (genero) {
-      case 'F':
-        return "Femenino"
+      case "F":
+        return "Femenino";
 
-      case 'M':
-        return "Masculino"
+      case "M":
+        return "Masculino";
 
       default:
-        return 'No definido'
+        return "No definido";
     }
   }
 
+  reportProfile() {
+    this.navCtrl.push(PqrPage, {
+      name: this.profile.profile_title,
+      id: this.profile.id
+    });
+  }
 }

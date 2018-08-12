@@ -7,8 +7,8 @@
     </div>
 
     <ion-list *ngIf="configService">
-      <a class="primary-background" *ngFor="let  page of getPages()" href="{{page.segment}}" (click)="$event.preventDefault(); pushPage(page);"
-        ion-item text-uppercase>{{page.title}}
+      <a class="primary-background" *ngFor="let  page of getPages()" href="{{page.segment}}" (click)="$event.preventDefault(); openPage(page);"
+        ion-item menuClose text-uppercase>{{page.title}}
       </a>
     </ion-list>
 

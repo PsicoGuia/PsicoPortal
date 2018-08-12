@@ -78,30 +78,13 @@ export class MyApp {
   }
 
   openPage(page) {
-    page = this.pages[page];
-    this.clearActive(page);
-    this.nav.setRoot(page.component);
+    this.configService.openPage(page);
   }
 
   pushPage(page) {
-    page = this.pages[page];
-    this.clearActive(page);
-    this.nav.push(page.component);
+    this.configService.pushPage(page);
   }
-
-  clearActive(page) {
-    for (let pg of this.pages) {
-      if (page) {
-        if (pg.title == page.title) {
-          pg.stage = true;
-        } else {
-          pg.stage = false;
-        }
-      } else {
-        pg.stage = false;
-      }
-    }
-  }
+  
 
   login() {
     alert("change for view");

@@ -54,6 +54,8 @@ body {
   max-height: 42px;
 }
 
+// Rewrite Ionic elements
+
 ion-menu {
   a {
     ion-label {
@@ -62,9 +64,20 @@ ion-menu {
     }
   }
 }
+
 ion-item {
   background-color: transparent !important;
+  ion-label[stacked] {
+    color: color($colors, secondary)!important;
+  }
 }
+
+ion-select{
+  .select-text{
+    color: color($colors, gray)!important;
+  }
+}
+
 .no-spin-number {
   -moz-appearance: textfield;
   input,
@@ -138,6 +151,7 @@ ion-menu {
 //   max-height: 63px;
 // }
 
+// END Rewrite Ionic elements
 .button-gray {
   background-color: color($colors, gray);
 }
