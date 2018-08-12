@@ -1,8 +1,8 @@
 page-home {
 
   .divBanner {
-    color: white;
-    background-color: map-get($colors, secondary);
+    color: color($colors, light);
+    background-color: color($colors, secondary);
     margin-left: auto;
     margin-right: auto;
     text-align: center;

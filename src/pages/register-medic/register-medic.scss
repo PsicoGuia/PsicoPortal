@@ -1,14 +1,14 @@
 page-register-medic {
 	.term-conditions{
 		ion-label{
-			background-color: white;
+			background-color: color($colors, light);
 			padding: 15px;
 			margin: 0px;	
 			ion-checkbox{
 				margin-right: 10px;
 			}
 			a{
-				color: map-get($colors, secondary);
+				color: color($colors, secondary);
 				cursor: pointer;
 			}		
 		}

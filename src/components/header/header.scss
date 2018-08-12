@@ -13,13 +13,13 @@ header-qmercas {
   }
 
   .select-md {
-    color: white;
+    color: color($colors, light);
     font-size: 1.8rem;
     float: left;
   }
 
   .bar-button-default-md:hover:not(.disable-hover) {
-    color: $color-green;
+    color: color($colors, success);
   }
 
   @media (min-width: 576px) {

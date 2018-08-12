@@ -47,7 +47,7 @@ body {
 ion-menu {
   a {
     ion-label {
-      color: white;
+      color: color($colors, light);
       font-weight: bold;
     }
   }
@@ -104,12 +104,12 @@ ion-menu {
 .bar-button-clear-md-default,
 .bar-button-md-default,
 .bar-button-default-ios {
-  color: #fff;
+  color: color($colors, light);
 }
 
 .toolbar-title-md,
 .toolbar-title-ios {
-  color: #fff;
+  color: color($colors, light);
 }
 
 // .toolbar-md {
@@ -118,7 +118,7 @@ ion-menu {
 // }
 
 .button-gray {
-  background-color: #b8b8b8;
+  background-color: color($colors, gray);
 }
 
 .primary-text-color {
@@ -126,7 +126,7 @@ ion-menu {
 }
 
 .white-text-color {
-  color: #fff;
+  color: color($colors, light);
 }
 
 .gray-background {
@@ -137,7 +137,7 @@ ion-menu {
   background-color: color($colors, primary) !important;
 }
 .user-side-menu {
-  color: #fff;
+  color: color($colors, light);
 
   ion-icon {
     color: color($colors, primary);
@@ -148,7 +148,7 @@ ion-menu {
   }
 
   .user-side-menu-addbutton {
-    color: #fff;
+    color: color($colors, light);
   }
 
   .toolbar-background {
@@ -159,10 +159,10 @@ ion-menu {
 .table {
   .t-head {
     font-weight: bold;
-    border-bottom: 2px solid #ddd;
+    border-bottom: 2px solid color($colors, light);
   }
   .t-body {
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid color($colors, light);
   }
 }
 
@@ -171,12 +171,12 @@ ion-menu {
 }
 
 .container-content {
-  background-color: #fff;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.6);
+  background-color: color($colors, light);
+  box-shadow: 0 2px 5px color($colors, dark);
 }
 
 .shadow {
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 2px 5px color($colors, dark);
 }
 
 .long-text {
@@ -323,7 +323,7 @@ ion-menu {
     padding-right: 10px;
     font-weight: bold;
     border-width: 2px;
-    box-shadow: 0px 0px 5px 1px #afafaf;
+    box-shadow: 0px 0px 5px 1px color($colors, gray);
     ion-icon {
       margin-left: 10px;
       font-weight: bolder;
@@ -331,15 +331,15 @@ ion-menu {
   }
 
   .phone-contact {
-    background-color: map-get($colors, secondary);
+    background-color: color($colors, secondary);
     display: inline-block;
     width: 160px;
     margin: 0;
     padding: 6px;
-    color: map-get($colors, light);
+    color: color($colors, light);
     vertical-align: bottom;
     margin-bottom: 4px;
-    box-shadow: 0px 0px 5px 1px #afafaf;
+    box-shadow: 0px 0px 5px 1px color($colors, gray);
     p {
       font-size: 0.8rem;
       margin: 0;
