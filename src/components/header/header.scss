@@ -1,31 +1,4 @@
-header-psicoguia {
-
-  .toolbar-background {
-    background: transparent;
-  }
-  ion-select {
-    display: inline-block;
-    padding-bottom: 8px;
-    position: relative;
-    vertical-align: middle;
-    .select-text, .select-icon {
-      display: inline-block;
-    }
-  }
-  ion-title img {
-    vertical-align: middle;
-    max-height: 54px;
-  }
-  .searchbar-input-container {
-    background: #fff;
-  }
-  .toolbar-ios ion-title {
-    left: initial;
-    top: initial;
-    padding: initial;
-    position: initial;
-  }
-
+header-qmercas {
   .ion-md-cart {
     margin-right: 15px;
   }
@@ -33,12 +6,6 @@ header-psicoguia {
     position: absolute;
     top: -5px;
     right: -3px;
-  }
-  .header-add-address {
-    vertical-align: middle;
-    color: #fff;
-    border: 0;
-    margin-top: -3px;
   }
 
   .bar-buttons-md[end] {
@@ -52,11 +19,12 @@ header-psicoguia {
   }
 
   .bar-button-default-md:hover:not(.disable-hover) {
-    color: color($colors, primary);
+    color: $color-green;
   }
 
   @media (min-width: 576px) {
-    .bar-button-md, .bar-button-md[icon-only] {
+    .bar-button-md,
+    .bar-button-md[icon-only] {
       padding-top: 20px;
     }
     .back-button {

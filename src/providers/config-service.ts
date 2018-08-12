@@ -1,15 +1,19 @@
-import { LoadingController, ToastController, AlertController, MenuController } from 'ionic-angular';
-import { Injectable } from '@angular/core';
+import {
+  LoadingController,
+  ToastController,
+  AlertController,
+  MenuController
+} from "ionic-angular";
+import { Injectable } from "@angular/core";
 import { FormControl } from "@angular/forms";
-import { HttpClient } from '@angular/common/http';
+import { HttpClient } from "@angular/common/http";
+import { Settings } from "./settings";
 
 declare var appGoogleAnalitics: any;
 export let URL_API = "/api/1.0/";
 
-
 @Injectable()
 export class ConfigService {
-
   loading: any;
   emailValidated: boolean;
   toast: any;
@@ -22,20 +26,73 @@ export class ConfigService {
     public alertCtrl: AlertController,
     public http: HttpClient,
     public menuCtrl: MenuController,
-  ) {
-  }
+    public settings: Settings
+  ) {}
 
   public pages = [
-    { title: 'Inicio', component: 'Home', icon: 'ios-home', stage: false, segment: "/" },
-    { title: 'Registrate', component: 'RegisterMedicPage', icon: 'ios-home', stage: false, segment: "/" },
-    { title: 'Iniciar sesión', component: 'LoginMedicPage', icon: 'ios-home', stage: false, segment: "/" },
-    { title: 'Perfil', component: '', icon: 'ios-home', stage: false, segment: "/" },
-    { title: 'REGISTER', component: 'RegisterMedicPage', icon: 'ios-home', stage: false, segment: "/" },
-    { title: 'PREGUNTAS', component: 'Faqs', icon: 'md-help', stage: false, segment: "/" },
-    { title: 'CONTÁCTANOS', component: 'Contact', icon: 'ios-call', stage: false, segment: "/" },
-    { title: 'BUSCAR', component: 'SearchPage', icon: 'search', stage: false, segment: "#/search" },
-    { title: 'AYUDA', component: 'FaqPqrPage', icon: 'information-circle', stage: false, segment: "#/help" },
+    {
+      title: "INICIO",
+      show: true,
+      component: "Home",
+      icon: "ios-home",
+      stage: false,
+      segment: "/"
+    },
+    {
+      title: "BUSCAR",
+      show: true,
+      component: "SearchPage",
+      icon: "search",
+      stage: false,
+      segment: "#/search"
+    },
+    {
+      title: "REGISTER",
+      show: () => {
+        return this.isNotAutenticated();
+      },
+      component: "RegisterMedicPage",
+      icon: "ios-home",
+      stage: false,
+      segment: "/register-medic"
+    },
+    {
+      title: "INICIAR SESIÓN",
+      show: () => {
+        return this.isNotAutenticated();
+      },
+      component: "LoginMedicPage",
+      icon: "ios-home",
+      stage: false,
+      segment: "/"
+    },
+    {
+      title: "PERFIL",
+      show: () => {
+        return this.isAutenticated();
+      },
+      component: "",
+      icon: "ios-home",
+      stage: false,
+      segment: "/"
+    },
 
+    // {
+    //   title: "CONTÁCTANOS",
+    //   show: true,
+    //   component: "Contact",
+    //   icon: "ios-call",
+    //   stage: false,
+    //   segment: "/"
+    // },
+    {
+      title: "AYUDA",
+      show: true,
+      component: "FaqPqrPage",
+      icon: "information-circle",
+      stage: false,
+      segment: "#/help"
+    }
   ];
 
   showLoader(msg: string) {
@@ -46,13 +103,11 @@ export class ConfigService {
     this.loading.present();
   }
 
-
   dismissLoader() {
     if (this.loading) {
       this.loading.dismiss();
     }
   }
-
 
   showToast(msg: string, style = "") {
     if (this.toast) {
@@ -62,55 +117,67 @@ export class ConfigService {
       message: msg,
       duration: 15000,
       showCloseButton: true,
-      closeButtonText: 'X',
-      cssClass: style,
+      closeButtonText: "X",
+      cssClass: style
     });
     this.toast.present();
-    if (this.toastPrev)
-      this.toastPrev.dismiss();
+    if (this.toastPrev) this.toastPrev.dismiss();
   }
-
 
   nameValidator(control: FormControl): { [s: string]: boolean } {
     //if (!control.value.match("^[a-zA-Z ,.']+$")) {
-    if (1 != 1){ // force truncate FIXME
+    if (1 != 1) {
+      // force truncate FIXME
       return { invalidName: true };
+    }
   }
-}
 
-
-emailValidator(control: FormControl): { [s: string]: boolean } {
-  var EMAIL_REGEXP = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)+$/i;
-  if (!EMAIL_REGEXP.test(control.value)) {
-    return { invalidEmail: true };
+  emailValidator(control: FormControl): { [s: string]: boolean } {
+    var EMAIL_REGEXP = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)+$/i;
+    if (!EMAIL_REGEXP.test(control.value)) {
+      return { invalidEmail: true };
+    }
   }
-}
 
+  checkScreen() {
+    //console.debug('WINDOW',window.screen)
+    setTimeout(() => {
+      if (window.screen.width < 768) this.menuCtrl.enable(true);
+      else this.menuCtrl.enable(false);
+    }, 100);
+  }
 
-checkScreen() {
-  //console.debug('WINDOW',window.screen)
-  setTimeout(() => {
-    if (window.screen.width < 768)
-      this.menuCtrl.enable(true);
-    else
-      this.menuCtrl.enable(false);
-  }, 100);
-}
+  analyticsPage(url) {
+    //console.debug("ANALITICS GOOGLE ", url);
+    appGoogleAnalitics.sedPageAnalitics(url);
+  }
 
-analyticsPage(url) {
-  //console.debug("ANALITICS GOOGLE ", url);
-  appGoogleAnalitics.sedPageAnalitics(url);
-}
+  // MAP Tools
+  pinSymbol(color) {
+    return {
+      fillColor: color,
+      fillOpacity: 1,
+      strokeColor: "#000",
+      strokeWeight: 2,
+      scale: 1
+    };
+  }
 
-// MAP Tools
-pinSymbol(color) {
-  return {
-    fillColor: color,
-    fillOpacity: 1,
-    strokeColor: '#000',
-    strokeWeight: 2,
-    scale: 1,
-  };
-}
+  isAutenticated() {
+    return !!(
+      this.settings &&
+      this.settings.settings &&
+      this.settings.settings.user &&
+      this.settings.settings.user.user
+    );
+  }
 
+  isNotAutenticated() {
+    return !(
+      this.settings &&
+      this.settings.settings &&
+      this.settings.settings.user &&
+      this.settings.settings.user.user
+    );
+  }
 }

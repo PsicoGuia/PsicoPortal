@@ -13,14 +13,14 @@
       </ion-card-header>
       <ion-card-content>
         <ion-item>
-          <ion-label>Ingresa tu ubicación</ion-label>
+          <ion-label stacked>Ingresa tu ubicación</ion-label>
           <ion-input id="address-ac" type="text" [(ngModel)]="address" placeholder="Ej: Carrera 15 #85-41"></ion-input>
         </ion-item>
         <button ion-button block (click)="getLocation()">
           <ion-icon name="locate">Obtener ubicación por GPS</ion-icon>
         </button>
         <ion-item>
-          <ion-label>Seleciona las patolgías que quieres filtrar</ion-label>
+          <ion-label stacked>Seleciona las patolgías que quieres filtrar</ion-label>
           <ion-select [(ngModel)]="patologiesSelected" (ionChange)="onSelectPatolgyChange($event)" multiple="true">
             <ion-option *ngFor="let patolgy of listPatologies" value="{{patolgy.id}}">{{patolgy.name}}</ion-option>
           </ion-select>

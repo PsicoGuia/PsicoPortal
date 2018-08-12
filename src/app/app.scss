@@ -1,6 +1,5 @@
 // http://ionicframework.com/docs/theming/
 
-
 // App Global Sass
 // --------------------------------------------------
 // Put style rules here that you want to apply globally. These
@@ -15,14 +14,22 @@
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
 
-ion-content{
-  background: url(/assets/img/bg.jpg) no-repeat center center fixed; 
+ion-content {
+  background: url(/assets/img/bg.jpg) no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
 }
-.alert-message{
+
+ion-content.no-image {
+  background: initial;
+  -webkit-background-size: initial;
+  -moz-background-size: initial;
+  -o-background-size: initial;
+  background-size: initial;
+}
+.alert-message {
   overflow: hidden;
 }
 
@@ -33,24 +40,23 @@ body {
   user-select: text;
 }
 
-a{
-  text-decoration:none;
+.header-logo {
+  max-height: 42px;
 }
 
-s {
-  text-decoration-color: red;
+ion-menu {
+  a {
+    ion-label {
+      color: white;
+      font-weight: bold;
+    }
+  }
 }
-
-ion-content {
-  background-color: #fafafa !important;
-}
-
 ion-item {
   background-color: transparent !important;
 }
-
 .no-spin-number {
-  -moz-appearance:textfield;
+  -moz-appearance: textfield;
   input,
   input::-webkit-outer-spin-button,
   input::-webkit-inner-spin-button {
@@ -65,7 +71,7 @@ ion-item {
 }
 
 .alert-message {
-    overflow-y: initial;
+  overflow-y: initial;
 }
 
 .toolbar-background {
@@ -74,12 +80,12 @@ ion-item {
 
 ion-header {
   background: color($colors, primary);
-  box-shadow: 0 2px 5px rgba(0,0,0,.6);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.6);
 }
 
-.header-md::after {
-  background-image: none;
-}
+// .header-md::after {
+//   background-image: none;
+// }
 
 ion-menu {
   .toolbar-background {
@@ -94,10 +100,6 @@ ion-menu {
   }
 }
 
-.secundary-background-color {
-  background: color($colors, primary);
-}
-
 .bar-button-default-md,
 .bar-button-clear-md-default,
 .bar-button-md-default,
@@ -110,11 +112,10 @@ ion-menu {
   color: #fff;
 }
 
-.toolbar-md {
-  min-height: 63px;
-  max-height: 63px;
-
-}
+// .toolbar-md {
+//   min-height: 63px;
+//   max-height: 63px;
+// }
 
 .button-gray {
   background-color: #b8b8b8;
@@ -132,7 +133,9 @@ ion-menu {
   color: color($colors, dark);
 }
 
-
+.primary-background {
+  background-color: color($colors, primary) !important;
+}
 .user-side-menu {
   color: #fff;
 
@@ -159,10 +162,9 @@ ion-menu {
     border-bottom: 2px solid #ddd;
   }
   .t-body {
-      border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
   }
 }
-
 
 .cursor-pointer {
   cursor: pointer;
@@ -170,11 +172,11 @@ ion-menu {
 
 .container-content {
   background-color: #fff;
-  box-shadow: 0 2px 5px rgba(0,0,0,.6);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.6);
 }
 
 .shadow {
-  box-shadow: 0 2px 5px rgba(0,0,0,.6);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.6);
 }
 
 .long-text {
@@ -184,10 +186,6 @@ ion-menu {
 
 .background-transparent {
   background-color: transparent !important;
-}
-
-.product-margin h2 {
-  margin-top: 0px !important;
 }
 
 .visible-xs,
@@ -240,17 +238,6 @@ ion-menu {
   .hidden-xs {
     display: none !important;
   }
-  .card-product h2 {
-    font-size: 2.2rem;
-  }
-  .category-title {
-    font-size: 1.2rem;
-  }
-}
-@media (max-width: 575px) {
-  .hidden-xs {
-    display: none !important;
-  }
   .visible-xs {
     display: block !important;
   }
@@ -273,9 +260,9 @@ ion-menu {
   .hidden-md {
     display: none !important;
   }
-  .bar-button-menutoggle {
-    display: none;
-  }
+  // .bar-button-menutoggle {
+  //   display: none;
+  // }
 }
 @media (min-width: 992px) and (max-width: 1199px) {
   .hidden-lg {
@@ -318,8 +305,6 @@ ion-menu {
   }
 }
 
-
-
 .footer-fixed {
   /* center the element */
   right: 0;
@@ -332,51 +317,51 @@ ion-menu {
   z-index: 4;
   width: 280px;
 
- .go-to-button {
-   height: 32px !important;
-   padding-left: 10px;
-   padding-right: 10px;
-   font-weight: bold;
-   border-width: 2px;
-   box-shadow: 0px 0px 5px 1px #afafaf;
-   ion-icon {
+  .go-to-button {
+    height: 32px !important;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-weight: bold;
+    border-width: 2px;
+    box-shadow: 0px 0px 5px 1px #afafaf;
+    ion-icon {
       margin-left: 10px;
       font-weight: bolder;
     }
- }
+  }
 
- .phone-contact {
-   background-color: map-get($colors, secondary);
-   display: inline-block;
-   width: 160px;
-   margin: 0;
-   padding: 6px;
-   color:  map-get($colors, light);
-   vertical-align: bottom;
-   margin-bottom: 4px;
-   box-shadow: 0px 0px 5px 1px #afafaf;
-   p {
-     font-size: 0.8rem;
-     margin: 0;
-     line-height: 3px;
-   }
-   h3 {
-     margin: 0;
-     text-align: right;
-     margin-bottom: -1px;
-   }
- }
+  .phone-contact {
+    background-color: map-get($colors, secondary);
+    display: inline-block;
+    width: 160px;
+    margin: 0;
+    padding: 6px;
+    color: map-get($colors, light);
+    vertical-align: bottom;
+    margin-bottom: 4px;
+    box-shadow: 0px 0px 5px 1px #afafaf;
+    p {
+      font-size: 0.8rem;
+      margin: 0;
+      line-height: 3px;
+    }
+    h3 {
+      margin: 0;
+      text-align: right;
+      margin-bottom: -1px;
+    }
+  }
 }
 
-// Profiles 
+// Profiles
 
-.avatar-profile{
+.avatar-profile {
   height: 200px;
   width: 200px;
   border-radius: 50%;
   overflow: hidden;
 }
-.row-picture{
+.row-picture {
   text-align: center;
   position: relative;
 }
@@ -398,13 +383,14 @@ ion-menu {
   -ms-filter: blur(10px);
   filter: blur(10px);
   background-repeat: no-repeat;
-  background-position: center; 
+  background-position: center;
   background-size: 120%;
   z-index: -1;
 }
-.innerMap{
-height: 240px;
+.innerMap {
+  height: 240px;
 }
 
-
-.card-patology{ height: 300px!important;}
+.card-patology {
+  height: 300px !important;
+}
