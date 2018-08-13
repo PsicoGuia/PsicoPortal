@@ -259,13 +259,7 @@ export class ProfileMedicPage {
     //   location: "Cll false 234",
     //   url: "url('" + "http://casitaoaxaca.com/koken/storage/cache/images/000/029/oxc-fb-profile-img-h1,medium_large.1501091503.png" + "')"
     // }
-    this.stduies = [
-      { title: "studio 1" },
-      { title: "studio 2" },
-      { title: "studio 3" },
-      { title: "studio 4" },
-
-    ]
+    this.stduies = [ ];
   }
 
   ionViewDidLoad() {
@@ -324,10 +318,16 @@ export class ProfileMedicPage {
   }
 
   takeActionEdit(card) {
-    console.log("edit"+card)
+    console.log("ProfileMedicPage:takeActionEdit:"+card)
     this.edit = card;
     this.editProfile = JSON.parse(JSON.stringify(this.profile));
   
+  }
+
+  takeActionCancel(card){
+    console.log("ProfileMedicPage:takeActionCancel:"+card)
+    delete this.edit;
+    delete this.editProfile;
   }
 
   

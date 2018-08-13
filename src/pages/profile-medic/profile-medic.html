@@ -28,32 +28,32 @@
 
       <!-- Read User -->
       <ion-row *ngIf="edit != 'personal-info'">
-        <ion-col col-md-4>
+        <ion-col col-12 col-md-4>
           <ion-item>
             <h2>Nombre:</h2>
             <p text-wrap>{{profile.person.user.first_name}}</p>
           </ion-item>
         </ion-col>
-        <ion-col col-md-4>
+        <ion-col col-12 col-md-4>
           <ion-item>
             <h2>Apellido:</h2>
             <p text-wrap>{{profile.person.user.last_name}}</p>
           </ion-item>
         </ion-col>
-        <ion-col col-md-4>
+        <ion-col col-12 col-md-4>
           <ion-item>
             <h2>Correo:</h2>
             <p text-wrap>{{profile.person.user.email}}</p>
           </ion-item>
         </ion-col>
-        <ion-col col-md-4>
+        <ion-col col-12 col-md-4>
           <ion-item>
             <h2>Telefono:
               <p text-wrap>{{profile.person.phone}}</p>
             </h2>
           </ion-item>
         </ion-col>
-        <ion-col col-md-4>
+        <ion-col col-12 col-md-4>
           <ion-item>
             <h2 text-wrap>Notificación de correos:
               <p text-wrap>{{profile.person.notification ? 'Activado': 'Desactivado'}}</p>
@@ -64,31 +64,31 @@
 
       <!-- Update user -->
       <ion-row *ngIf="edit == 'personal-info'">
-        <ion-col col-md-4>
+        <ion-col col-12 col-md-4>
           <ion-item>
             <ion-label stacked>Nombre:</ion-label>
             <ion-input [(ngModel)]="editProfile.person.user.first_name" name="first_name"></ion-input>
           </ion-item>
         </ion-col>
-        <ion-col col-md-4>
+        <ion-col col-12 col-md-4>
           <ion-item>
             <ion-label stacked>Apellido:</ion-label>
             <ion-input [(ngModel)]="editProfile.person.user.last_name" name="last_name"></ion-input>
           </ion-item>
         </ion-col>
-        <ion-col col-md-4>
+        <ion-col col-12 col-md-4>
           <ion-item>
             <ion-label stacked>Correo:</ion-label>
             <ion-input [(ngModel)]="editProfile.person.user.email" name="email"></ion-input>
           </ion-item>
         </ion-col>
-        <ion-col col-md-4>
+        <ion-col col-12 col-md-4>
           <ion-item>
             <ion-label stacked>Telefono:</ion-label>
             <ion-input [(ngModel)]="editProfile.person.phone" name="phone"></ion-input>
           </ion-item>
         </ion-col>
-        <ion-col col-md-4>
+        <ion-col col-12 col-md-4>
           <ion-item>
             <h2 text-wrap>
               <p text-wrap>{{profile.person.notification ? 'Activado': 'Desactivado'}}</p>
@@ -116,19 +116,19 @@
     <ion-card-content>
       <ion-row>
         <!-- stadistics profile -->
-        <ion-col col-md-4>
+        <ion-col col-12 col-md-4>
           <ion-item text-center>
             <h2>Calificacion de usuarios:</h2>
             <p text-wrap>54</p>
           </ion-item>
         </ion-col>
-        <ion-col col-md-4>
+        <ion-col col-12 col-md-4>
           <ion-item text-center>
             <h2>Citas atendidas:</h2>
             <p text-wrap>885</p>
           </ion-item>
         </ion-col>
-        <ion-col col-md-4>
+        <ion-col col-12 col-md-4>
           <ion-item text-center>
             <h2>Años de experiencia:</h2>
             <p text-wrap>5</p>
@@ -145,7 +145,7 @@
           </ion-item>
         </ion-col>
 
-        <ion-col col-md-3>
+        <ion-col col-12 col-md-3>
           <ion-item>
             <h2>Genero:
               <p text-wrap *ngIf="profile.genre">{{getGenero(profile.genre)}}</p>
@@ -163,7 +163,7 @@
 
 
 
-        <ion-col col-md-3>
+        <ion-col col-12 col-md-3>
           <ion-item>
             <h2>Documento de identidad:
               <p text-wrap>{{profile.personalDocumentType}} {{profile.personalDocumentNumber}}</p>
@@ -171,7 +171,7 @@
           </ion-item>
         </ion-col>
 
-        <ion-col col-md-3>
+        <ion-col col-12col-md-3>
           <ion-item>
             <h2>Archivo documento de identidad:
               <p text-wrap>
@@ -180,14 +180,14 @@
             </h2>
           </ion-item>
         </ion-col>
-        <ion-col col-md-3>
+        <ion-col col-12 col-md-3>
           <ion-item>
             <h2>Número de tarjeta profesional:
               <p text-wrap>{{profile.professionalCardNumber}}</p>
             </h2>
           </ion-item>
         </ion-col>
-        <ion-col col-md-3>
+        <ion-col col-12 col-md-3>
           <ion-item>
             <h2>Archivo de tarjeta profesional:
               <p text-wrap>
@@ -196,14 +196,14 @@
             </h2>
           </ion-item>
         </ion-col>
-        <ion-col col-md-3>
+        <ion-col col-12 col-md-3>
           <ion-item>
             <h2>Tipo de moneda:
               <p text-wrap>{{profile.cost_currency}}</p>
             </h2>
           </ion-item>
         </ion-col>
-        <ion-col col-md-3>
+        <ion-col col-12 col-md-3>
           <ion-item>
             <h2>Costo:
               <p text-wrap>{{profile.cost}}</p>
@@ -214,7 +214,7 @@
 
       <!-- Update Profile-->
       <ion-row *ngIf="edit == 'profile-info'">
-        <ion-col col-md-12>
+        <ion-col col-12 col-md-12>
           <ion-item>
             <ion-label stacked>Nombre del perfil:</ion-label>
             <ion-input [(ngModel)]="editProfile.profile_title" name="text"></ion-input>
@@ -222,7 +222,7 @@
         </ion-col>
 
 
-        <ion-col col-md-6>
+        <ion-col col-12 col-md-6>
           <ion-item>
             <ion-label stacked>Genero: </ion-label>
             <ion-select [(ngModel)]="editProfile.genre">
@@ -240,7 +240,7 @@
           </ion-item>
         </ion-col>
 
-        <ion-col col-md-6>
+        <ion-col col-12 col-md-6>
           <ion-item>
             <ion-label stacked>Tipo de documento de identidad:</ion-label>
             <ion-select [(ngModel)]="editProfile.personalDocumentType">
@@ -251,23 +251,23 @@
             </ion-select>
           </ion-item>
         </ion-col>
-        <ion-col col-md-6>
+        <ion-col col-12 col-md-6>
           <ion-item>
             <ion-label stacked>Número de documento de identidad:</ion-label>
             <ion-input [(ngModel)]="editProfile.personalDocumentNumber" name="phone"></ion-input>
           </ion-item>
         </ion-col>
-        <ion-col col-md-6>
+        <ion-col col-12 col-md-6>
           <ion-label stacked>Archivo documento de identidad:</ion-label>
           <input type="file" (change)="filesChange($event,'personalDocumentFile')">
         </ion-col>
-        <ion-col col-md-6>
+        <ion-col col-12 col-md-6>
           <ion-item>
             <ion-label stacked>Número de tarjeta profesional:</ion-label>
             <ion-input [(ngModel)]="editProfile.professionalCardNumber" name="phone"></ion-input>
           </ion-item>
         </ion-col>
-        <ion-col col-md-6>
+        <ion-col col-12 col-md-6>
           <ion-label stacked>Archivo de tarjeta profesional:</ion-label>
           <input type="file" (change)="filesChange($event,'professionalCardFile')">
         </ion-col>
@@ -285,7 +285,7 @@
     </ion-card-header>
     <ion-card-content>
       <ion-row>
-        <ion-col col-md-3>
+        <ion-col col-12 col-md-3>
           <ion-item>
             <h2>Ubicación del perfil:
               <br/>
