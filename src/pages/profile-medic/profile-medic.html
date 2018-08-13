@@ -280,11 +280,16 @@
   <ion-card>
     <ion-card-header color="primary">
       <p text-wrap>Ubicación del perfil</p>
-      <ion-icon style="float: right;" (click)="takeAction('location-info')" name="md-create">
-      </ion-icon>
+      <ion-icon *ngIf="edit != 'location-info'" style="float: right;" (click)="takeActionEdit('location-info')" name="md-create"></ion-icon>
+      <button *ngIf="edit == 'location-info'" color="success" ion-button (click)="takeActionSave('location-info')" style="float: right;">
+        <ion-icon name="md-checkmark"></ion-icon>
+      </button>
+      <button *ngIf="edit == 'location-info'" color="danger" ion-button (click)="takeActionCancel('location-info')" style="float: right;">
+        <ion-icon name="md-close"></ion-icon>
+      </button>
     </ion-card-header>
     <ion-card-content>
-      <ion-row>
+      <ion-row *ngIf="edit != 'location-info'">
         <ion-col col-12 col-md-3>
           <ion-item>
             <h2>Ubicación del perfil:
@@ -295,6 +300,31 @@
               <p text-wrap *ngIf="profile?.position">Localización: Lat: {{profile.position.coordinates[1] | number:'1.2' }} - Long: {{profile.position.coordinates[0]
                 | number:'1.2'}} </p>
             </h2>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <!-- Update Location-->
+      <ion-row *ngIf="edit == 'location-info'">
+        <ion-col col-12 col-md-12>
+          <ion-item>
+            <ion-label stacked>Ciudad:</ion-label>
+            <ion-input [(ngModel)]="editProfile.city" name="text"></ion-input>
+          </ion-item>
+        </ion-col>
+
+        <ion-col col-12 col-md-12>
+          <ion-item>
+            <ion-label stacked>Dirección de Google: </ion-label>
+            <ion-input [(ngModel)]="inputGoogle" name="text"></ion-input>
+          </ion-item>
+        </ion-col>
+
+        <ion-col col-12 col-md-12>
+          <p>Puedes actualizar tu información para que los usuarios te encuentren más facil</p>
+          <ion-item>
+            <ion-label stacked>Dirección: </ion-label>
+            <ion-input [(ngModel)]="editProfile.address_full" name="text"></ion-input>
           </ion-item>
         </ion-col>
       </ion-row>

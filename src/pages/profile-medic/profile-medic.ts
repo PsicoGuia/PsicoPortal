@@ -269,7 +269,7 @@ export class ProfileMedicPage {
   }
 
   getProfile() {
-    this.profile ={}
+    this.profile = {};
     return this.medicService.getMyProfiles().then(data => {
       console.debug("ionViewDidLoad getProfiles2", data);
       this.listProfiles = data;
@@ -343,6 +343,14 @@ export class ProfileMedicPage {
         this.updatePersonal();
         break;
 
+      case "profile-info":
+        this.updateProfile();
+        break;
+
+      case "location-info":
+        this.updateLocation();
+        break;
+
       default:
         break;
     }
@@ -363,7 +371,7 @@ export class ProfileMedicPage {
     );
     delete person.user;
     debugger;
-    this.medicService
+    return this.medicService
       .updateUser(this.profile.person.user.id, user)
       .then(data => {
         return this.medicService.updatePerson(this.profile.person.id, person);
@@ -380,6 +388,54 @@ export class ProfileMedicPage {
       });
 
     console.log("updatePersonal", person, user);
+  }
+
+  updateProfile() {
+    let profile = this.getAttributeDifrent(this.profile, this.editProfile);
+    delete profile.person;
+    delete profile.profilepatologyorcategory_set;
+    delete profile.position;
+    delete profile.office_set;
+    delete profile.homevisit_set;
+    delete profile.chat_set;
+    delete profile.studies_set;
+    console.log("updateProfile:", profile);
+    return this.medicService
+      .updateProfile(this.profile.id, profile)
+      .then(data => {
+        this.configService.showToast("Información del perfil actualizada");
+        return this.getProfile();
+      })
+      .catch(error => {
+        this.configService.showToast(
+          "Algo salio mal, vuelve a intentarlo",
+          "toast-error"
+        );
+      });
+  }
+
+  updateLocation() {
+    let profile = this.getAttributeDifrent(this.profile, this.editProfile);
+    delete profile.person;
+    delete profile.profilepatologyorcategory_set;
+    delete profile.position; //FIXME
+    delete profile.office_set;
+    delete profile.homevisit_set;
+    delete profile.chat_set;
+    delete profile.studies_set;
+    console.log("updateProfile:", profile);
+    return this.medicService
+      .updateProfile(this.profile.id, profile)
+      .then(data => {
+        this.configService.showToast("Información de la ubicación actualizada");
+        return this.getProfile();
+      })
+      .catch(error => {
+        this.configService.showToast(
+          "Algo salio mal, vuelve a intentarlo",
+          "toast-error"
+        );
+      });
   }
 
   getAttributeDifrent(original, edit) {
