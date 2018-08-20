@@ -58,5 +58,8 @@
         <p text-justify>{{profile.about_me}}</p>
       </ion-card-content>
     </ion-card>
+    <ion-infinite-scroll threshold="30%" (ionInfinite)="$event.waitFor(getMoreProfiles())">
+      <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
   </div>
 </ion-content>
