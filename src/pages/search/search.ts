@@ -29,6 +29,7 @@ export class SearchPage {
   filters: any = { offset: 0, page: 1 };
   address;
   listProfiles = [];
+  listMarkers = [];
   myLocationMarker;
   private dummyLocations = [
     { type: "profile", title: "perfil1", lat: 4.6394723, long: -74.0738202 },
@@ -142,7 +143,14 @@ export class SearchPage {
       marker.addListener("click", function() {
         infoWindow.open(this.map, marker);
       });
+      this.listMarkers.push(marker);
     });
+  }
+
+  clearAllMarkers() {
+    while (this.listMarkers.length) {
+      this.listMarkers.pop().setMap(null);
+    }
   }
 
   setMyLocationMarker(lat, long) {
@@ -228,6 +236,9 @@ export class SearchPage {
   onPalceChanged(data) {
     console.log("onPalceChanged", data);
     this.setMyLocationMarker(data.lat, data.lng);
+    this.filters.lat = data.lat;
+    this.filters.lng = data.lng;
+    this.onChangeFilters().then();
   }
 
   getLocation() {
@@ -236,6 +247,9 @@ export class SearchPage {
         data => {
           console.log("getLocation:data", data);
           this.setMyLocationMarker(data.coords.latitude, data.coords.longitude);
+          this.filters.lat = data.coords.latitude;
+          this.filters.lng = data.coords.longitude;
+          this.onChangeFilters().then();
         },
         data => {
           console.log("getLocation:error", data);
@@ -252,5 +266,18 @@ export class SearchPage {
 
   onSelectPatolgyChange(event) {
     console.log(this.patologiesSelected);
+    this.filters.patology__in = this.patologiesSelected.toString();
+    this.onChangeFilters().then();
+  }
+
+  onChangeFilters() {
+    this.listProfiles = [];
+    this.filters.offset = 0;
+    this.filters.page = 1;
+    this.clearAllMarkers();
+    debugger;
+    return this.loadProfiles().then(list => {
+      return this.loadListMarkerInMap(list);
+    });
   }
 }
