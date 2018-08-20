@@ -317,13 +317,13 @@
     </ion-card-header>
     <ion-card-content>
       <ion-row *ngIf="edit != 'location-info'">
-        <ion-col col-12 col-md-3>
+        <ion-col col-12 col-md-12>
           <ion-item>
             <h2>Ubicación del perfil:
               <br/>
-              <p text-wrap>Ciudad: {{profile.city}}</p>
+              <h3 text-wrap>Ciudad: {{profile.city}}</h3>
               <br>
-              <p text-wrap>Dirección: {{profile.address_full}}</p>
+              <h3 text-wrap>Dirección: {{profile.address_full}}</h3>
               <p text-wrap *ngIf="profile?.position">Localización: Lat: {{profile.position.coordinates[1] | number:'1.2' }} - Long: {{profile.position.coordinates[0]
                 | number:'1.2'}} </p>
             </h2>
@@ -343,20 +343,28 @@
         <ion-col col-12 col-md-12>
           <ion-item>
             <ion-label stacked>Dirección de Google: </ion-label>
-            <ion-input [(ngModel)]="inputGoogle" name="text"></ion-input>
+            <ion-input id="address-profile" placeholder="Carrera 76 BIS ASur #14-57" [(ngModel)]="inputGoogle" name="text"></ion-input>
           </ion-item>
         </ion-col>
 
         <ion-col col-12 col-md-12>
-          <p>Puedes actualizar tu información para que los usuarios te encuentren más facil</p>
+          <p padding-horizontal>Puedes introducir tu dirección exacta para que los usuarios te encuentren más facil</p>
           <ion-item>
-            <ion-label stacked>Dirección: </ion-label>
-            <ion-input [(ngModel)]="editProfile.address_full" name="text"></ion-input>
+            <ion-label stacked>Dirección que se mostrará: </ion-label>
+            <ion-input [(ngModel)]="editProfile.address_full" placeholder="Carrera 76 BIS ASur #14-57 Int 2 apt 301" name="text"></ion-input>
           </ion-item>
         </ion-col>
+
+        <ion-col col-12 col-md-12>
+            <ion-item>
+              <h3>GPS: </h3>
+              <p text-wrap *ngIf="profile?.position">Localización: Lat: {{editProfile.position.coordinates[1] | number:'1.2' }} - Long: {{editProfile.position.coordinates[0]
+                  | number:'1.2'}} </p>
+            </ion-item>
+          </ion-col>
       </ion-row>
       <!-- Map Inject -->
-      <div padding style="height: 240px;" id='map1' #map></div>
+      <div padding style="height: 420px;" id='map1' #map></div>
     </ion-card-content>
   </ion-card>
 

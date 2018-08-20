@@ -2,6 +2,7 @@ import { Component, ViewChild, ElementRef, NgZone } from "@angular/core";
 import { IonicPage, NavController, NavParams } from "ionic-angular";
 import { MedicService } from "../../providers/medic-service";
 import { ConfigService } from "../../providers/config-service";
+import { GoogleService } from "../../providers/google-service";
 declare var google: any;
 declare var semanticPisco: any;
 /**
@@ -22,6 +23,7 @@ export class ProfileMedicPage {
   @ViewChild("map")
   mapElement: ElementRef;
   map: any;
+  profileMarker;
   profile: any = {};
   stduies = [];
   listProfiles = [];
@@ -40,7 +42,8 @@ export class ProfileMedicPage {
     public navParams: NavParams,
     public medicService: MedicService,
     public configService: ConfigService,
-    public ngZone: NgZone
+    public ngZone: NgZone,
+    public googleService: GoogleService
   ) {
     // {
     //   professionalCardNumber: 34567656,
@@ -73,21 +76,27 @@ export class ProfileMedicPage {
       }
     });
   }
+
   loadMap() {
     var pos1LatLng = {
       lat: this.profile.position.coordinates[1],
       lng: this.profile.position.coordinates[0]
     };
-
-    this.map = new google.maps.Map(this.mapElement.nativeElement, {
-      zoom: 15,
-      center: pos1LatLng
-    });
-    var marker = new google.maps.Marker({
-      position: pos1LatLng,
-      map: this.map,
-      title: "pos1"
-    });
+    if (!this.map) {
+      this.map = new google.maps.Map(this.mapElement.nativeElement, {
+        zoom: 15,
+        center: pos1LatLng
+      });
+    }
+    if (!this.profileMarker) {
+      this.profileMarker = new google.maps.Marker({
+        position: pos1LatLng,
+        map: this.map,
+        title: "pos1"
+      });
+    } else {
+      this.profileMarker.setPosition(pos1LatLng);
+    }
 
     var info =
       '<div class="contact-info" style="font-family: Roboto, "Helvetica Neue", sans-serif;"><strong>Pos1</strong><br/>' +
@@ -100,8 +109,12 @@ export class ProfileMedicPage {
       content: info
     });
 
-    marker.addListener("click", function() {
-      infoWindow.open(this.map, marker);
+    this.profileMarker.addListener("click", () => {
+      infoWindow.open(this.map, this.profileMarker);
+    });
+
+    this.profileMarker.addListener("dragend", data => {
+      this.onDragMarker(data);
     });
   }
 
@@ -118,10 +131,69 @@ export class ProfileMedicPage {
     }
   }
 
+  initInputGoogle() {
+    let input = document
+      .getElementById("address-profile")
+      .getElementsByTagName("input")[0];
+    let options = this.googleService.options;
+    // Create the autocomplete object, restricting the search to geographical
+    // location types.
+    this.googleService.autocomplete = new google.maps.places.Autocomplete(
+      input,
+      options
+    );
+
+    // When the user selects an address from the dropdown, populate the address
+    // fields in the form.
+    this.googleService.autocomplete.addListener("place_changed", data => {
+      // double LookUp fix problem
+      this.googleService
+        .searchAddress(
+          this.googleService.autocomplete.getPlace().formatted_address
+        )
+        .then(data => {
+          console.log("searchAddress", data);
+          this.onPalceChanged(
+            data,
+            this.googleService.autocomplete.getPlace().formatted_address
+          );
+        });
+    });
+  }
+
+  onPalceChanged(data, address) {
+    this.ngZone.run(() => {
+      console.log("onPalceChanged", data);
+      this.editProfile.address_full = address;
+      this.editProfile.position.coordinates[1] = data.lat;
+      this.editProfile.position.coordinates[0] = data.lng;
+      var pos1LatLng = {
+        lat: data.lat,
+        lng: data.lng
+      };
+      this.profileMarker.setPosition(pos1LatLng);
+      this.map.panTo(pos1LatLng);
+    });
+  }
+
+  onDragMarker(data) {
+    this.ngZone.run(() => {
+      console.log("onDragMarker", data);
+      this.editProfile.position.coordinates[1] = data.latLng.lat();
+      this.editProfile.position.coordinates[0] = data.latLng.lng();
+    });
+  }
+
   takeActionEdit(card) {
     console.log("ProfileMedicPage:takeActionEdit:" + card);
     this.edit = card;
     this.editProfile = JSON.parse(JSON.stringify(this.profile));
+    if (card == "location-info") {
+      setTimeout(() => {
+        this.initInputGoogle();
+      }, 300);
+      this.profileMarker.setDraggable(true);
+    }
   }
 
   takeActionCancel(card) {
@@ -130,6 +202,7 @@ export class ProfileMedicPage {
     delete this.editProfile;
     delete this.selectedFile;
     delete this.selectedFileName;
+    this.profileMarker.setDraggable(false);
   }
 
   takeActionSave(card) {
@@ -200,7 +273,7 @@ export class ProfileMedicPage {
     console.log("updateProfile:", profile, this.editProfile);
     return this.medicService
       .updateProfile(this.profile.id, profile)
-      .then(data => { 
+      .then(data => {
         console.log(this.editProfile);
         return this.uploadProfile();
       })
@@ -221,7 +294,13 @@ export class ProfileMedicPage {
     let profile = this.getAttributeDifrent(this.profile, this.editProfile);
     delete profile.person;
     delete profile.profilepatologyorcategory_set;
-    delete profile.position; //FIXME
+    let pos = (profile.position =
+      "POINT(" +
+      profile.position.coordinates[0] +
+      " " +
+      profile.position.coordinates[1] +
+      ")");
+    profile.position = pos;
     delete profile.office_set;
     delete profile.homevisit_set;
     delete profile.chat_set;
