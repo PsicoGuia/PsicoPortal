@@ -1,4 +1,4 @@
-import { Component, ViewChild, ElementRef } from "@angular/core";
+import { Component, ViewChild, ElementRef, NgZone } from "@angular/core";
 import { IonicPage, NavController, NavParams } from "ionic-angular";
 import { MedicService } from "../../providers/medic-service";
 import { ConfigService } from "../../providers/config-service";
@@ -22,232 +22,24 @@ export class ProfileMedicPage {
   @ViewChild("map")
   mapElement: ElementRef;
   map: any;
-  profile: any;
+  profile: any = {};
   stduies = [];
   listProfiles = [];
   edit = "";
   editProfile: any;
   listCategories = [];
   attentionChannel = "Consultorio";
+  selectedFile: File;
+  selectedFileName;
+  previewPicture;
+
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     public medicService: MedicService,
-    public configService: ConfigService
+    public configService: ConfigService,
+    public ngZone: NgZone
   ) {
-    // Dommy profile
-    this.profile = {
-      id: 10,
-      person: {
-        id: 11,
-        user: {
-          username: "juansed",
-          email: "juansed@inkrementaldev.co",
-          first_name: "Juan Se Bestia",
-          last_name: "Dussan Cubides",
-          groups: [
-            {
-              id: 1,
-              name: "MEDICS"
-            }
-          ]
-        },
-        phone: "3002799407",
-        term: 1.0,
-        term_abausdata: 1.0,
-        notification: true
-      },
-      address: {
-        id: 2,
-        street_number: "",
-        route: "",
-        raw: "1",
-        formatted: "Bogotá, Colombia",
-        latitude: 4.7109886,
-        longitude: -74.072092,
-        locality: 2
-      },
-      studies_set: [
-        {
-          id: 2,
-          level: "SP",
-          title: "Artes culinarias",
-          date: "2018-06-22",
-          experienceYears: 5,
-          file:
-            "http://localhost:8000/static/files/medic/files/11/CDC_UP_Test_Plan_Template_KJesN77.doc",
-          certificated: true,
-          created: "2018-06-22T01:35:02.006869Z",
-          updated: "2018-06-22T01:35:02.006889Z",
-          profile: 10
-        },
-        {
-          id: 1,
-          level: "BH",
-          title: "Ingeniero de sistemas",
-          date: "2018-06-22",
-          experienceYears: 3,
-          file:
-            "http://localhost:8000/static/files/medic/files/11/CDC_UP_Test_Plan_Template.doc",
-          certificated: true,
-          created: "2018-06-22T01:34:31.818460Z",
-          updated: "2018-06-22T01:34:31.818503Z",
-          profile: 10
-        }
-      ],
-      homevisit_set: [
-        {
-          id: 1,
-          images: [
-            {
-              id: 1,
-              image:
-                "http://localhost:8000/static/files/medic/files/profiles/None/Screenshot_from_2018-06-22_13-32-28.png",
-              created: "2018-07-17T16:41:09.318566Z",
-              updated: "2018-07-17T16:41:09.318589Z"
-            }
-          ],
-          schedules: [
-            {
-              id: 1,
-              bitDays: 255,
-              start_date: "2018-07-17T16:39:57Z",
-              end_date: "2018-07-17T16:39:58Z"
-            }
-          ],
-          description:
-            "Servicio a Domicilio sin costo adicional directo a tu casa",
-          position: {
-            type: "Point",
-            coordinates: [-73.91695390617271, 6.21864885444995]
-          },
-          address: null,
-          city: null,
-          created: "2018-07-17T16:41:31.342717Z",
-          updated: "2018-07-17T16:41:58.823147Z",
-          profile: 10
-        }
-      ],
-      office_set: [
-        {
-          id: 1,
-          images: [
-            {
-              id: 1,
-              image:
-                "http://localhost:8000/static/files/medic/files/profiles/None/Screenshot_from_2018-06-22_13-32-28.png",
-              created: "2018-07-17T16:41:09.318566Z",
-              updated: "2018-07-17T16:41:09.318589Z"
-            }
-          ],
-          schedules: [
-            {
-              id: 1,
-              bitDays: 255,
-              start_date: "2018-07-17T16:39:57Z",
-              end_date: "2018-07-17T16:39:58Z"
-            }
-          ],
-          description: "Mi primer consultorio",
-          position: {
-            type: "Point",
-            coordinates: [-70.65512645665261, 5.177032024193362]
-          },
-          address: "Calle falsa 123",
-          city: "Bogotá",
-          created: "2018-07-17T16:47:31.689695Z",
-          updated: "2018-07-18T15:34:53.251533Z",
-          profile: 10
-        },
-        {
-          id: 2,
-          images: [
-            {
-              id: 1,
-              image:
-                "http://localhost:8000/static/files/medic/files/profiles/None/Screenshot_from_2018-06-22_13-32-28.png",
-              created: "2018-07-17T16:41:09.318566Z",
-              updated: "2018-07-17T16:41:09.318589Z"
-            }
-          ],
-          schedules: [
-            {
-              id: 2,
-              bitDays: 127,
-              start_date: "2018-07-17T16:47:11Z",
-              end_date: "2018-07-17T16:47:12Z"
-            }
-          ],
-          description: "Consultorio sano",
-          position: {
-            type: "Point",
-            coordinates: [-73.9427156350591, 6.574822234192897]
-          },
-          address: "Direccion 2",
-          city: "Cali",
-          created: "2018-07-18T15:36:00.147450Z",
-          updated: "2018-07-18T15:36:00.147470Z",
-          profile: 10
-        }
-      ],
-      chat_set: [
-        {
-          id: 2,
-          images: [
-            {
-              id: 1,
-              image:
-                "http://localhost:8000/static/files/medic/files/profiles/None/Screenshot_from_2018-06-22_13-32-28.png",
-              created: "2018-07-17T16:41:09.318566Z",
-              updated: "2018-07-17T16:41:09.318589Z"
-            },
-            {
-              id: 2,
-              image:
-                "http://localhost:8000/static/files/medic/files/profiles/None/Screenshot_from_2018-02-26_10-06-53.png",
-              created: "2018-07-17T16:47:29.965353Z",
-              updated: "2018-07-17T16:47:29.965377Z"
-            }
-          ],
-          schedules: [
-            {
-              id: 1,
-              bitDays: 255,
-              start_date: "2018-07-17T16:39:57Z",
-              end_date: "2018-07-17T16:39:58Z"
-            }
-          ],
-          description: "Chat en vivo",
-          position: null,
-          address: "",
-          city: "",
-          created: "2018-07-17T17:18:21.486449Z",
-          updated: "2018-07-17T17:18:21.486480Z",
-          profile: 10
-        }
-      ],
-      profilepatologyorcategory_set: [],
-      picture:
-        "http://casitaoaxaca.com/koken/storage/cache/images/000/029/oxc-fb-profile-img-h1,medium_large.1501091503.png",
-      genre: "U",
-      personalDocumentType: "CC",
-      personalDocumentNumber: 1022993547,
-      personalDocumentFile:
-        "http://localhost:8000/static/files/medic/files/profiles/10/Master_Test_Plan.jpg",
-      professionalCardNumber: "223366558847899",
-      professionalCardFile:
-        "http://localhost:8000/static/files/medic/files/profiles/10/carId.png",
-      city: "Boghota",
-      position: {
-        type: "Point",
-        coordinates: [-74.87663952056624, 7.53288518033106]
-      },
-      cost_currency: "COP",
-      cost: "60000.00",
-      created: "2018-06-12T15:51:31.260323Z",
-      updated: "2018-06-12T15:58:45.978484Z"
-    };
-
     // {
     //   professionalCardNumber: 34567656,
     //   picture: "http://casitaoaxaca.com/koken/storage/cache/images/000/029/oxc-fb-profile-img-h1,medium_large.1501091503.png",
@@ -334,6 +126,8 @@ export class ProfileMedicPage {
     console.log("ProfileMedicPage:takeActionCancel:" + card);
     delete this.edit;
     delete this.editProfile;
+    delete this.selectedFile;
+    delete this.selectedFileName;
   }
 
   takeActionSave(card) {
@@ -349,6 +143,10 @@ export class ProfileMedicPage {
 
       case "location-info":
         this.updateLocation();
+        break;
+
+      case "profile-picture":
+        this.updatePicture();
         break;
 
       default:
@@ -386,8 +184,6 @@ export class ProfileMedicPage {
           "toast-error"
         );
       });
-
-    console.log("updatePersonal", person, user);
   }
 
   updateProfile() {
@@ -431,6 +227,44 @@ export class ProfileMedicPage {
         return this.getProfile();
       })
       .catch(error => {
+        this.configService.showToast(
+          "Algo salio mal, vuelve a intentarlo",
+          "toast-error"
+        );
+      });
+  }
+
+  onFileChanged(event) {
+    this.ngZone.run(() => {
+      this.selectedFile = event.target.files && event.target.files[0];
+      console.log("onFileChanged", this.selectedFile);
+      this.previewPicture;
+      let reader = new FileReader();
+      if (this.selectedFile) {
+        this.selectedFileName = this.selectedFile.name;
+        reader.onload = (e:any) => {
+          this.previewPicture = e.target.result;
+        };
+        reader.readAsDataURL(this.selectedFile);
+      } else {
+        delete this.previewPicture;
+      }
+    });
+  }
+
+  updatePicture() {
+    if (!this.selectedFile) return;
+    let uploadData = new FormData();
+    uploadData.append("picture", this.selectedFile, this.selectedFile.name);
+    this.medicService
+      .uploadProfile(this.profile.id, uploadData)
+      .then(data => {
+        this.configService.showToast("Información de la ubicación actualizada");
+        return this.getProfile();
+      })
+      .catch(error => {
+        console.log("updatePicture:error",error);
+        
         this.configService.showToast(
           "Algo salio mal, vuelve a intentarlo",
           "toast-error"

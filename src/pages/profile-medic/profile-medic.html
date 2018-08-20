@@ -5,17 +5,45 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-grid>
-    <ion-row class="row-picture ">
-      <div class="background-image" [ngStyle]="{'background-image': 'url(' + profile.picture + ')'}">
-      </div>
-      <img class="avatar-profile center" alt="{{ profile?.person?.user?.username }}" src="{{ profile.picture }}">
-    </ion-row>
-  </ion-grid>
+
+  <div *ngIf="profile">
+    <ion-card-header color="primary">
+      <h2 text-wrap>Foto del perfil</h2>
+      <ion-icon *ngIf="edit != 'profile-picture'" style="float: right;" (click)="takeActionEdit('profile-picture')" name="md-create"></ion-icon>
+      <button *ngIf="edit == 'profile-picture'" color="success" ion-button (click)="takeActionSave('profile-picture')" style="float: right;">
+        <ion-icon name="md-checkmark"></ion-icon>
+      </button>
+      <button *ngIf="edit == 'profile-picture'" color="danger" ion-button (click)="takeActionCancel('profile-picture')" style="float: right;">
+        <ion-icon name="md-close"></ion-icon>
+      </button>
+    </ion-card-header>
+
+
+    <!-- READ -->
+    <ion-grid *ngIf="edit != 'profile-picture'">
+      <ion-row class="row-picture ">
+        <div class="background-image" [ngStyle]="{'background-image': 'url(' + profile.picture + ')'}">
+        </div>
+        <img class="avatar-profile center" alt="{{ profile?.person?.user?.username }}" src="{{ profile.picture }}">
+      </ion-row>
+    </ion-grid>
+    <!-- UPDATE -->
+    <ion-grid *ngIf="edit == 'profile-picture'">
+      <ion-row *ngIf="previewPicture" class="row-picture ">
+        <div class="background-image" [ngStyle]="{'background-image': 'url(' + previewPicture + ')'}">
+        </div>
+        <img class="avatar-profile center" alt="{{ profile?.person?.user?.username }}" src="{{ previewPicture }}">
+      </ion-row>
+      <ion-item>
+        <input type="file" accept="image/*" placeholder="Selecciona la imagen" (change)="onFileChanged($event)">
+      </ion-item>
+    </ion-grid>
+
+  </div>
 
   <ion-card *ngIf="profile?.person">
     <ion-card-header color="primary">
-      <p text-wrap>Datos personales</p>
+      <h2 text-wrap>Datos personales</h2>
       <ion-icon *ngIf="edit != 'personal-info'" style="float: right;" (click)="takeActionEdit('personal-info')" name="md-create"></ion-icon>
       <button *ngIf="edit == 'personal-info'" color="success" ion-button (click)="takeActionSave('personal-info')" style="float: right;">
         <ion-icon name="md-checkmark"></ion-icon>
@@ -25,7 +53,6 @@
       </button>
     </ion-card-header>
     <ion-card-content>
-
       <!-- Read User -->
       <ion-row *ngIf="edit != 'personal-info'">
         <ion-col col-12 col-md-4>
@@ -103,7 +130,7 @@
 
   <ion-card *ngIf="profile">
     <ion-card-header color="primary">
-      <p text-wrap>Datos del perfil</p>
+      <h2 text-wrap>Datos del perfil</h2>
       <ion-icon *ngIf="edit != 'profile-info'" style="float: right;" (click)="takeActionEdit('profile-info')" name="md-create"></ion-icon>
       <button *ngIf="edit == 'profile-info'" color="success" ion-button (click)="takeActionSave('profile-info')" style="float: right;">
         <ion-icon name="md-checkmark"></ion-icon>
@@ -279,7 +306,7 @@
 
   <ion-card>
     <ion-card-header color="primary">
-      <p text-wrap>Ubicación del perfil</p>
+      <h2 text-wrap>Ubicación del perfil</h2>
       <ion-icon *ngIf="edit != 'location-info'" style="float: right;" (click)="takeActionEdit('location-info')" name="md-create"></ion-icon>
       <button *ngIf="edit == 'location-info'" color="success" ion-button (click)="takeActionSave('location-info')" style="float: right;">
         <ion-icon name="md-checkmark"></ion-icon>
@@ -335,7 +362,7 @@
 
   <ion-card *ngIf="profile">
     <ion-card-header color="primary">
-      <p text-wrap>Canales de atención</p>
+      <h2 text-wrap>Canales de atención</h2>
       <ion-segment [(ngModel)]="attentionChannel">
         <ion-segment-button value="Consultorio">
           <ion-icon name="home">Consultorio</ion-icon>
@@ -401,7 +428,7 @@
 
   <ion-card *ngIf="profile">
     <ion-card-header color="primary">
-      <p text-wrap>Estudios</p>
+      <h2 text-wrap>Estudios</h2>
     </ion-card-header>
     <ion-card-content>
       <ion-list>
@@ -421,7 +448,7 @@
 
   <ion-card *ngIf="profile">
     <ion-card-header color="primary">
-      <p text-wrap>Patolgías soportadas</p>
+      <h2 text-wrap>Patolgías soportadas</h2>
       <ion-icon style="float: right;" (click)="takeAction('patology')" name="more">
       </ion-icon>
     </ion-card-header>

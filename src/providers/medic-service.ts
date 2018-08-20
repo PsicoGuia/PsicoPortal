@@ -66,6 +66,19 @@ export class MedicService {
       });
   }
 
+  
+  uploadProfile(id, params = {}): Promise<any> {
+    console.debug("MedicService:updateProfile", params);
+    return this.settigsService
+      .onReady()
+      .then(() => {
+        return this.api.uploadPatch(URL_API + "medic/profile/" + id + "/", params);
+      })
+      .then(data => {
+        return (this._categories = data);
+      });
+  }
+
   updateUser(id, params = {}): Promise<any> {
     console.debug("MedicService:updateUser", params);
     return this.settigsService
