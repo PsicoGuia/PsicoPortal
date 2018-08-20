@@ -27,6 +27,8 @@ export class ProfileMedicPage {
   listProfiles = [];
   edit = "";
   editProfile: any;
+  editprofessionalCardFile;
+  editpersonalDocumentFile;
   listCategories = [];
   attentionChannel = "Consultorio";
   selectedFile: File;
@@ -153,7 +155,7 @@ export class ProfileMedicPage {
         break;
     }
     delete this.edit;
-    delete this.editProfile;
+    // delete this.editProfile;
   }
 
   updatePersonal() {
@@ -195,14 +197,19 @@ export class ProfileMedicPage {
     delete profile.homevisit_set;
     delete profile.chat_set;
     delete profile.studies_set;
-    console.log("updateProfile:", profile);
+    console.log("updateProfile:", profile, this.editProfile);
     return this.medicService
       .updateProfile(this.profile.id, profile)
+      .then(data => { 
+        console.log(this.editProfile);
+        return this.uploadProfile();
+      })
       .then(data => {
         this.configService.showToast("Información del perfil actualizada");
         return this.getProfile();
       })
       .catch(error => {
+        console.log("updateProfile:error", error);
         this.configService.showToast(
           "Algo salio mal, vuelve a intentarlo",
           "toast-error"
@@ -238,11 +245,10 @@ export class ProfileMedicPage {
     this.ngZone.run(() => {
       this.selectedFile = event.target.files && event.target.files[0];
       console.log("onFileChanged", this.selectedFile);
-      this.previewPicture;
       let reader = new FileReader();
       if (this.selectedFile) {
         this.selectedFileName = this.selectedFile.name;
-        reader.onload = (e:any) => {
+        reader.onload = (e: any) => {
           this.previewPicture = e.target.result;
         };
         reader.readAsDataURL(this.selectedFile);
@@ -250,6 +256,12 @@ export class ProfileMedicPage {
         delete this.previewPicture;
       }
     });
+  }
+
+  filesChange(event, field) {
+    this.editProfile[field] = event.target.files && event.target.files[0];
+    console.log("onFileChanged", this.editProfile[field]);
+    console.log(this.editpersonalDocumentFile, this.editprofessionalCardFile);
   }
 
   updatePicture() {
@@ -260,16 +272,50 @@ export class ProfileMedicPage {
       .uploadProfile(this.profile.id, uploadData)
       .then(data => {
         this.configService.showToast("Información de la ubicación actualizada");
+        delete this.selectedFile;
+        delete this.selectedFileName;
         return this.getProfile();
       })
       .catch(error => {
-        console.log("updatePicture:error",error);
-        
+        console.log("updatePicture:error", error);
         this.configService.showToast(
           "Algo salio mal, vuelve a intentarlo",
           "toast-error"
         );
       });
+  }
+
+  uploadProfile() {
+    console.log(
+      "uploadProfile",
+      this.editProfile.editprofessionalCardFile,
+      this.editProfile.editpersonalDocumentFile
+    );
+    if (
+      this.editProfile.editprofessionalCardFile ||
+      this.editProfile.editpersonalDocumentFile
+    ) {
+      let uploadData = new FormData();
+      if (this.editProfile.editprofessionalCardFile)
+        uploadData.append(
+          "professionalCardFile",
+          this.editProfile.editprofessionalCardFile,
+          this.editProfile.editprofessionalCardFile.name
+        );
+      if (this.editProfile.editprofessionalCardFile)
+        uploadData.append(
+          "personalDocumentFile",
+          this.editProfile.editpersonalDocumentFile,
+          this.editProfile.editpersonalDocumentFile.name
+        );
+      return this.medicService
+        .uploadProfile(this.profile.id, uploadData)
+        .then(data => {
+          console.log("uploadProfile");
+          delete this.editProfile.editprofessionalCardFile;
+          delete this.editProfile.editpersonalDocumentFile;
+        });
+    }
   }
 
   getAttributeDifrent(original, edit) {

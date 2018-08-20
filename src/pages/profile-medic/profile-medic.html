@@ -198,7 +198,14 @@
           </ion-item>
         </ion-col>
 
-        <ion-col col-12col-md-3>
+        <ion-col col-12 col-md-3>
+          <ion-item>
+            <h2>Número de tarjeta profesional:
+              <p text-wrap>{{profile.professionalCardNumber}}</p>
+            </h2>
+          </ion-item>
+        </ion-col>
+        <ion-col col-12 col-md-12>
           <ion-item>
             <h2>Archivo documento de identidad:
               <p text-wrap>
@@ -207,14 +214,7 @@
             </h2>
           </ion-item>
         </ion-col>
-        <ion-col col-12 col-md-3>
-          <ion-item>
-            <h2>Número de tarjeta profesional:
-              <p text-wrap>{{profile.professionalCardNumber}}</p>
-            </h2>
-          </ion-item>
-        </ion-col>
-        <ion-col col-12 col-md-3>
+        <ion-col col-12 col-md-12>
           <ion-item>
             <h2>Archivo de tarjeta profesional:
               <p text-wrap>
@@ -285,18 +285,18 @@
           </ion-item>
         </ion-col>
         <ion-col col-12 col-md-6>
-          <ion-label stacked>Archivo documento de identidad:</ion-label>
-          <input type="file" (change)="filesChange($event,'personalDocumentFile')">
-        </ion-col>
-        <ion-col col-12 col-md-6>
           <ion-item>
             <ion-label stacked>Número de tarjeta profesional:</ion-label>
             <ion-input [(ngModel)]="editProfile.professionalCardNumber" name="phone"></ion-input>
           </ion-item>
         </ion-col>
-        <ion-col col-12 col-md-6>
+        <ion-col col-12 col-md-12>
+          <ion-label stacked>Archivo documento de identidad:</ion-label>
+          <input type="file" (change)="filesChange($event,'editpersonalDocumentFile')">
+        </ion-col>
+        <ion-col col-12 col-md-12>
           <ion-label stacked>Archivo de tarjeta profesional:</ion-label>
-          <input type="file" (change)="filesChange($event,'professionalCardFile')">
+          <input type="file" (change)="filesChange($event,'editprofessionalCardFile')">
         </ion-col>
       </ion-row>
     </ion-card-content>
