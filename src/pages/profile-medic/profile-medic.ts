@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from "ionic-angular";
 import { MedicService } from "../../providers/medic-service";
 import { ConfigService } from "../../providers/config-service";
 import { GoogleService } from "../../providers/google-service";
+import { AddAttentionChannelPage } from "../add-attention-channel/add-attention-channel";
 declare var google: any;
 declare var semanticPisco: any;
 /**
@@ -424,6 +425,11 @@ export class ProfileMedicPage {
 
   clickNewAttentionChannel() {
     console.debug("clickNewAttentionChannel()");
+    this.navCtrl.push(AddAttentionChannelPage, {
+      type: this.attentionChannel,
+      id: true,
+      profileId: this.profile.id
+    });
   }
 
   clickStudie(item) {

@@ -5,14 +5,57 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
-  <ion-navbar>
-    <ion-title>addAttentionChannel</ion-title>
-  </ion-navbar>
-
+  <div class="container">
+    <header-psicoguia></header-psicoguia>
+  </div>
 </ion-header>
 
 
 <ion-content padding>
+  <ion-card>
+    <div padding class="max-page-wid">
+      <h1 padding>REGISTRO</h1>
 
+      <form [formGroup]="newForm" (ngSubmit)="send()" margin-bottom>
+        <ion-item>
+          <ion-label stacked>Titulo:*</ion-label>
+          <ion-input type="text" formControlName="title" placeholder="Mi titulo"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label stacked>Descripción:*</ion-label>
+          <ion-textarea rows="3" type="text" formControlName="description" placeholder="Introduzca aquí la Descripción de su canale de atención"></ion-textarea>
+        </ion-item>
+        <ion-item>
+          <ion-label stacked>Ciudad:*</ion-label>
+          <ion-input type="text" formControlName="city" placeholder="Bogotá"></ion-input>
+        </ion-item>
+
+        <!-- Location-->
+        <ion-item>
+          <ion-label stacked>Dirección de Google: </ion-label>
+          <ion-input id="address-attention-channel" formControlName="addressGoogle" placeholder="Carrera 76 BIS ASur #14-57" name="text"></ion-input>
+        </ion-item>
+
+        <p padding-horizontal>Puedes introducir tu dirección exacta para que los usuarios te encuentren más facil</p>
+        <ion-item>
+          <ion-label stacked>Dirección que se mostrará:*</ion-label>
+          <ion-input type="text" formControlName="address" placeholder="Carrera 76 BIS ASur #14-57 Apt 201"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <h3>GPS: </h3>
+          <p text-wrap *ngIf="position">Localización: Lat: {{position.coordinates[1] | number:'1.2' }} - Long: {{position.coordinates[0]
+            | number:'1.2'}} </p>
+        </ion-item>
+
+        <!-- Map Inject -->
+        <div padding style="height: 420px;" id='map1' #map></div>
+
+        <button margin-top *ngIf="!loading" ion-button type="submit" block color="secondary" [disabled]="!newForm.valid">Crear</button>
+        <button margin-top ion-button *ngIf="loading" block color="secondary" disabled>
+          <ion-spinner name="crescent"></ion-spinner>
+        </button>
+      </form>
+    </div>
+  </ion-card>
 </ion-content>
