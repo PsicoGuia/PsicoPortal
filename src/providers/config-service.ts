@@ -20,6 +20,9 @@ export class ConfigService {
   emailValidated: boolean;
   toast: any;
   toastPrev: any;
+  public OFFSET = 50;
+  public DEFAULT_LAT =  4.652;
+  public DEFAULT_LNG = -74.103;
   public debug = true;
 
   constructor(

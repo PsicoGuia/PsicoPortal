@@ -19,7 +19,7 @@
       <ion-icon name="person" style="margin-right:4px"></ion-icon>{{settings?.settings?.user?.user?.first_name}}
       <ion-icon name="ios-arrow-down"></ion-icon>
     </button>
-    <a class="hidden-md" padding href="{{getPage('SearchPage').segment}}" (click)="$event.preventDefault(); openPage(getPage('SearchPage'));"
+    <a padding href="{{getPage('SearchPage').segment}}" (click)="$event.preventDefault(); openPage(getPage('SearchPage'));"
       ion-button text-uppercase>
       <ion-icon name="search"></ion-icon>
     </a>

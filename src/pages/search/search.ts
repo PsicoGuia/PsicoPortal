@@ -1,9 +1,9 @@
-import { Component, ViewChild, ElementRef } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { MedicService } from '../../providers/medic-service';
-import { ConfigService } from '../../providers/config-service';
-import { ProfileMedicDetailPage } from '../profile-medic-detail/profile-medic-detail';
-import { GoogleService } from '../../providers/google-service';
+import { Component, ViewChild, ElementRef } from "@angular/core";
+import { IonicPage, NavController, NavParams } from "ionic-angular";
+import { MedicService } from "../../providers/medic-service";
+import { ConfigService } from "../../providers/config-service";
+import { ProfileMedicDetailPage } from "../profile-medic-detail/profile-medic-detail";
+import { GoogleService } from "../../providers/google-service";
 declare var google: any;
 
 /**
@@ -14,20 +14,22 @@ declare var google: any;
  */
 
 @IonicPage({
-  segment: 'search'
+  segment: "search"
 })
 @Component({
-  selector: 'page-search',
-  templateUrl: 'search.html',
+  selector: "page-search",
+  templateUrl: "search.html"
 })
 export class SearchPage {
-  @ViewChild('map') mapElement: ElementRef;
+  @ViewChild("map")
+  mapElement: ElementRef;
   map: any;
   private listPatologies = [];
   patologiesSelected = [];
-  filters = {};
+  filters: any = { offset: 0, page: 1 };
   address;
   listProfiles = [];
+  listMarkers = [];
   myLocationMarker;
   private dummyLocations = [
     { type: "profile", title: "perfil1", lat: 4.6394723, long: -74.0738202 },
@@ -41,9 +43,19 @@ export class SearchPage {
     { type: "office", title: "office1", lat: 4.6358723, long: -74.0760202 },
     { type: "office", title: "office12", lat: 4.6368723, long: -74.0374738202 },
     { type: "office", title: "office13", lat: 4.6378723, long: -74.0778202 },
-    { type: "office", title: "office14", lat: 4.6388723, long: -74.178765768202 },
+    {
+      type: "office",
+      title: "office14",
+      lat: 4.6388723,
+      long: -74.178765768202
+    },
     { type: "office", title: "office15", lat: 4.6318723, long: -74.2554768202 },
-    { type: "office", title: "office16", lat: 4.6308723, long: -74.04312368202 },
+    {
+      type: "office",
+      title: "office16",
+      lat: 4.6308723,
+      long: -74.04312368202
+    },
     { type: "office", title: "office18", lat: 4.6398723, long: -74.057768202 },
     { type: "office", title: "office17", lat: 4.6338723, long: -74.063468202 },
     { type: "office", title: "office19", lat: 4.6378723, long: -74.023168202 },
@@ -70,69 +82,76 @@ export class SearchPage {
     { type: "atHome", title: "home", lat: 4.630978723, long: -74.03768202 },
     { type: "atHome", title: "home", lat: 4.632398723, long: -74.04768202 },
     { type: "atHome", title: "home", lat: 4.631998723, long: -74.02768202 },
-    { type: "atHome", title: "home", lat: 4.61813798723, long: -74.01768202 },
-
-
+    { type: "atHome", title: "home", lat: 4.61813798723, long: -74.01768202 }
   ];
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     private medicService: MedicService,
-    private condigService: ConfigService,
+    private configService: ConfigService,
     private googleService: GoogleService
-
   ) {
+    this.filters.limit = configService.OFFSET;
   }
 
   ionViewDidLoad() {
-    console.debug('ionViewDidLoad SearchPage');
-    this.medicService.getPatologies().then(data => { this.listPatologies = data })
-    this.loadProfiles();
+    console.debug("ionViewDidLoad SearchPage");
+    this.medicService.getPatologies().then(data => {
+      this.listPatologies = data;
+    });
+    this.initInputGoogle();
     this.loadMap();
-    this.initInputGoogle()
-
+    this.loadProfiles().then(list => {
+      return this.loadListMarkerInMap(list);
+    });
   }
 
   loadMap() {
-
-    var pos1LatLng = { lat: this.dummyLocations[0].lat, lng: this.dummyLocations[0].long };
-
+    var pos1LatLng = {
+      lat: this.configService.DEFAULT_LAT,
+      lng: this.configService.DEFAULT_LNG
+    };
 
     this.map = new google.maps.Map(this.mapElement.nativeElement, {
       zoom: 15,
       center: pos1LatLng
     });
-    var marker = new google.maps.Marker({
-      position: pos1LatLng,
-      map: this.map,
-      title: 'pos1',
-    });
-    var info = '<div class="contact-info" style="font-family: Roboto, \"Helvetica Neue\", sans-serif;"><strong>Pos1</strong><br/>' +
-      '<a href="#/profile-medic-detail/1">Doctor JuanSe Dussan</a>' +
-      '</div>';
+  }
 
-    var infoWindow = new google.maps.InfoWindow({
-      content: info
-    });
-
-    this.dummyLocations.forEach(element => {
-      var pos2LatLng = { lat: element.lat, lng: element.long };
-      var marker2 = new google.maps.Marker({
-        position: pos2LatLng,
+  loadListMarkerInMap(list) {
+    list.forEach(element => {
+      let posLatLng = {
+        lat: element.position.coordinates[1],
+        lng: element.position.coordinates[0]
+      };
+      let marker = new google.maps.Marker({
+        position: posLatLng,
         map: this.map,
-        title: 'pos2',
-        icon: this.condigService.pinSymbol("blue")
+        title: element.profile_title
       });
-      marker2.addListener('click', function () {
-        infoWindow.open(this.map, marker2);
+      let info =
+        '<div class="contact-info" style="font-family: Roboto, "Helvetica Neue", sans-serif;"><strong>Perfil:</strong><br/>' +
+        '<a href="#/profile-medic-detail/' +
+        element.id +
+        '">' +
+        element.profile_title +
+        "</a>" +
+        "</div>";
+      let infoWindow = new google.maps.InfoWindow({
+        content: info
       });
-    });
-
-    marker.addListener('click', function () {
-      infoWindow.open(this.map, marker);
+      marker.addListener("click", function() {
+        infoWindow.open(this.map, marker);
+      });
+      this.listMarkers.push(marker);
     });
   }
 
+  clearAllMarkers() {
+    while (this.listMarkers.length) {
+      this.listMarkers.pop().setMap(null);
+    }
+  }
 
   setMyLocationMarker(lat, long) {
     let icon = "http://maps.google.com/mapfiles/ms/icons/blue-dot.png";
@@ -141,7 +160,7 @@ export class SearchPage {
       this.myLocationMarker = new google.maps.Marker({
         position: posLatLng,
         map: this.map,
-        title: 'Tú ubicación',
+        title: "Tú ubicación",
         animation: google.maps.Animation.DROP,
         draggable: true,
         icon: icon
@@ -149,24 +168,33 @@ export class SearchPage {
     } else {
       this.myLocationMarker.setPosition(posLatLng);
     }
-    this.map.panTo(posLatLng)
+    this.map.panTo(posLatLng);
   }
 
   initInputGoogle() {
-    let input = document.getElementById('address-ac').getElementsByTagName('input')[0];
+    let input = document
+      .getElementById("address-ac")
+      .getElementsByTagName("input")[0];
     let options = this.googleService.options;
     // Create the autocomplete object, restricting the search to geographical
     // location types.
-    this.googleService.autocomplete = new google.maps.places.Autocomplete(input, options);
+    this.googleService.autocomplete = new google.maps.places.Autocomplete(
+      input,
+      options
+    );
 
     // When the user selects an address from the dropdown, populate the address
     // fields in the form.
-    this.googleService.autocomplete.addListener('place_changed', (data) => {
+    this.googleService.autocomplete.addListener("place_changed", data => {
       // double LookUp fix problem
-      this.googleService.searchAddress(this.googleService.autocomplete.getPlace().formatted_address).then(data => {
-        console.log("searchAddress", data);
-        this.onPalceChanged(data);
-      })
+      this.googleService
+        .searchAddress(
+          this.googleService.autocomplete.getPlace().formatted_address
+        )
+        .then(data => {
+          console.log("searchAddress", data);
+          this.onPalceChanged(data);
+        });
     });
   }
 
@@ -183,49 +211,73 @@ export class SearchPage {
       default:
         return "red";
     }
-
   }
 
   clickCardProfile(profile) {
     console.log("clickCardProfile");
-    this.navCtrl.setRoot(ProfileMedicDetailPage, { id: profile.id })
+    this.navCtrl.setRoot(ProfileMedicDetailPage, { id: profile.id });
   }
 
-
   loadProfiles() {
-    this.medicService.getProfiles(this.filters).then(data => {
-      this.listProfiles = data;
+    return this.medicService.getProfiles(this.filters).then(data => {
+      this.listProfiles = this.listProfiles.concat(data.results);
+      return data.results;
     });
   }
 
+  getMoreProfiles() {
+    this.filters.offset += this.configService.OFFSET;
+    this.filters.page++;
+    return this.loadProfiles().then(list => {
+      return this.loadListMarkerInMap(list);
+    });
+  }
 
   onPalceChanged(data) {
     console.log("onPalceChanged", data);
     this.setMyLocationMarker(data.lat, data.lng);
-
+    this.filters.lat = data.lat;
+    this.filters.lng = data.lng;
+    this.onChangeFilters().then();
   }
-
 
   getLocation() {
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition((data) => {
-        console.log("getLocation:data", data);
-        this.setMyLocationMarker(data.coords.latitude, data.coords.longitude);
-      }, (data) => {
-        console.log("getLocation:error", data);
-      }, {
+      navigator.geolocation.getCurrentPosition(
+        data => {
+          console.log("getLocation:data", data);
+          this.setMyLocationMarker(data.coords.latitude, data.coords.longitude);
+          this.filters.lat = data.coords.latitude;
+          this.filters.lng = data.coords.longitude;
+          this.onChangeFilters().then();
+        },
+        data => {
+          console.log("getLocation:error", data);
+        },
+        {
           maximumAge: 75000,
           timeout: 15000
-        });
-    }
-    else {
+        }
+      );
+    } else {
       alert("GPS_NOT_SUPPORTED");
     }
   }
 
-
   onSelectPatolgyChange(event) {
     console.log(this.patologiesSelected);
+    this.filters.patology__in = this.patologiesSelected.toString();
+    this.onChangeFilters().then();
   }
 
+  onChangeFilters() {
+    this.listProfiles = [];
+    this.filters.offset = 0;
+    this.filters.page = 1;
+    this.clearAllMarkers();
+    debugger;
+    return this.loadProfiles().then(list => {
+      return this.loadListMarkerInMap(list);
+    });
+  }
 }

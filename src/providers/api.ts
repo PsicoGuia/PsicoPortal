@@ -90,6 +90,18 @@ export class ApiService {
     });
   }
 
+
+  uploadPatch(endpoint: string, body: any, reqOpts: any = {}): Promise<any> {
+    reqOpts.headers = this.path_upload_headers();
+    return this.http.patch(this.url + endpoint, body, reqOpts).toPromise().then(data=>{
+      console.debug("Api:patch:sucess:"+this.url + endpoint,reqOpts,data);
+      return data;
+    }).catch(err=>{
+      console.debug("Api:patch:err:"+this.url + endpoint,reqOpts,err);
+      return Promise.reject(err);
+    });
+  }
+
   private get_headers(): HttpHeaders {
     let h: any = {
       'Content-Type': 'application/json',
@@ -106,6 +118,16 @@ export class ApiService {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
       "Access-Control-Allow-Methods": "POST, GET, OPTIONS, PUT, DELETE, PATCH",
+    }
+    if (this.settigsService && this.settigsService.settings && this.settigsService.settings.token) {
+      h.Authorization = this.settigsService.settings.token;
+    }
+    return new HttpHeaders(h);
+  }
+
+  private path_upload_headers(options?): HttpHeaders {
+    let h: any = {
+      "Access-Control-Allow-Methods": "PATCH",
     }
     if (this.settigsService && this.settigsService.settings && this.settigsService.settings.token) {
       h.Authorization = this.settigsService.settings.token;

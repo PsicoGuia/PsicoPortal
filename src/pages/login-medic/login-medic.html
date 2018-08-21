@@ -11,23 +11,25 @@
 </ion-header>
 
 <ion-content padding>
-  <div class="max-page-wid">
-    <h3 class="blue" padding>INICIAR SESIÓN</h3>
+  <ion-card>
+    <div padding  class="max-page-wid">
+      <h1 padding>INICIAR SESIÓN</h1>
 
-    <form [formGroup]="loginMedicForm" (ngSubmit)="login()" margin-bottom>
-      <ion-item>
-        <ion-label stacked>Correo electrónico*</ion-label>
-        <ion-input type="email" autocapitalize="off" formControlName="email"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label stacked>Contraseña*</ion-label>
-        <ion-input type="password" formControlName="password"></ion-input>
-      </ion-item>
-      {{settings?.settings?.user | json}}
-      <button ion-button *ngIf="loading" block color="secondary" disabled>
-        <ion-spinner name="crescent"></ion-spinner>
-      </button>
-      <button ion-button *ngIf="!loading" type="submit" block color="secondary" [disabled]="!loginMedicForm.valid">Entrar</button>
-    </form>
-  </div>
+      <form [formGroup]="loginMedicForm" (ngSubmit)="login()" margin-bottom>
+        <ion-item>
+          <ion-label stacked>Correo electrónico*</ion-label>
+          <ion-input type="email" autocapitalize="off" formControlName="email"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label stacked>Contraseña*</ion-label>
+          <ion-input type="password" formControlName="password"></ion-input>
+        </ion-item>
+        {{settings?.settings?.user | json}}
+        <button ion-button *ngIf="loading" block color="secondary" disabled>
+          <ion-spinner name="crescent"></ion-spinner>
+        </button>
+        <button ion-button *ngIf="!loading" type="submit" block color="secondary" [disabled]="!loginMedicForm.valid">Entrar</button>
+      </form>
+    </div>
+  </ion-card>
 </ion-content>

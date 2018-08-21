@@ -12,6 +12,12 @@
 
 
 <ion-content padding>
+  <ion-fab right top>
+    <button color="danger" (click)="reportProfile()" ion-fab>
+      <ion-icon name="warning"></ion-icon>
+    </button>
+  </ion-fab>
+
   <div>
     <ion-grid *ngIf="profile">
       <ion-row class="row-picture ">
@@ -26,24 +32,24 @@
         <ion-col col-md-8 *ngIf="profile">
           <ion-card>
             <ion-row>
-              <ion-col padding col-md-12>
+              <ion-col col-12 padding>
                 <h1 text-wrap *ngIf="profile.profile_title">{{profile.profile_title}}
                 </h1>
               </ion-col>
               <!-- stadistics profile -->
-              <ion-col col-4>
+              <ion-col col-md-4>
                 <ion-item text-center>
                   <h2>Calificacion de usuarios:</h2>
                   <p text-wrap>54</p>
                 </ion-item>
               </ion-col>
-              <ion-col col-4>
+              <ion-col col-md-4>
                 <ion-item text-center>
                   <h2>Citas atendidas:</h2>
                   <p text-wrap>885</p>
                 </ion-item>
               </ion-col>
-              <ion-col col-4>
+              <ion-col col-md-4>
                 <ion-item text-center>
                   <h2>Años de experiencia:</h2>
                   <p text-wrap>5</p>
@@ -52,7 +58,7 @@
             </ion-row>
             <!-- read profile -->
             <ion-row>
-              <ion-col col-md-12>
+              <ion-col col-12>
                 <ion-item>
                   <h2>Sobre mi:
                     <p text-wrap *ngIf="profile.about_me">{{profile.about_me}}</p>
@@ -68,7 +74,7 @@
                 </ion-item>
               </ion-col>
 
-              <ion-col col-md-6>
+              <ion-col col-md-md-6>
                 <ion-item>
                   <h2>Número de tarjeta profesional:
                     <p text-wrap>{{profile.professionalCardNumber}}</p>
@@ -87,7 +93,7 @@
               </ion-col>
             </ion-row>
             <ion-row>
-              <ion-col padding col-md-12>
+              <ion-col padding col-12>
                 <h2>Costo de la cita:</h2>
                 <p>
                   El costo promedio de cada cita redondea el valor de : {{profile.cost}} {{profile.cost_currency}}
@@ -98,7 +104,7 @@
               <ion-col col-12>
                 <h2>Especialista en:</h2>
               </ion-col>
-              <ion-col col-2 *ngFor="let patologyOrCategory of profile.profilepatologyorcategory_set">
+              <ion-col col-md-2 *ngFor="let patologyOrCategory of profile.profilepatologyorcategory_set">
                 <ul>
                   <li>{{patologyOrCategory.patology?.name}}{{patologyOrCategory.category?.name}}</li>
                 </ul>
@@ -118,11 +124,6 @@
                   <ion-note item-end>{{item.date | date: "longDate"}}</ion-note>
                 </button>
               </ion-list>
-              <div style="width: 100%;text-align:right;">
-                <button ion-button item-right clear (click)="clickNewStudie()">
-                  <ion-icon name="add">Añadir</ion-icon>
-                </button>
-              </div>
             </ion-card-content>
           </ion-card>
 
@@ -180,13 +181,6 @@
                   </button>
                   <ion-item *ngIf="!profile.homevisit_set?.length">No cuentas con domicilios</ion-item>
                 </ion-list>
-
-                <div style="width: 100%;text-align:right;">
-                  <button ion-button item-right clear (click)="clickNewAttentionChannel()">
-                    <ion-icon name="add">Añadir</ion-icon>
-                  </button>
-                </div>
-
               </div>
             </ion-card-content>
           </ion-card>

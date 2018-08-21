@@ -9,7 +9,7 @@
   <div class="filters">
     <ion-card>
       <ion-card-header color="primary">
-        <p text-wrap>Filtros:</p>
+        <h2 text-wrap>Filtros:</h2>
       </ion-card-header>
       <ion-card-content>
         <ion-item>
@@ -23,7 +23,7 @@
         <ion-item>
           <ion-label stacked>Seleciona las patolgías que quieres filtrar</ion-label>
           <ion-select [(ngModel)]="patologiesSelected" (ionChange)="onSelectPatolgyChange($event)" multiple="true">
-            <ion-option *ngFor="let patolgy of listPatologies" value="{{patolgy.id}}">{{patolgy.name}}</ion-option>
+            <ion-option selected *ngFor="let patolgy of listPatologies" value="{{patolgy.id}}">{{patolgy.name}}</ion-option>
           </ion-select>
         </ion-item>
       </ion-card-content>
@@ -58,5 +58,8 @@
         <p text-justify>{{profile.about_me}}</p>
       </ion-card-content>
     </ion-card>
+    <ion-infinite-scroll threshold="30%" (ionInfinite)="$event.waitFor(getMoreProfiles())">
+      <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
   </div>
 </ion-content>

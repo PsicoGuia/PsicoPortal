@@ -48,14 +48,16 @@ export class PqrPage {
   });
 
   registerPQR() {
+    if (this.loading) return;
     console.log("registerPQR");
-    let params = {
+    let params: any = {
       name_request_user: this.registerPQRForm.value.name_request_user,
       email_request_user: this.registerPQRForm.value.email_request_user,
       phone_request_user: this.registerPQRForm.value.phone_request_user,
       description: this.registerPQRForm.value.description
     };
-    this.loading = false;
+    if (this.isProfile) params.profile = this.idParam;
+    this.loading = true;
     this.PQRService.createPQR(params)
       .then(() => {
         this.configService.showToast(
