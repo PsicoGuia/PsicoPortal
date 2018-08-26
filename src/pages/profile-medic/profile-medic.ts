@@ -421,6 +421,11 @@ export class ProfileMedicPage {
 
   clickAttentionChannel(item) {
     console.debug("clickAttentionChannel()", item);
+    this.navCtrl.push(AddAttentionChannelPage, {
+      type: this.attentionChannel,
+      id: item.id,
+      profileId: this.profile.id
+    });
   }
 
   clickNewAttentionChannel() {

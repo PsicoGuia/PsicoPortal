@@ -54,6 +54,63 @@ export class MedicService {
       });
   }
 
+  getPathAttentionChannel(type) {
+    switch (type) {
+      case "Consultorio":
+        return "office";
+        break;
+      case "Domicilio":
+        return "home-visit";
+        break;
+      case "Chat":
+        return "chat";
+        break;
+      default:
+        return "attention-channel";
+        break;
+    }
+  }
+
+  getAttentionChannelDetail(id, type, params = {}): Promise<any> {
+    console.debug("MedicService:getAttentionChannelDetail", type);
+    let path = this.getPathAttentionChannel(type);
+    return this.settigsService.onReady().then(() => {
+      return this.api.get(URL_API + "medic/" + path + "/" + id + "/", params);
+    });
+  }
+
+  createAttentionChannel(type, params = {}): Promise<any> {
+    console.debug("MedicService:createAttentionChannel", type, params);
+    let path = this.getPathAttentionChannel(type);
+    return this.settigsService
+      .onReady()
+      .then(() => {
+        return this.api.post(
+          URL_API + "medic/" + path + "/",
+          params
+        );
+      })
+      .then(data => {
+        return (this._categories = data);
+      });
+  }
+
+  updateAttentionChannel(id, type, params = {}): Promise<any> {
+    console.debug("MedicService:createAttentionChannel", type, params);
+    let path = this.getPathAttentionChannel(type);
+    return this.settigsService
+      .onReady()
+      .then(() => {
+        return this.api.patch(
+          URL_API + "medic/" + path + "/" + id + "/",
+          params
+        );
+      })
+      .then(data => {
+        return (this._categories = data);
+      });
+  }
+
   updateProfile(id, params = {}): Promise<any> {
     console.debug("MedicService:updateProfile", params);
     return this.settigsService
@@ -66,13 +123,15 @@ export class MedicService {
       });
   }
 
-  
   uploadProfile(id, params = {}): Promise<any> {
     console.debug("MedicService:updateProfile", params);
     return this.settigsService
       .onReady()
       .then(() => {
-        return this.api.uploadPatch(URL_API + "medic/profile/" + id + "/", params);
+        return this.api.uploadPatch(
+          URL_API + "medic/profile/" + id + "/",
+          params
+        );
       })
       .then(data => {
         return (this._categories = data);
