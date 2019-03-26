@@ -58,16 +58,12 @@ export class MedicService {
     switch (type) {
       case "Consultorio":
         return "office";
-        break;
       case "Domicilio":
         return "home-visit";
-        break;
       case "Chat":
         return "chat";
-        break;
       default:
         return "attention-channel";
-        break;
     }
   }
 
