@@ -9,7 +9,7 @@ jobs:
       - run: sudo npm i -g ionic
       - run: npm i
       - run: ionic build --prod
-      - run: firebase use default
+      - run: firebase use psicoguia
       - run: firebase deploy --token=$FIREBASE_TOKEN --non-interactive
 
 workflows:
