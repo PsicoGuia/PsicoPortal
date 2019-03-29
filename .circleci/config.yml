@@ -5,8 +5,8 @@ jobs:
       - image: circleci/node:jessie
     steps:
       - checkout
-      - run: npm i -g firebase-tools
-      - run: npm i -g ionic
+      - run: sudo npm i -g firebase-tools
+      - run: sudo npm i -g ionic
       - run: npm i
       - run: ionic build --prod
       - run: firebase use default
