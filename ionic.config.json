@@ -1,10 +1,10 @@
-{
+ {
   "name": "PsicoPortal",
   "type": "ionic-angular",
   "proxies": [
     {
       "path": "/api/",
-      "proxyUrl": "http://localhost:8000/api/"
+      "proxyUrl": "https://api.psicoguia.co/api/"
     },
     {
       "path": "/mailchimp/",
