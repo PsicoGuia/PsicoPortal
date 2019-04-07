@@ -12,7 +12,7 @@ import { HttpClient } from "@angular/common/http";
 import { Settings } from "./settings";
 
 declare var appGoogleAnalitics: any;
-export let URL_API = "/api/1.0/";
+export let URL_API = "https://api.psicoguia.co/api/1.0/";
 
 @Injectable()
 export class ConfigService {
